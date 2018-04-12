@@ -22,9 +22,10 @@
 					</tr>
 				</thead>
 				<tbody>
+					<?php $sl=0; ?>
 					@foreach($allProducts as $Product)
 					<tr>
-						<td>1</td>
+						<td>{{ $sl =$sl+1 }}</td>
 						<td>{{ $Product->id }}</td>
 						<td>{{ $Product->product_name }}</td>
 						<td>{{ $Product->cetagory_name }}</td>

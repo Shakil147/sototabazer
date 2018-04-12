@@ -154,7 +154,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -217,6 +217,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

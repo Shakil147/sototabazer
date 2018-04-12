@@ -72,6 +72,23 @@
                     </li>
                 </ul>
             </li>
+                        <li class="has-subnav">
+                <a href="javascript:;">
+                <i class="fa fa-check-square-o nav_icon" aria-hidden="true"></i>
+                <span class="nav-text">
+                    Order
+                </span>
+                <i class="icon-angle-right"></i><i class="icon-angle-down"></i>
+                </a>
+                <ul>
+                    <li>
+                    <a class="subnav-text" href="{{ Url('/orders') }}">
+                    Menage Orders
+                    </a>
+                    </li>
+                    <li>
+                </ul>
+            </li>
 
             <li class="has-subnav">
                 <a href="{{ asset('backend') }}/javascript:;">

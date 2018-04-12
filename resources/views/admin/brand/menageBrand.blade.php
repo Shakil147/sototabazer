@@ -14,17 +14,18 @@
 						<th>Id</th>
 						<th>Brand Name</th>
 						<th>Status</th>
-						<th>Creater Id</th>
+						<th>Creater</th>
 						<th>Time</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
+					<?php $sl = 0; ?>
 					@foreach($allBrand as $Brand)
 					<tr>
-						<td>1</td>
-						<td>{{ $Brand->id }}</td>
-						<td>{{ $Brand->brands_name }}</td>
+						<td>{{ $sl = $sl+1 }}</td>
+						<td >{{ $Brand->id }}</td>
+						<td >{{ $Brand->brands_name }}</td>
 						
 						@if($Brand->publication_status == 1)
 						<td class="success">Published</td>

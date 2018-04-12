@@ -64,3 +64,7 @@ Route::get('/Product/status/{id}', 'ProductController@status_product');
 Route::get('/Product-edit/{id}', 'ProductController@edit_product');
 Route::post('/product-update', 'ProductController@update_product')->name('produc.update');
 Route::get('/Product/delete/{id}', 'ProductController@delete_product');
+
+Route::get('/orders', 'OrderController@index');
+Route::get('/order/invoice/{id}', 'OrderController@show_order_invoise');
+Route::get('/order/download/{id}', 'OrderController@downlod_order_invoise');

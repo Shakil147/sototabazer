@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Order;
+use App\Brand;
+use App\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -11,9 +15,16 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+ //      $orders = Order::all();
+        $orders = DB::table('orders')
+           ->join('customers', 'orders.customer_id', '=', 'customers.id')
+           ->join('payments', 'orders.id', '=', 'payments.order_id')
+           ->select('orders.*', 'customers.customer_name', 'payments.payment_type','payments.payment_status')
+           ->orderBy('orders.id', 'desc')
+           ->get();
+//        return $orders;
+        return view('admin.order.menageOrder',['orders'=>$orders]);
     }
 
     /**
@@ -43,9 +54,24 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show_order_invoise($id){
+         $orderByID = DB::table('orders')
+           ->join('customers', 'orders.customer_id', '=', 'customers.id')
+           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
+           ->join('payments', 'orders.id', '=', 'payments.order_id')
+           ->select('orders.*', 'customers.customer_name', 'customers.customer_email','customers.customer_phone_number','customers.customer_address', 'payments.payment_type','payments.payment_status', 'shippings.full_name','shippings.email','shippings.phone_number','shippings.shipping_address')
+           ->where('orders.id', $id)
+           ->get();
+           /*return $ordersByID;*/
+       
+
+        $orderDetails = OrderDetail::where('order_id',$id)->get();
+        $allBrand = Brand::all();
+        return view('admin.order.invoiseOrder',[
+            'ordersInfo'=>$orderByID, 
+            'orderDetails'=>$orderDetails,
+            'allBrand=>$allBrand'
+        ]);
     }
 
     /**
@@ -54,9 +80,24 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function downlod_order_invoise($id){
+        $orderByID = DB::table('orders')
+           ->join('customers', 'orders.customer_id', '=', 'customers.id')
+           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
+           ->join('payments', 'orders.id', '=', 'payments.order_id')
+           ->select('orders.*', 'customers.customer_name', 'customers.customer_email','customers.customer_phone_number','customers.customer_address', 'payments.payment_type','payments.payment_status', 'shippings.full_name','shippings.email','shippings.phone_number','shippings.shipping_address')
+           ->where('orders.id', $id)
+           ->get();
+           /*return $ordersByID;*/
+       
+
+        $orderDetails = OrderDetail::where('order_id',$id)->get();
+        $pdf = PDF::loadView('invoiseOrder', [
+            'ordersInfo'=>$orderByID, 
+            'orderDetails'=>$orderDetails,
+            'allBrand=>$allBrand'
+        ]);
+        return $pdf->stream('invoice.pdf');
     }
 
     /**

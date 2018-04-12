@@ -1,12 +1,12 @@
 
 <!DOCTYPE html>
 <head>
-<title>Colored  an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>@yield('title'):: SOTOTABAZAR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Colored Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
 <!-- bootstrap-css -->
 <link rel="stylesheet" href="{{ asset('backend') }}/css/bootstrap.css">
 <!-- //bootstrap-css -->
@@ -18,33 +18,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{ asset('backend') }}/css/font.css" type="text/css"/>
 <link href="{{ asset('backend') }}/css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
-<script src="{{ asset('backend') }}/js/jquery2.0.3.min.js"></script>
-<script src="{{ asset('backend') }}/js/modernizr.js"></script>
-<script src="{{ asset('backend') }}/js/jquery.cookie.js"></script>
-<script src="{{ asset('backend') }}/js/screenfull.js"></script>
-        <script>
-        $(function () {
-            $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
 
-            if (!screenfull.enabled) {
-                return false;
-            }
-
-            
-
-            $('#toggle').click(function () {
-                screenfull.toggle($('#container')[0]);
-            }); 
-        });
-        </script>
-<!-- charts -->
-<script src="{{ asset('backend') }}/js/raphael-min.js"></script>
-<script src="{{ asset('backend') }}/js/morris.js"></script>
-<link rel="stylesheet" href="{{ asset('backend') }}/css/morris.css">
-<!-- //charts -->
-<!--skycons-icons-->
-<script src="{{ asset('backend') }}/js/skycons.js"></script>
-<!--//skycons-icons-->
+<style>
+    td{
+        text-align: center;
+    }
+</style>
 </head>
 <body class="dashboard-page">
     <script>
@@ -82,8 +61,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <!-- //footer -->
     </section>
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<script src="{{ asset('backend') }}/js/jquery2.0.3.min.js"></script>
+<script src="{{ asset('backend') }}/js/modernizr.js"></script>
+<script src="{{ asset('backend') }}/js/jquery.cookie.js"></script>
+<script src="{{ asset('backend') }}/js/screenfull.js"></script>
+        <script>
+        $(function () {
+            $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+            if (!screenfull.enabled) {
+                return false;
+            }
+
+            
+
+            $('#toggle').click(function () {
+                screenfull.toggle($('#container')[0]);
+            }); 
+        });
+        </script>
+<!-- charts -->
+<script src="{{ asset('backend') }}/js/raphael-min.js"></script>
+<script src="{{ asset('backend') }}/js/morris.js"></script>
+<link rel="stylesheet" href="{{ asset('backend') }}/css/morris.css">
+<!-- //charts -->
+<!--skycons-icons-->
+<script src="{{ asset('backend') }}/js/skycons.js"></script>
+<!--//skycons-icons-->
     <script src="{{ asset('backend') }}/js/bootstrap.js"></script>
     <script src="{{ asset('backend') }}/js/proton.js"></script>
+
     @yield('plugjs')
+
 </body>
 </html>

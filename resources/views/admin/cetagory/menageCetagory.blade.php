@@ -1,10 +1,11 @@
 @extends('admin.master')
 
 @section('minContent')
-	<div class="panel panel-primary" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
-		<div class="panel-heading">
-			<h2>All Cetagories</h2>
-			<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+	<div class="panel panel-primary" >
+		<div class="panel-heading" style="font-size: large;">
+			<p>All Cetagories</p>
+			<a href="{{ url('/add-cetagory') }}" class="glyphicon glyphicon-plus" style="float: right; margin-top: -22px; color: #fff;" title="Add Eew Cetagories"></a>
+				
 		</div>
 		<div class="panel-body no-padding" style="display: block;">
 			<table class="table table-bordered">
@@ -13,15 +14,16 @@
 						<th>#</th>
 						<th>Id</th>
 						<th>Cetagory Name</th>
-						<th>Creater Id</th>
+						<th>Creater</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
+					<?php $sl = 0;  ?>
 					@foreach($allCetagory as $cetagory)
 					<tr>
-						<td>1</td>
+						<td>{{ $sl = $sl+1 }}</td>
 						<td>{{ $cetagory->id }}</td>
 						<td>{{ $cetagory->cetagory_name }}</td>
 						<td>{{ $cetagory->name }}</td>

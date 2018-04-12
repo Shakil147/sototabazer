@@ -1,10 +1,5 @@
-<div class="logo">
-        <h1><a href="{{ url('/home') }}"><img src="{{ asset('backend') }}/images/logo.png" alt="" />Colored</a></h1>
-    </div>
-    <div class="full-screen">
-        <section class="full-top">
-            <button id="toggle"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>    
-        </section>
+<div class="logo row">
+        <h1><a href="{{ url('/home') }}" style="color: #69EFF1" >SOTOTABAZAR</a></h1>
     </div>
     <div class="w3l_search">
         <form action="#" method="post">
