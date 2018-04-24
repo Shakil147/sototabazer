@@ -1,13 +1,13 @@
 @extends('layouts.app1')
 @section('title')
-REGISTER
+Login
 @endsection
 
 @section('content')  
             
 <div class="content2">
     <div class="grids-heading gallery-heading signup-heading">
-        <h2>Sotatabazar Login</h2>
+        <h2>Login to {{ config('app.name') }}</h2>
     </div>
     <form method="POST" action="{{ route('login') }}">
             @csrf

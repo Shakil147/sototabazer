@@ -66,5 +66,13 @@ Route::post('/product-update', 'ProductController@update_product')->name('produc
 Route::get('/Product/delete/{id}', 'ProductController@delete_product');
 
 Route::get('/orders', 'OrderController@index');
+Route::get('/order/view/{id}', 'OrderController@show_orders');
+Route::post('order.details.update','OrderController@orders_qty_update')->name('order.details.update');
+Route::post('order.status.update','OrderController@orders_status_update')->name('order.status.update');
 Route::get('/order/invoice/{id}', 'OrderController@show_order_invoise');
 Route::get('/order/download/{id}', 'OrderController@downlod_order_invoise');
+
+Route::get('/22', function() {
+	
+    return view('email.message');
+});

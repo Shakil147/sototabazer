@@ -7,7 +7,7 @@ REGISTER
         
 <div class="content2" style="width: 48%;">
     <div class="grids-heading gallery-heading signup-heading">
-        <h2>Register To Sototabazar</h2>
+        <h2>Register To {{ config('app.name') }}</h2>
     </div>
     <form method="POST" action="{{ route('register') }}">
                         @csrf

@@ -14,6 +14,7 @@ class SototabazarController extends Controller
             ->join('brands', 'products.brand_id', '=', 'brands.id')
             ->select('products.*','cetagories.cetagory_name','users.name','brands.brands_name')
             ->where('products.id',$id)->first();
+            
             $allImages = ProductImage::all();
     	return view('frontend.single.single',['ProductsById'=>$ProductsById,'allImages'=>$allImages]);
     }

@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('customer_id');
             $table->integer('shipping_id');
-            $table->integer('order_status');
+            $table->string('order_status')->default('PANDING');
             $table->timestamps();
         });
     }

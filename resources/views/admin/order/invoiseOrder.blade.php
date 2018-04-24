@@ -19,7 +19,6 @@
       </div>
     </header>
     <main>
-      @foreach($ordersInfo as $info)
       <div id="details" class="clearfix">
         <div id="client">
           <div class="to">INVOICE TO:</div>
@@ -38,7 +37,6 @@
           </div>
         </div>
       </div>
-        @endforeach
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>

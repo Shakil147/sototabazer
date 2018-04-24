@@ -10,6 +10,10 @@ use PDF;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,16 +29,6 @@ class OrderController extends Controller
            ->get();
 //        return $orders;
         return view('admin.order.menageOrder',['orders'=>$orders]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -54,64 +48,47 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show_order_invoise($id){
-         $orderByID = DB::table('orders')
+    public function show_orders($id){  
+           $orderByID = DB::table('orders')
            ->join('customers', 'orders.customer_id', '=', 'customers.id')
            ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
            ->join('payments', 'orders.id', '=', 'payments.order_id')
            ->select('orders.*', 'customers.customer_name', 'customers.customer_email','customers.customer_phone_number','customers.customer_address', 'payments.payment_type','payments.payment_status', 'shippings.full_name','shippings.email','shippings.phone_number','shippings.shipping_address')
            ->where('orders.id', $id)
-           ->get();
-           /*return $ordersByID;*/
-       
+           ->first();       
 
         $orderDetails = OrderDetail::where('order_id',$id)->get();
         $allBrand = Brand::all();
-        return view('admin.order.invoiseOrder',[
-            'ordersInfo'=>$orderByID, 
-            'orderDetails'=>$orderDetails,
-            'allBrand=>$allBrand'
-        ]);
+        return view('admin.order.orders',['info'=>$orderByID,'details'=>$orderDetails,'allBrand=>$allBrand']); 
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the Quantaty of Order Details.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function downlod_order_invoise($id){
-        $orderByID = DB::table('orders')
-           ->join('customers', 'orders.customer_id', '=', 'customers.id')
-           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
-           ->join('payments', 'orders.id', '=', 'payments.order_id')
-           ->select('orders.*', 'customers.customer_name', 'customers.customer_email','customers.customer_phone_number','customers.customer_address', 'payments.payment_type','payments.payment_status', 'shippings.full_name','shippings.email','shippings.phone_number','shippings.shipping_address')
-           ->where('orders.id', $id)
-           ->get();
-           /*return $ordersByID;*/
-       
-
-        $orderDetails = OrderDetail::where('order_id',$id)->get();
-        $pdf = PDF::loadView('invoiseOrder', [
-            'ordersInfo'=>$orderByID, 
-            'orderDetails'=>$orderDetails,
-            'allBrand=>$allBrand'
-        ]);
-        return $pdf->stream('invoice.pdf');
+    public function orders_qty_update(Request $request){
+      $orderDetails = OrderDetail::find($request->orders_ID);
+      $orderDetails->product_quantity = $request->product_quantity;
+      $orderDetails->save();
+      return redirect()->back()->with('message','Information Updated');
     }
 
-    /**
-     * Update the specified resource in storage.
+
+        /**
+     * Update Order Status.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    public function orders_status_update(Request $request){
 
+      $orderByID = Order::find($request->id);
+      $orderByID->order_status = $request->order_status;
+      $orderByID->save();
+      return redirect()->back()->with('message','Information Updated');        
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -122,4 +99,51 @@ class OrderController extends Controller
     {
         //
     }
+    
+    /**
+     * Display Order Invoise.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_order_invoise($id){
+         $orderByID = DB::table('orders')
+           ->join('customers', 'orders.customer_id', '=', 'customers.id')
+           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
+           ->join('payments', 'orders.id', '=', 'payments.order_id')
+           ->select('orders.*', 'customers.customer_name', 'customers.customer_email','customers.customer_phone_number','customers.customer_address', 'payments.payment_type','payments.payment_status', 'shippings.full_name','shippings.email','shippings.phone_number','shippings.shipping_address')
+           ->where('orders.id', $id)
+           ->first();      
+
+        $orderDetails = OrderDetail::where('order_id',$id)->get();
+        $allBrand = Brand::all();
+        return view('admin.order.invoiseOrder',[
+            'info'=>$orderByID, 
+            'orderDetails'=>$orderDetails,
+            'allBrand=>$allBrand' ]);
+    }
+
+    /**
+     * Downlod order Invoise.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function downlod_order_invoise($id){
+            $orderByID = DB::table('orders')
+           ->join('customers', 'orders.customer_id', '=', 'customers.id')
+           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
+           ->join('payments', 'orders.id', '=', 'payments.order_id')
+           ->select('orders.*', 'customers.customer_name', 'customers.customer_email','customers.customer_phone_number','customers.customer_address', 'payments.payment_type','payments.payment_status', 'shippings.full_name','shippings.email','shippings.phone_number','shippings.shipping_address')
+           ->where('orders.id', $id)
+           ->get();       
+
+        $orderDetails = OrderDetail::where('order_id',$id)->get();
+        $pdf = PDF::loadView('invoiseOrder', [
+            'ordersInfo'=>$orderByID, 
+            'orderDetails'=>$orderDetails,
+            'allBrand=>$allBrand']);
+        return $pdf->stream('invoice.pdf');
+    }
+
 }

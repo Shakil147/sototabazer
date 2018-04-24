@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-Menage Orders
+MENAGE Orders
 @endsection
 
 @section('minContent')
@@ -13,7 +13,7 @@ Menage Orders
 		<div class="panel-body no-padding" style="display: block;">
 			<table class="table table-bordered">
 				<thead>
-					<tr class="success ">
+					<tr class="success">
 						<th>SL</th>
                         <th>Order Id</th>
                         <th>Customer Name</th>
@@ -31,15 +31,8 @@ Menage Orders
                             <td class="scenter">{{ $i++ }}</td>
                             <td class="scenter">{{ $order->id }}</td>
                             <td class="scenter">{{ $order->customer_name }}</td>
-                            @if($order->order_status == 1)
-							<td class="success scenter">Compleated</td>
-							@elseif($order->order_status == 2)
-							<td class="warning">Prosiding</td>
-							@elseif($order->order_status == 3)
-							<td class="warning">Rejected</td>
-							@else
-							<td class="warning">Pending</td>
-							@endif
+                            <td class="scenter">{{ $order->order_status }}</td>
+							
                             <td>{{ $order->payment_type }}</td>
                             @if($order->payment_status == 1)
 							<td class="success">Recived</td>
