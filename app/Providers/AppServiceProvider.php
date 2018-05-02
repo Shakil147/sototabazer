@@ -3,6 +3,7 @@
 namespace App\Providers;
 use View;
 use App\Cetagory;
+use Cart;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,8 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('frontend.includs.navigation', function ($view) {
-            $view->with('publishedCategories', Cetagory::where('publication_status', 1)->get());
+        View::composer('frontend.includs.haderBottom', function ($view) {
+            $view->with('cart', Cart::content());
         });
     }
 

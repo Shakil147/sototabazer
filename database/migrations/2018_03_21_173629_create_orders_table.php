@@ -15,8 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_id');
-            $table->integer('shipping_id');
+            $table->integer('customer_id')->reference('id')->on('customers');
+            $table->integer('shipping_id')->reference('id')->on('shippings');
             $table->string('order_status')->default('PANDING');
             $table->timestamps();
         });

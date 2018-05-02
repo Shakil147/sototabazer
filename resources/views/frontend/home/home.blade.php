@@ -2,1232 +2,1995 @@
 @section('title')
 Home
 @endsection
+@section('body')
 
-@section('breadcrumbs')
-<ul>
-	<li><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/
-</ul>
+<body class="common-home res layout-1">
+    
+    <div id="wrapper" class="wrapper-fluid banners-effect-5">
+    	
 @endsection
 
-@section('content')
-<!-- banner-bottom -->
-	<div class="banner-bottom">
-		<div class="container">
-			<div class="col-md-5 wthree_banner_bottom_left">
-				<div class="video-img">
-					<a class="play-icon popup-with-zoom-anim" href="#small-dialog">
-						<span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
-					</a>
-				</div> 
-					<!-- pop-up-box -->     
-					<script src="{{ asset('frontend')}}/js/jquery.magnific-popup.js" type="text/javascript"></script>
-					<!--//pop-up-box -->
-					<div id="small-dialog" class="mfp-hide">
-						<iframe src="https://www.youtube.com/embed/ZQa6GUVnbNM"></iframe>
-					</div>
-					<script>
-						$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
-																						
-						});
-					</script>
-			</div>
-			<div class="col-md-7 wthree_banner_bottom_right">
-				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<ul id="myTab" class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home">Mobiles</a></li>
-						<li role="presentation"><a href="#audio" role="tab" id="audio-tab" data-toggle="tab" aria-controls="audio">Audio</a></li>
-						<li role="presentation"><a href="#video" role="tab" id="video-tab" data-toggle="tab" aria-controls="video">Computer</a></li>
-						<li role="presentation"><a href="#tv" role="tab" id="tv-tab" data-toggle="tab" aria-controls="tv">Household</a></li>
-						<li role="presentation"><a href="#kitchen" role="tab" id="kitchen-tab" data-toggle="tab" aria-controls="kitchen">Kitchen</a></li>
-					</ul>
-					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/3.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/4.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/5.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/6.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/7.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/3.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/4.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/5.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div> 
-									<h5><a href="{{ url('/single') }}/">Mobile Phone1</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$380</span> <i class="item_price">$350</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Mobile Phone1" /> 
-											<input type="hidden" name="amount" value="350.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>  
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/4.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/5.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/6.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/7.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/3.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/4.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/5.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/6.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Mobile Phone2</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$330</span> <i class="item_price">$302</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Mobile Phone2" /> 
-											<input type="hidden" name="amount" value="302.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/7.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/6.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/4.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/3.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/5.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/7.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/4.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/6.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Mobile Phone3</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$250</span> <i class="item_price">$245</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Mobile Phone3" /> 
-											<input type="hidden" name="amount" value="245.00"/>   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="audio" aria-labelledby="audio-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/10.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/10.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Speakers</a></h5>
-										<p><span>$320</span> <i class="item_price">$250</i></p>
-									<div class="simpleCart_shelfItem">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Speakers" /> 
-											<input type="hidden" name="amount" value="250.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/10.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/10.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Headphones</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$180</span> <i class="item_price">$150</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Headphones" /> 
-											<input type="hidden" name="amount" value="150.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/10.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/10.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/8.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Audio Player</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$220</span> <i class="item_price">$180</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Audio Player" /> 
-											<input type="hidden" name="amount" value="180.00"/>   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="video" aria-labelledby="video-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/13.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/13.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Laptop</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$880</span> <i class="item_price">$850</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Laptop" /> 
-											<input type="hidden" name="amount" value="850.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/13.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/13.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Notebook</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$290</span> <i class="item_price">$280</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Notebook" /> 
-											<input type="hidden" name="amount" value="280.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/13.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/13.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/12.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Kid's Toy</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$120</span> <i class="item_price">$80</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Kid's Toy" /> 
-											<input type="hidden" name="amount" value="80.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="tv" aria-labelledby="tv-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/16.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/16.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Refrigerator</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$950</span> <i class="item_price">$820</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Refrigerator" /> 
-											<input type="hidden" name="amount" value="820.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/16.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/16.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">LED Tv</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$700</span> <i class="item_price">$680</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="LED Tv"/> 
-											<input type="hidden" name="amount" value="680.00"/>   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/16.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/16.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/15.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Washing Machine</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$520</span> <i class="item_price">$510</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Washing Machine" /> 
-											<input type="hidden" name="amount" value="510.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="kitchen" aria-labelledby="kitchen-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/19.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/19.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Grinder</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$460</span> <i class="item_price">$450</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Grinder" /> 
-											<input type="hidden" name="amount" value="450.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/19.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/19.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Water Purifier</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$390</span> <i class="item_price">$350</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Water Purifier" /> 
-											<input type="hidden" name="amount" value="350.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="{{ asset('frontend')}}/images/19.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/19.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-										<img src="{{ asset('frontend')}}/images/18.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="{{ url('/single') }}/">Coffee Maker</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$250</span> <i class="item_price">$220</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Coffee Maker" /> 
-											<input type="hidden" name="amount" value="220.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-					</div>
-				</div> 
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //banner-bottom --> 
-	<!-- modal-video -->
-	<div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="{{ asset('frontend')}}/images/3.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>The Best Mobile Phone 3GB</h4>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$380</span> <i class="item_price">$350</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Mobile Phone1"> 
-									<input type="hidden" name="amount" value="350.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModal1">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="{{ asset('frontend')}}/images/9.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Multimedia Home Accessories</h4>
-							<p>Ut enim ad minim veniam, quis nostrud 
-								exercitation ullamco laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in 
-								reprehenderit in voluptate velit esse cillum dolore 
-								eu fugiat nulla pariatur. Excepteur sint occaecat 
-								cupidatat non proident, sunt in culpa qui officia 
-								deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$180</span> <i class="item_price">$150</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Headphones"> 
-									<input type="hidden" name="amount" value="150.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="{{ asset('frontend')}}/images/11.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Quad Core Colorful Laptop</h4>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in 
-								reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia  deserunt.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$880</span> <i class="item_price">$850</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Laptop"> 
-									<input type="hidden" name="amount" value="850.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModal3">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="{{ asset('frontend')}}/images/14.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Cool Single Door Refrigerator </h4>
-							<p>Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore 
-								eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$950</span> <i class="item_price">$820</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Mobile Phone1"> 
-									<input type="hidden" name="amount" value="820.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModal4">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="{{ asset('frontend')}}/images/17.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>New Model Mixer Grinder</h4>
-							<p>Excepteur sint occaecat laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-								eu fugiat nulla pariatur cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$460</span> <i class="item_price">$450</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Mobile Phone1"> 
-									<input type="hidden" name="amount" value="450.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModal5">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="{{ asset('frontend')}}/images/36.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Dry Vacuum Cleaner</h4>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-								cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$960</span> <i class="item_price">$920</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Vacuum Cleaner"> 
-									<input type="hidden" name="amount" value="920.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModal6">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="{{ asset('frontend')}}/images/37.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Kitchen & Dining Accessories</h4>
-							<p>Ut enim ad minim veniam, quis nostrud 
-								exercitation ullamco laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in 
-								reprehenderit in voluptate velit esse cillum dolore 
-								eu fugiat nulla pariatur. Excepteur sint occaecat 
-								cupidatat non proident, sunt in culpa qui officia 
-								deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="{{ asset('frontend')}}/images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$280</span> <i class="item_price">$250</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Induction Stove"> 
-									<input type="hidden" name="amount" value="250.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<!-- //modal-video -->
-	<!-- banner-bottom1 -->
-	<div class="banner-bottom1">
-		<div class="agileinfo_banner_bottom1_grids">
-			<div class="col-md-7 agileinfo_banner_bottom1_grid_left">
-				<h3>Grand Opening Event With flat<span>20% <i>Discount</i></span></h3>
-				<a href="products.html">Shop Now</a>
-			</div>
-			<div class="col-md-5 agileinfo_banner_bottom1_grid_right">
-				<h4>hot deal</h4>
-				<div class="timer_wrap">
-					<div id="counter"> </div>
-				</div>
-				<script src="js/jquery.countdown.js"></script>
-				<script src="js/script.js"></script>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //banner-bottom1 --> 
-	<!-- special-deals -->
-	<div class="special-deals">
-		<div class="container">
-			<h2>Special Deals</h2>
-			<div class="w3agile_special_deals_grids">
-				<div class="col-md-7 w3agile_special_deals_grid_left">
-					<div class="w3agile_special_deals_grid_left_grid">
-						<img src="{{ asset('frontend')}}/images/21.jpg" alt=" " class="img-responsive" />
-						<div class="w3agile_special_deals_grid_left_grid_pos1">
-							<h5>30%<span>Off/-</span></h5>
-						</div>
-						<div class="w3agile_special_deals_grid_left_grid_pos">
-							<h4>We Offer <span>Best Products</span></h4>
-						</div>
-					</div>
-					<div class="wmuSlider example1">
-						<div class="wmuSliderWrapper">
-							<article style="position: absolute; width: 100%; opacity: 0;"> 
-								<div class="banner-wrap">
-									<div class="w3agile_special_deals_grid_left_grid1">
-										<img src="{{ asset('frontend')}}/images/t1.png" alt=" " class="img-responsive" />
-										<p>Quis autem vel eum iure reprehenderit qui in ea voluptate 
-											velit esse quam nihil molestiae consequatur, vel illum qui dolorem 
-											eum fugiat quo voluptas nulla pariatur</p>
-										<h4>Laura</h4>
-									</div>
-								</div>
-							</article>
-							<article style="position: absolute; width: 100%; opacity: 0;"> 
-								<div class="banner-wrap">
-									<div class="w3agile_special_deals_grid_left_grid1">
-										<img src="{{ asset('frontend')}}/images/t2.png" alt=" " class="img-responsive" />
-										<p>Quis autem vel eum iure reprehenderit qui in ea voluptate 
-											velit esse quam nihil molestiae consequatur, vel illum qui dolorem 
-											eum fugiat quo voluptas nulla pariatur</p>
-										<h4>Michael</h4>
-									</div>
-								</div>
-							</article>
-							<article style="position: absolute; width: 100%; opacity: 0;"> 
-								<div class="banner-wrap">
-									<div class="w3agile_special_deals_grid_left_grid1">
-										<img src="{{ asset('frontend')}}/images/t3.png" alt=" " class="img-responsive" />
-										<p>Quis autem vel eum iure reprehenderit qui in ea voluptate 
-											velit esse quam nihil molestiae consequatur, vel illum qui dolorem 
-											eum fugiat quo voluptas nulla pariatur</p>
-										<h4>Rosy</h4>
-									</div>
-								</div>
-							</article>
-						</div>
-					</div>
-						<script src="js/jquery.wmuSlider.js"></script> 
-						<script>
-							$('.example1').wmuSlider();         
-						</script> 
-				</div>
-				<div class="col-md-5 w3agile_special_deals_grid_right">
-					<img src="{{ asset('frontend')}}/images/20.jpg" alt=" " class="img-responsive" />
-					<div class="w3agile_special_deals_grid_right_pos">
-						<h4>Women's <span>Special</span></h4>
-						<h5>save up <span>to</span> 30%</h5>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //special-deals -->
-	<!-- new-products -->
-	<div class="new-products">
-		<div class="container">
-			<h3>New Products</h3>
-			<div class="agileinfo_new_products_grids">
-				<div class="col-md-3 agileinfo_new_products_grid">
-					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-						<div class="hs-wrapper hs-wrapper1">
-							<img src="{{ asset('frontend')}}/images/25.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/23.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/24.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/22.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/26.jpg" alt=" " class="img-responsive" /> 
-							<div class="w3_hs_bottom w3_hs_bottom_sub">
-								<ul>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<h5><a href="{{ url('/single') }}/">Laptops</a></h5>
-						<div class="simpleCart_shelfItem">
-							<p><span>$520</span> <i class="item_price">$500</i></p>
-							<form action="#" method="post">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="add" value="1"> 
-								<input type="hidden" name="w3ls_item" value="Red Laptop"> 
-								<input type="hidden" name="amount" value="500.00">   
-								<button type="submit" class="w3ls-cart">Add to cart</button>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 agileinfo_new_products_grid">
-					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-						<div class="hs-wrapper hs-wrapper1">
-							<img src="{{ asset('frontend')}}/images/27.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/28.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/29.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/30.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/31.jpg" alt=" " class="img-responsive" /> 
-							<div class="w3_hs_bottom w3_hs_bottom_sub">
-								<ul>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<h5><a href="{{ url('/single') }}/">Black Phone</a></h5>
-						<div class="simpleCart_shelfItem">
-							<p><span>$380</span> <i class="item_price">$370</i></p>
-							<form action="#" method="post">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="add" value="1"> 
-								<input type="hidden" name="w3ls_item" value="Black Phone"> 
-								<input type="hidden" name="amount" value="370.00">   
-								<button type="submit" class="w3ls-cart">Add to cart</button>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 agileinfo_new_products_grid">
-					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-						<div class="hs-wrapper hs-wrapper1">
-							<img src="{{ asset('frontend')}}/images/34.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/33.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/32.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/35.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/36.jpg" alt=" " class="img-responsive" /> 
-							<div class="w3_hs_bottom w3_hs_bottom_sub">
-								<ul>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#myModal5"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<h5><a href="{{ url('/single') }}/">Kids Toy</a></h5>
-						<div class="simpleCart_shelfItem">
-							<p><span>$150</span> <i class="item_price">$100</i></p>
-							<form action="#" method="post">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="add" value="1"> 
-								<input type="hidden" name="w3ls_item" value="Kids Toy"> 
-								<input type="hidden" name="amount" value="100.00">   
-								<button type="submit" class="w3ls-cart">Add to cart</button>
-							</form>
-						</div>  
-					</div>
-				</div>
-				<div class="col-md-3 agileinfo_new_products_grid">
-					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-						<div class="hs-wrapper hs-wrapper1">
-							<img src="{{ asset('frontend')}}/images/37.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/38.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/39.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/40.jpg" alt=" " class="img-responsive" />
-							<img src="{{ asset('frontend')}}/images/41.jpg" alt=" " class="img-responsive" /> 
-							<div class="w3_hs_bottom w3_hs_bottom_sub">
-								<ul>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<h5><a href="{{ url('/single') }}/">Induction Stove</a></h5>
-						<div class="simpleCart_shelfItem">
-							<p><span>$280</span> <i class="item_price">$250</i></p>
-							<form action="#" method="post">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="add" value="1"> 
-								<input type="hidden" name="w3ls_item" value="Induction Stove"> 
-								<input type="hidden" name="amount" value="250.00">   
-								<button type="submit" class="w3ls-cart">Add to cart</button>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //new-products -->
-	<!-- top-brands -->
-	<div class="top-brands">
-		<div class="container">
-			<h3>Top Brands</h3>
-			<div class="sliderfig">
-				<ul id="flexiselDemo1">			
-					<li>
-						<img src="{{ asset('frontend')}}/images/tb1.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="{{ asset('frontend')}}/images/tb2.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="{{ asset('frontend')}}/images/tb3.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="{{ asset('frontend')}}/images/tb4.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="{{ asset('frontend')}}/images/tb5.jpg" alt=" " class="img-responsive" />
-					</li>
-				</ul>
-			</div>
-			<script type="text/javascript">
-					$(window).load(function() {
-						$("#flexiselDemo1").flexisel({
-							visibleItems: 4,
-							animationSpeed: 1000,
-							autoPlay: true,
-							autoPlaySpeed: 3000,    		
-							pauseOnHover: true,
-							enableResponsiveBreakpoints: true,
-							responsiveBreakpoints: { 
-								portrait: { 
-									changePoint:480,
-									visibleItems: 1
-								}, 
-								landscape: { 
-									changePoint:640,
-									visibleItems:2
-								},
-								tablet: { 
-									changePoint:768,
-									visibleItems: 3
-								}
-							}
-						});
-						
-					});
-			</script>
-			<script type="text/javascript" src="{{ asset('frontend')}}/js/jquery.flexisel.js"></script>
-		</div>
-	</div>
-	<!-- //top-brands -->
+@section('mainContainer')
+<div class="main-container container">
 
-	@endsection
+ <div id="content">
+        <!-- sliderHome -->
+        
+        <!-- //sliderHome -->
+        <div class="row">
+            
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 main-left sidebar-offcanvas">
+                <div class="module col1 hidden-sm hidden-xs"></div>
+                <div class="module">
+                    <div class="banners banners2">
+                        <div class="banner">
+                            <a href="{{ asset('emarket')}}/#"><img src="{{ asset('emarket')}}/image/catalog/banners/banner4.jpg" alt="image"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module product-simple">
+                    <h3 class="modtitle">
+                        <span>Latest products</span>
+                    </h3>
+                    <div class="modcontent">
+                        <div id="so_extra_slider_1" class="extraslider" >
+                            <!-- Begin extraslider-inner -->
+                            <div class="yt-content-slider extraslider-inner" data-rtl="yes" data-pagination="yes" data-autoplay="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="no" data-lazyload="yes" data-loop="no" data-buttonpage="top">
+                                <div class="item ">
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Mandouille short ">
+                                                    <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/1.jpg" alt="Mandouille short">
+                                                    </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Mandouille short">Mandouille short </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$55.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$76.00 </span>&nbsp;
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Xancetta bresao ">
+                                                        <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/2.jpg" alt="Xancetta bresao">
+                                                        </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Xancetta bresao">
+                                                            Xancetta bresao 
+                                                        </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$80.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$89.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Sausage cowbee ">
+                                                            <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/3.jpg" alt="Sausage cowbee">
+                                                            </a>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Sausage cowbee">
+                                                            Sausage cowbee 
+                                                        </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                            </div>
+                                           
+                                            <div class="content_price price">
+                                                <span class="price product-price">
+                                                                $66.00 
+                                                            </span>
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Chicken swinesha ">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/4.jpg" alt="Chicken swinesha">
+                                                                </a>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Chicken swinesha">
+                                                            Chicken swinesha 
+                                                        </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                                </span>
+                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                                </span>
+                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                                </span>
+                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                                </span>
+                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                                </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$45.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$56.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                </div>
+                                <div class="item ">
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Qeserunt shortloin ">
+                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/5.jpg" alt="Qeserunt shortloin">
+                                                </a>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Qeserunt shortloin">
+                                        Qeserunt shortloin 
+                                    </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price product-price">
+                                            $88.00 
+                                        </span>
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Consecte quichuck ">
+                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/6.jpg" alt="Consecte quichuck">
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Consecte quichuck">
+                                        Consecte quichuck 
+                                    </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$55.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$61.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Neatball bresaola ">
+                                            <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/7.jpg" alt="Neatball bresaola">
+                                            </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Neatball bresaola">
+                                        Neatball bresaola 
+                                    </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$65.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$71.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Yutculpa ullamco ">
+                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/8.jpg" alt="Yutculpa ullamco">
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Yutculpa ullamco">
+                                                    Yutculpa ullamco 
+                                                </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$60.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$77.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                </div>
+                            </div>
+                            <!--End extraslider-inner -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <ul class="block-infos">
+                        <li class="info1">
+                            <div class="inner">
+                                <i class="fa fa-file-text-o"></i>
+                                <div class="info-cont">
+                                    <a href="{{ asset('emarket')}}/#">free delivery</a>
+                                    <p>On order over $49.86</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="info2">
+                            <div class="inner">
+                                <i class="fa fa-shield"></i>
+                                <div class="info-cont">
+                                    <a href="{{ asset('emarket')}}/#">order protecttion</a>
+                                    <p>secured information</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="info3">
+                            <div class="inner">
+                                <i class="fa fa-gift"></i>
+                                <div class="info-cont">
+                                    <a href="{{ asset('emarket')}}/#">promotion gift</a>
+                                    <p>special offers!</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="info4">
+                            <div class="inner">
+                                <i class="fa fa-money"></i>
+                                <div class="info-cont">
+                                    <a href="{{ asset('emarket')}}/#">money back</a>
+                                    <p>return over 30 days</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="module">
+                    <div class="banners banners4">
+                        <div class="banner">
+                            <a href="{{ asset('emarket')}}/#"><img src="{{ asset('emarket')}}/image/catalog/banners/banner5.jpg" alt="image"></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="module blog-sidebar">
+                    <h3 class="modtitle"><span>Latest Blogs</span></h3>
+                    <div class="modcontent clearfix">
+
+                        <div id="so_latest_blog_103_1728994661514993652" class="so-blog-external buttom-type1 button-type1">
+                         
+                            <div class="yt-content-slider blog-external" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="no"
+                            data-pagination="yes" data-lazyload="yes" data-loop="yes" data-buttonpage="top">
+                                <div class="media" > 
+                                    <div class="item head-button">
+                                            <div class="media-left so-block">
+                                                <a href="{{ asset('emarket')}}/#" target="_self">
+                                                    <img src="{{ asset('emarket')}}/image/catalog/blog/2.jpg" alt="Duis autem vel eum irure sed diam nonumy">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-content so-block">
+
+                                                    <h4 class="media-heading font-title head-item">
+                                                        <a href="{{ asset('emarket')}}/#" title="Duis autem vel eum irure sed diam nonumy" target="_self">Duis autem vel eum irure sed diam nonumy</a>
+                                                    </h4>
+
+                                                    <div class="media-date-added">
+                                                        <i class="fa fa-calendar"></i><span class="media-date-added"> December 4th, 2017</span>
+                                                    </div>
+
+                                                    <div class="media-subcontent">
+                                                        <span class="media-comment"><i class="fa fa-comments"></i> 0  Comment</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="media" > 
+                                    <div class="item head-button">
+                                            <div class="media-left so-block">
+                                                <a href="{{ asset('emarket')}}/#" target="_self">
+                                                    <img src="{{ asset('emarket')}}/image/catalog/blog/4.jpg" alt="Duis autem vel eum irure sed diam nonumy">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-content so-block">
+
+                                                    <h4 class="media-heading font-title head-item">
+                                                        <a href="{{ asset('emarket')}}/#" title="Biten demons lector in henderit in vulp" target="_self">Biten demons lector in henderit in vulp</a>
+                                                    </h4>
+
+                                                    <div class="media-date-added">
+                                                        <i class="fa fa-calendar"></i><span class="media-date-added"> December 4th, 2017</span>
+                                                    </div>
+
+                                                    <div class="media-subcontent">
+                                                        <span class="media-comment"><i class="fa fa-comments"></i> 0  Comment</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="media" > 
+                                    <div class="item head-button">
+                                            <div class="media-left so-block">
+                                                <a href="{{ asset('emarket')}}/#" target="_self">
+                                                    <img src="{{ asset('emarket')}}/image/catalog/blog/1.jpg" alt="Duis autem vel eum irure sed diam nonumy">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-content so-block">
+
+                                                    <h4 class="media-heading font-title head-item">
+                                                        <a href="{{ asset('emarket')}}/#" title="Commodo laoreet semper tincidun  sit" target="_self">Commodo laoreet semper tincidun  sit</a>
+                                                    </h4>
+
+                                                    <div class="media-date-added">
+                                                        <i class="fa fa-calendar"></i><span class="media-date-added"> December 4th, 2017</span>
+                                                    </div>
+
+                                                    <div class="media-subcontent">
+                                                        <span class="media-comment"><i class="fa fa-comments"></i> 0  Comment</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                
+                 <div class="module product-simple">
+                    <h3 class="modtitle">
+                        <span>Top Rated</span>
+                    </h3>
+                    <div class="modcontent">
+                        <div id="so_extra_slider_2" class="extraslider" >
+                            <!-- Begin extraslider-inner -->
+                            <div class="yt-content-slider extraslider-inner" data-rtl="yes" data-pagination="yes" data-autoplay="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="no"
+                            data-lazyload="yes" data-loop="no" data-buttonpage="top">
+                                <div class="item ">
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Mandouille short ">
+                                                    <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/8.jpg" alt="Mandouille short">
+                                                    </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Mandouille short">Mandouille short </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$55.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$76.00 </span>&nbsp;
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Xancetta bresao ">
+                                                        <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/7.jpg" alt="Xancetta bresao">
+                                                        </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Xancetta bresao">
+                                                            Xancetta bresao 
+                                                        </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$80.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$89.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Sausage cowbee ">
+                                                            <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/6.jpg" alt="Sausage cowbee">
+                                                            </a>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Sausage cowbee">
+                                                            Sausage cowbee 
+                                                        </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                            </div>
+                                           
+                                            <div class="content_price price">
+                                                <span class="price product-price">
+                                                                $66.00 
+                                                            </span>
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Chicken swinesha ">
+                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/5.jpg" alt="Chicken swinesha">
+                                                </a>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Chicken swinesha">
+                                                            Chicken swinesha 
+                                                        </a>
+                                            </div>
+                                             <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$45.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$56.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                </div>
+                                <div class="item ">
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Qeserunt shortloin ">
+                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/4.jpg" alt="Qeserunt shortloin">
+                                                </a>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Qeserunt shortloin">
+                                        Qeserunt shortloin 
+                                    </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                                <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                    </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price product-price">
+                                            $88.00 
+                                        </span>
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Consecte quichuck ">
+                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/3.jpg" alt="Consecte quichuck">
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Consecte quichuck">
+                                        Consecte quichuck 
+                                    </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                                <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                        </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$55.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$61.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Neatball bresaola ">
+                                            <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/2.jpg" alt="Neatball bresaola">
+                                            </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Neatball bresaola">
+                                        Neatball bresaola 
+                                    </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                                <span class="fa fa-stack">
+                                                <i class="fa fa-star fa-stack-2x"></i>
+                                            </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$65.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$71.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                    <div class="product-layout item-inner style1 ">
+                                        <div class="item-image">
+                                            <div class="item-img-info">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Yutculpa ullamco ">
+                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/80/1.jpg" alt="Yutculpa ullamco">
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-title">
+                                                <a href="{{ asset('emarket')}}/#" target="_self" title="Yutculpa ullamco">
+                                                    Yutculpa ullamco 
+                                                </a>
+                                            </div>
+                                            <div class="rating">
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                                <span class="fa fa-stack">
+                                                    <i class="fa fa-star fa-stack-2x"></i>
+                                                </span>
+                                            </div>
+                                            <div class="content_price price">
+                                                <span class="price-new product-price">$60.00 </span>&nbsp;&nbsp;
+
+                                                <span class="price-old">$77.00 </span>&nbsp;
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- End item-info -->
+                                        <!-- End item-wrap-inner -->
+                                    </div>
+                                    <!-- End item-wrap -->
+                                </div>
+                            </div>
+                            <!--End extraslider-inner -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <div class="banners banners5">
+                        <div class="banner">
+                            <a href="{{ asset('emarket')}}/#"><img src="{{ asset('emarket')}}/image/catalog/banners/banner6.jpg" alt="image"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12 main-right">
+                @include('frontend.includs.slider')
+
+                <!-- Deals -->
+                <div class="module deals-layout1">
+                    <h3 class="modtitle"><span>Daily Deals</span></h3>
+                    <div class="modcontent">
+                        <div id="so_deal_1" class="so-deal style2">
+                            <div class="extraslider-inner products-list yt-content-slider" data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="2" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="yes" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                                <div class="item">
+                                    <div class="product-thumb">
+                                        <div class="row">
+                                            <div class="inner">
+                                                <div class="item-left col-lg-6 col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="image"> 
+                                                        <span class="label-product label-product-sale">
+                                                            -22%
+                                                        </span>
+                                                        <a href="{{ asset('emarket')}}/#" target="_self" title="product">
+                                                            <img src="{{ asset('emarket')}}/image/catalog/demo/product/320/1.jpg" alt="Yutculpa ullamco" class="img-responsive">
+                                                        </a>
+                                                        <div class="button-group so-quickview">
+                                                            <button class="btn-button addToCart" title="Add to Cart" type="button" onclick="cart.add('69');"><i class="fa fa-shopping-basket"></i>  <span>Add to Cart</span>
+                                                            </button>                                                        
+                                                            <button class="btn-button wishlist" type="button" title="Add to Wish List" onclick="wishlist.add('69');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button class="btn-button compare" type="button" title="Compare this Product" onclick="compare.add('69');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>                                                    
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-right col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                    <div class="caption">
+                                                        <h4><a href="{{ asset('emarket')}}/#" target="_self" title="Yutculpa ullamco">Yutculpa ullamco</a></h4>
+                                                        <p class="price">   <span class="price-new">$60.00</span>
+                                                            <span class="price-old">$77.00</span>
+                                                        </p>
+                                                        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore..</p>
+                                                        <div class="item-available">
+                                                            <div class="row">
+                                                                <p class="col-xs-6 a1">Available: <b>98</b> 
+                                                                </p>
+                                                                <p class="col-xs-6 a2">Sold: <b>32</b> 
+                                                                </p>
+                                                            </div>
+                                                            <div class="available"> <span class="color_width" data-title="75%" data-toggle="tooltip" title="75%" style="width: 75%"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--countdown box-->
+                                                        <div class="item-time-w">
+                                                            <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
+                                                                <div class="item-time">
+                                                                    <div class="item-timer">
+                                                                        <div class="defaultCountdown-30"></div>
+                                                                    </div>
+                                                                </div>                                                                                                                                                                
+                                                        </div>                                                    
+                                                        <!--end countdown box-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="product-thumb ">
+                                        <div class="row">
+                                            <div class="inner">
+                                                <div class="item-left col-lg-6 col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="image"> 
+                                                        <span class="label-product label-product-sale">
+                                                            -10%
+                                                        </span>
+                                                        <a href="{{ asset('emarket')}}/#" target="_self" title="Xancetta bresao">
+                                                            <img src="{{ asset('emarket')}}/image/catalog/demo/product/320/2.jpg" alt="Xancetta bresao" class="img-responsive">
+                                                        </a>
+                                                        <div class="button-group so-quickview">
+                                                            <button class="btn-button addToCart" title="Add to Cart" type="button" onclick="cart.add('75');"><i class="fa fa-shopping-basket"></i>  <span>Add to Cart</span>
+                                                            </button>
+                                                            <button class="btn-button wishlist" type="button" title="Add to Wish List" onclick="wishlist.add('75');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button class="btn-button compare" type="button" title="Compare this Product" onclick="compare.add('75');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-right col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                    <div class="caption">
+                                                        <h4><a href="{{ asset('emarket')}}/#" target="_self" title="Xancetta bresao">Xancetta bresao</a></h4>
+                                                        <p class="price">   <span class="price-new">$80.00</span>
+                                                            <span class="price-old">$89.00</span>
+                                                        </p>
+                                                        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore..</p>
+                                                        <div class="item-available">
+                                                            <div class="row">
+                                                                <p class="col-xs-6 a1">Available: <b>555</b> 
+                                                                </p>
+                                                                <p class="col-xs-6 a2">Sold: <b>0</b> 
+                                                                </p>
+                                                            </div>
+                                                            <div class="available"> <span class="color_width" data-title="0%" data-toggle="tooltip" title="75%" style="width: 0%"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--countdown box-->
+                                                        <div class="item-time-w">
+                                                            <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
+                                                            <div class="item-time">
+                                                                <div class="item-timer">
+                                                                    <div class="defaultCountdown-30"></div>
+                                                                </div>
+                                                            </div>
+                                                                                                                                                                
+                                                        </div>                                                    
+                                                        <!--end countdown box-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="product-thumb transition ">
+                                        <div class="row">
+                                            <div class="inner">
+                                                <div class="item-left col-lg-6 col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="image">
+                                                        <span class="label-product label-product-sale">-17%</span>
+                                                        <a href="{{ asset('emarket')}}/#" target="_self" title="Wamboudin ribeye">
+                                                            <img src="{{ asset('emarket')}}/image/catalog/demo/product/320/3.jpg" alt="Wamboudin ribeye" class="img-responsive">
+                                                        </a>
+                                                        <div class="button-group so-quickview">
+                                                            <button class="btn-button addToCart" title="Add to Cart" type="button" onclick="cart.add('79');"><i class="fa fa-shopping-basket"></i>  <span>Add to Cart</span>
+                                                            </button>
+                                                            <button class="btn-button wishlist" type="button" title="Add to Wish List" onclick="wishlist.add('79');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button class="btn-button compare" type="button" title="Compare this Product" onclick="compare.add('79');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-right col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                    <div class="caption">
+                                                        <h4><a href="{{ asset('emarket')}}/#" target="_self" title="Wamboudin ribeye">Wamboudin ribeye</a></h4>
+                                                        <p class="price">   <span class="price-new">$70.00</span>
+                                                            <span class="price-old">$84.00</span>
+                                                        </p>
+                                                        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore..</p>
+                                                        <div class="item-available">
+                                                            <div class="row">
+                                                                <p class="col-xs-6 a1">Available: <b>100</b> 
+                                                                </p>
+                                                                <p class="col-xs-6 a2">Sold: <b>60</b> 
+                                                                </p>
+                                                            </div>
+                                                            <div class="available"> <span class="color_width" data-title="63%" data-toggle="tooltip" title="63%" style="width: 63%"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--countdown box-->
+                                                        <div class="item-time-w">
+                                                            <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
+                                                            <div class="item-time">
+                                                                <div class="item-timer">
+                                                                    <div class="defaultCountdown-30"></div>
+                                                                </div>
+                                                            </div>
+                                                                                                                                                                
+                                                        </div>                                                    
+                                                        <!--end countdown box-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="product-thumb transition ">
+                                        <div class="row">
+                                            <div class="inner">
+                                                <div class="item-left col-lg-6 col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="image">
+                                                        <span class="label-product label-product-sale">-16%</span>
+                                                        <a href="{{ asset('emarket')}}/#" target="_self" title="Proident leerkas">
+                                                            <img src="{{ asset('emarket')}}/image/catalog/demo/product/320/4.jpg" alt="Proident leerkas" class="img-responsive">
+                                                        </a>
+                                                        <div class="button-group so-quickview">
+                                                            <button class="btn-button addToCart" title="Add to Cart" type="button" onclick="cart.add('55');"><i class="fa fa-shopping-basket"></i>  <span>Add to Cart</span>
+                                                            </button>
+                                                            <button class="btn-button wishlist" type="button" title="Add to Wish List" onclick="wishlist.add('55');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button class="btn-button compare" type="button" title="Compare this Product" onclick="compare.add('55');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-right col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                    <div class="caption">
+                                                        <h4><a href="{{ asset('emarket')}}/#" target="_self" title="Wamboudin ribeye">Proident leerkas</a></h4>
+                                                        <p class="price">   <span class="price-new">$46.00</span>
+                                                            <span class="price-old">$55.00</span>
+                                                        </p>
+                                                        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore..</p>
+                                                        <div class="item-available">
+                                                            <div class="row">
+                                                                <p class="col-xs-6 a1">Available: <b>310</b> 
+                                                                </p>
+                                                                <p class="col-xs-6 a2">Sold: <b>2</b> 
+                                                                </p>
+                                                            </div>
+                                                            <div class="available"> <span class="color_width" data-title="99%" data-toggle="tooltip" title="99%" style="width: 99%"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--countdown box-->
+                                                        <div class="item-time-w">
+                                                            <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
+                                                            <div class="item-time">
+                                                                <div class="item-timer">
+                                                                    <div class="defaultCountdown-30"></div>
+                                                                </div>
+                                                            </div>
+                                                                                                                                                                
+                                                        </div>                                                    
+                                                        <!--end countdown box-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Deals -->
+
+                <div class="banners banners6">
+                    <div class="banner">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/banners/banner7.jpg" alt="image">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing tabs -->
+                <div class="module listingtab-layout1">
+                    <h3 class="modtitle"><span>Trending items</span></h3>
+                    <div id="so_listing_tabs_1" class="so-listing-tabs first-load">
+                        <div class="loadeding"></div>
+                        <div class="ltabs-wrap">
+                            <div class="ltabs-tabs-container" data-delay="300" data-duration="600" data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="5" data-md="3" data-sm="2" data-xs="1" data-margin="30">
+                                <!--Begin Tabs-->
+                                <div class="ltabs-tabs-wrap"> 
+                                <span class="ltabs-tab-selected">Bathroom</span> <span class="ltabs-tab-arrow">▼</span>
+                                    <div class="item-sub-cat">
+                                        <ul class="ltabs-tabs cf">
+                                            <li class="ltabs-tab tab-sel" data-category-id="20" data-active-content=".items-category-20"> <span class="ltabs-tab-label">Bedroom</span> </li>
+                                            <li class="ltabs-tab " data-category-id="18" data-active-content=".items-category-18"> <span class="ltabs-tab-label">Decor</span> </li>
+                                            <li class="ltabs-tab " data-category-id="25" data-active-content=".items-category-25"> <span class="ltabs-tab-label">Furniture</span> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- End Tabs-->
+                            </div>
+                        
+                            <div class="ltabs-items-container products-list grid">
+                                <!--Begin Items-->
+                                <div class="ltabs-items ltabs-items-selected items-category-20" data-total="16">
+                                    <div class="ltabs-items-inner ltabs-slider">
+                                        <!-- item listing tab -->
+                                        <div class="ltabs-item">
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/1.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/12.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Pastrami bacon" target="_self">Pastrami bacon</a></h4>
+                                                            <div class="price">$42.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Chicken swinesha">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/2.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/11.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-sale"> -16% </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Chicken swinesha" target="_self">Chicken swinesha</a></h4>
+                                                            <div class="price"> <span class="price-new">$46.00</span>
+                                                                <span class="price-old">$55.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end item listing tab -->
+                                        <div class="ltabs-item">
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Kielbasa hamburg">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/3.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/10.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-new"> New </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Kielbasa hamburg" target="_self">Kielbasa hamburg</a></h4>
+                                                            <div class="price">$55.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Sausage cowbee">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/4.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/9.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Sausage cowbeea" target="_self">Sausage cowbee</a></h4>
+                                                            <div class="price">$60.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="ltabs-item">
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Kielbasa hamburg">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/5.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/8.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Drumstick tempor" target="_self">Drumstick tempor</a></h4>
+                                                            <div class="price">$75.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Balltip nullaelit">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/6.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/7.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-new"> New </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Balltip nullaelit" target="_self">Balltip nullaelit</a></h4>
+                                                            <div class="price">$80.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="ltabs-item">
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Ribeye hamhock">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/7.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/6.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-sale"> -7% </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Ribeye hamhock" target="_self">Ribeye hamhock</a></h4>
+                                                            <div class="price"> <span class="price-new">$65.00</span>
+                                                                <span class="price-old">$70.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Wamboudin ribeye">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/8.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/5.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Wamboudin ribeye" target="_self">Wamboudin ribeye</a></h4>
+                                                            <div class="price">$63.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="ltabs-item">
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Lamboudin ribeye">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/9.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/4.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Lamboudin ribeye" target="_self">Lamboudin ribeye</a></h4>
+                                                            <div class="price">$63.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Ribeye hamhock">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/10.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/3.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-sale"> -7% </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Ribeye hamhock" target="_self">Ribeye hamhock</a></h4>
+                                                            <div class="price"> <span class="price-new">$65.00</span>
+                                                                <span class="price-old">$70.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                    
+                                        </div>
+                                        <div class="ltabs-item">
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Kielbasa hamburg">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/11.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/2.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Drumstick tempor" target="_self">Drumstick tempor</a></h4>
+                                                            <div class="price">$75.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Balltip nullaelit">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/12.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/1.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-new"> New </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Balltip nullaelit" target="_self">Balltip nullaelit</a></h4>
+                                                            <div class="price">$80.00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="ltabs-items items-category-18 grid" data-total="16">
+                                    <div class="ltabs-loading"></div>
+                                    
+                                </div>
+                                <div class="ltabs-items  items-category-25 grid" data-total="16">
+                                    <div class="ltabs-loading"></div>
+                                </div>
+                                <!--End Items-->
+                            </div>
+                            
+                        </div>   
+                    </div>
+                </div>
+                <!-- end Listing tabs -->
+                <!--banners 7-->
+                <div class="banners banners7">
+                    <div class="row">
+                        <div class="banner1 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="b1">
+                                <a href="{{ asset('emarket')}}/#">
+                                    <img src="{{ asset('emarket')}}/image/catalog/banners/banner8.jpg" alt="image">
+                                </a>
+                            </div>
+                            <div class="b2">
+                                <a href="{{ asset('emarket')}}/#">
+                                    <img src="{{ asset('emarket')}}/image/catalog/banners/banner9.jpg" alt="image">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="banner2 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <a href="{{ asset('emarket')}}/#">
+                                <img src="{{ asset('emarket')}}/image/catalog/banners/banner10.jpg" alt="image">
+                            </a>
+                        </div>
+                        <div class="banner3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="b1">
+                                <a href="{{ asset('emarket')}}/#">
+                                    <img src="{{ asset('emarket')}}/image/catalog/banners/banner11.jpg" alt="image">
+                                </a>
+                            </div>
+                            <div class="b2">
+                                <a href="{{ asset('emarket')}}/#">
+                                    <img src="{{ asset('emarket')}}/image/catalog/banners/banner12.jpg" alt="image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listing tabs custom -->
+                <div class="module listingtab1-custom listingtab-layout1">
+                    <h3 class="modtitle"><span>New items</span></h3>
+                    <div id="so_listing_tabs_2" class="so-listing-tabs first-load">
+                        <div class="loadeding"></div>
+                        <div class="ltabs-wrap">
+                            <div class="ltabs-tabs-container" data-delay="300" data-duration="600" data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="1" data-md="1" data-sm="1" data-xs="1" data-margin="0">
+                                <!--Begin Tabs-->                            
+                                <div class="ltabs-tabs-wrap">   
+                                    <span class='ltabs-tab-selected'></span>
+                                    <span class="ltabs-tab-arrow">▼</span>
+                                    <ul class="ltabs-tabs cf list-sub-cat font-title">                                  
+                                        <li class="ltabs-tab tab-sel" data-category-id="51" data-active-content=".items-category-51"><span class="ltabs-tab-label">Bathroom</span></li>
+                                        <li class="ltabs-tab  " data-category-id="52" data-active-content=".items-category-52">   <span class="ltabs-tab-label">Bedroom</span></li>
+                                        <li class="ltabs-tab  " data-category-id="53" data-active-content=".items-category-53">   <span class="ltabs-tab-label">Decor</span></li>                                                
+                                    </ul>
+                                </div>
+                                <!-- End Tabs-->
+                            </div>
+                            <div class="ltabs-items-container products-list grid">
+                                <!--Begin Items-->
+                                <div class="ltabs-items ltabs-items-selected items-category-51" data-total="14">
+                                    <div class="ltabs-items-inner ltabs-slider">
+                                        <!-- item listing tab -->
+                                        <div class="ltabs-item">
+                                            <div class="item-inner product-layout transition product-grid first-item">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/funiture/10.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/funiture/9.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="price">$42.00</div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Pastrami bacon" target="_self">Pastrami bacon</a></h4>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Chicken swinesha">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/15.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/2.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-sale"> -16% </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="price"> <span class="price-new">$46.00</span>
+                                                                <span class="price-old">$55.00</span>
+                                                            </div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Chicken swinesha" target="_self">Chicken swinesha</a></h4>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Kielbasa hamburg">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/14.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/3.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-new"> New </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="price">$55.00</div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Kielbasa hamburg" target="_self">Kielbasa hamburg</a></h4>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Sausage cowbee">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/13.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/4.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="price">$60.00</div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Sausage cowbeea" target="_self">Sausage cowbee</a></h4>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Kielbasa hamburg">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/12.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/5.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="price">$75.00</div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Drumstick tempor" target="_self">Drumstick tempor</a></h4>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Balltip nullaelit">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/11.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/6.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="box-label"> <span class="label-product label-new"> New </span></div>
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="price">$80.00</div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Balltip nullaelit" target="_self">Balltip nullaelit</a></h4>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-inner product-layout transition product-grid">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img">
+                                                            <a href="{{ asset('emarket')}}/product.html" target="_self" title="Lamboudin ribeye">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/10.jpg" class="img-1 img-responsive" alt="image">
+                                                                <img src="{{ asset('emarket')}}/image/catalog/demo/product/270/7.jpg" class="img-2 img-responsive" alt="image">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="button-group so-quickview cartinfo--left">
+                                                            <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                                                <span>Add to cart </span>   
+                                                            </button>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                                            </button>
+                                                            <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                                            </button>
+                                                            <!--quickview-->                                                      
+                                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="{{ asset('emarket')}}/quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                            <!--end quickview-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <div class="price">$63.00</div>
+                                                            <h4><a href="{{ asset('emarket')}}/product.html" title="Lamboudin ribeye" target="_self">Lamboudin ribeye</a></h4>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end item listing tab -->
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="ltabs-items items-category-52 grid" data-total="14">
+                                    <div class="ltabs-loading"></div>
+                                    
+                                </div>
+
+                                <div class="ltabs-items  items-category-53 grid" data-total="14">
+                                    <div class="ltabs-loading"></div>
+                                </div>
+
+                              
+                                <!--End Items-->
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end Listing tabs custom -->
+                            
+            </div>
+			<!-- Brand Slide -->
+            <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="yt-content-slider contentslider" data-autoplay="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="8" data-items_column1="6" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes"
+                        data-pagination="no" data-lazyload="yes" data-loop="no">
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b1.png" alt="brand">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b2.png" alt="brand">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b3.png" alt="brand">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b4.png" alt="brand">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b5.png" alt="brand">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b6.png" alt="brand">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b4.png" alt="brand">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b5.png" alt="brand">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ asset('emarket')}}/#">
+                            <img src="{{ asset('emarket')}}/image/catalog/brands/b6.png" alt="brand">
+                        </a>
+                    </div>
+                </div>
+            </div>
+			<!-- //Brand Slide -->
+        </div>
+        
+    </div>
+</div>
+
+@endsection

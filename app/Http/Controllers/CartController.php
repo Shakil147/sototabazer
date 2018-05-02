@@ -30,19 +30,23 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request.$cart->options->image
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-         $product = Product::find($request->id);
+         $product = Product::find($request->product_id);
     
         Cart::add([
-            'id'    => $request->id,
+            'id'    => $product->id,
             'name'  => $product->product_name,
             'price' => $product->product_price,
-            'qty'   => $request->product_qty
+            'qty'   => $request->quantity,
+            'options' => array('image' => $product->product_main_image)
+            
         ]);
-       return redirect()->back();
+        /*return Cart::content();*/
+        $conmirmMessage = $request->quantity.' '.$product->product_name.' '.' added to your cart';
+       return redirect()->back()->with('message', $conmirmMessage);
     }
 
     /**
@@ -77,7 +81,7 @@ class CartController extends Controller
     public function update(Request $request)
     {
         $product = Cart::update($request->rowId, $request->qty);
-        return redirect()->back();
+        return redirect()->back()->with('message','Product Qwantity Updated');
 
     }
 
@@ -90,6 +94,6 @@ class CartController extends Controller
     public function destroy($id)
     {
         $product = Cart::remove($id);
-        return redirect()->back();
+        return redirect()->back()->with('message','One product was deleted');
     }
 }

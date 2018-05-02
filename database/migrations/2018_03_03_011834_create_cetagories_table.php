@@ -18,7 +18,7 @@ class CreateCetagoriesTable extends Migration
             $table->string('cetagory_name');
             $table->text('cetagory_description')->nullable();
             $table->string('cetagory_icon')->nullable();
-            $table->integer('cetagorie_creater_id');
+            $table->integer('cetagorie_creater_id')->reference('id')->on('users');
             $table->integer('publication_status')->default('1');
             $table->timestamps();
         });

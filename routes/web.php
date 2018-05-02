@@ -13,7 +13,14 @@
 
 Route::get('/', function () {
     return view('frontend.home.home');
-});
+})->name('home.page');
+
+Route::get('/acountlogin','AcccountController@show_login_form')->name('account.login');
+Route::post('/account-login','AcccountController@index')->name('account-login');
+Route::get('/account-logout','AcccountController@destroy')->name('account-logout');
+Route::get('/acountregister','AcccountController@show_register_form')->name('account.register');
+Route::post('/account-register','AcccountController@create')->name('account-register');
+
 
 Route::get('/single-product/{id}','SototabazarController@show_single_product');
 Route::get('/contact','SototabazarController@show_contact_form');
@@ -21,19 +28,21 @@ Route::get('/product-by-Cetagory/{id}','SototabazarController@productsbyCetegory
 Route::get('/about','SototabazarController@about');
 
 Route::post('/addToCart', 'CartController@store')->name('cart.add');
-Route::get('/show-cart', 'CartController@index');
+Route::get('/show-cart', 'CartController@index')->name('cart.show');
 Route::get('/cart-delet/{id}', 'CartController@destroy');
 Route::post('cart-update','CartController@update')->name('cart.update');
 
-Route::get('/checkout','CheckOutController@index');
-Route::post('/checkout-creat-acount','CheckOutController@Creat_acount')->name('checkouk.creat.acount');
-Route::post('/login-from-cart','CheckOutController@login_from_cart')->name('checkouk.login.acount');
+Route::get('/checkout','CheckOutController@index')->name('checkout');
+Route::get('/checkout-login','CheckOutController@show_login_from')->name('checkout.login');
+Route::get('/checkout-register','CheckOutController@show_register_from')->name('checkout.register');
+Route::post('/checkout-creat-acount','CheckOutController@Creat_acount')->name('checkout-register');
+Route::post('/login-from-cart','CheckOutController@login_from_cart')->name('checkout-login-acount');
 
-Route::get('/shipping-info', 'CheckOutController@shiping_info');
-Route::post('/store-shipping-info','CheckOutController@store_shiping_info')->name('checkouk.save.shipping.info');
+Route::get('/shipping-info', 'CheckOutController@shiping_info')->name('shipping.info');
+Route::post('/store-shipping-info','CheckOutController@store_shiping_info')->name('checkout.save.shipping.info');
 
 Route::get('/payment-info','CheckOutController@show_payment_form');
-Route::post('/store-payment-info','CheckOutController@store_payment_form')->name('checkouk.save.payment.info');
+Route::post('/store-payment-info','CheckOutController@store_payment_form')->name('checkout.save.payment.info');
 Route::get('/cod-order-submit','CheckOutController@COD_payment_submit');
 Route::get('/complete-order','CheckOutController@complete_order');
 

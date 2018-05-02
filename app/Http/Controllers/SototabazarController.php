@@ -8,15 +8,14 @@ use Illuminate\Support\Facades\DB;
 class SototabazarController extends Controller
 {
     public function show_single_product($id){
-        $ProductsById = DB::table('products')
-            ->join('users', 'products.product_creater_id', '=', 'users.id')
+        $productsById = DB::table('products')
             ->join('cetagories', 'products.category_id', '=', 'cetagories.id')
             ->join('brands', 'products.brand_id', '=', 'brands.id')
-            ->select('products.*','cetagories.cetagory_name','users.name','brands.brands_name')
+            ->select('products.*','cetagories.cetagory_name','brands.brands_name')
             ->where('products.id',$id)->first();
             
-            $allImages = ProductImage::all();
-    	return view('frontend.single.single',['ProductsById'=>$ProductsById,'allImages'=>$allImages]);
+            $allImages = ProductImage::where('product_id',$id)->get();
+    	return view('frontend.single.single',['productInfo'=>$productsById,'productImages'=>$allImages]);
     }
     public function show_contact_form(){
     	return view('frontend.contact.contact');

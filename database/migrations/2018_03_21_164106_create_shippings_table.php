@@ -18,7 +18,12 @@ class CreateShippingsTable extends Migration
             $table->string('full_name');
             $table->string('email');
             $table->string('phone_number');
-            $table->text('shipping_address');
+            $table->string('address_1');
+            $table->string('address_2');
+            $table->string('up_zilla');
+            $table->string('zilla');
+            $table->string('postcode');
+            $table->string('country')->default('Bangladesh');
             $table->timestamps();
         });
     }

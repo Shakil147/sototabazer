@@ -19,7 +19,30 @@ class CheckOutController extends Controller
      */
     public function index()
     {
-        //
+        
+    }
+    public function show_login_from(){    
+        /*$allCartProduct = Cart::count();
+            if ($allCartProduct >=1 ) {
+                if (Session::get('customerName')) {
+                    return redirect()->back()->with('message','you are allrady loged in');
+                }
+             return view('frontend.checkout.chakOutLogin');
+                
+            }*/
+            return view('frontend.checkout.chakOutLogin');
+    return redirect()->back()->with('message','you have not any product in cart');
+    }
+    public function show_register_from(){    
+        $allCartProduct = Cart::count();
+            if ($allCartProduct >=1 ) {
+                if (Session::get('customerName')) {
+                    return redirect()->back()->with('message','you are allrady loged in');
+                }
+             return view('frontend.checkout.chakOutRegister');
+                
+            }
+    return redirect()->back()->with('message','you have not any product in cart');
     }
 
     /**
@@ -28,36 +51,62 @@ class CheckOutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function Creat_acount(Request $request){
+        
+        $this->validate($request, [
+            'first_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u',
+            'last_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u',
+            'email'     => 'required|email|unique:customers,email',
+            'password'  => 'min:6',
+            'password_confirmation' => 'required_with:password|same:password|min:6',
+            'phone_no'  => 'required|regex:/(01)[0-9]{9}/|min:11|max:15|unique:customers,phone_no',
+            'address_1' => 'required',
+            'zilla'     => 'required',
+            'country'   => 'required',
+            'agree'     => 'required'
+        ]);
         $customer = new Customer;
-        $customer->customer_name = $request->name;
-        $customer->customer_email = $request->email;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        /*$customer->photo = $request->photo;*/
+        $customer->email = $request->email;
         $customer->password = bcrypt($request->password);
-        $customer->customer_phone_number = $request->phone_number;
-        $customer->customer_address = $request->address;
+        $customer->phone_no = $request->phone_no;
+        $customer->address_1 = $request->address_1;
+        $customer->address_2 = $request->address_2;
+        $customer->up_zilla = $request->up_zilla;
+        $customer->zilla = $request->zilla;
+        $customer->postcode = $request->postcode;
+        $customer->country = $request->country;
         $customer->save();
-        $customerId = $customer->id;
-        Session::put('customerId', $customerId);
-        Session::put('customerName', $request->name);
+       /* return $customer;*/
 
-        return redirect('/shipping-info');
+        $customerId = $customer->id;
+        $customerName = $customer->first_name.' '.$customer->last_name;
+        Session::put('customerId', $customerId);
+        Session::put('customerName', $customerName);
+        $wellcome = 'Hellow '.$customerName.' '.'Wellcome to ShototaBazar';
+
+        return redirect('/shipping-info')->with('message',$wellcome);
         
     }
 
     public function login_from_cart(Request $request){
-        $customer = Customer::where('customer_email', $request->email)->first();
+        $customer = Customer::where('email', $request->email)->first();
+       
 
-        if($customer) {
+        if(isset($customer)) {
             if(password_verify($request->password, $customer->password)) {
                 Session::put('customerId', $customer->id);
-                Session::put('customerName', $customer->first_name.' '.$customer->last_name);
+                Session::put('customerName',  $customer->first_name.' '.$customer->last_name);
 
-                return redirect('/shipping-info');
+                $wellcome = 'Hellow'.' '.$customer->customer_name.' '.'Wellcome to ShototaBazar';
+                return redirect('/shipping-info')->with('message', $wellcome);
             } else {
-                return redirect('/customer-sign-up')->with('message', 'Your password is not correct');
+                return redirect()->back()->with('message', 'Your password is not correct');
             }
         } 
         else {
-            return redirect('/customer-sign-up')->with('message', 'Your email is not correct');
+            return redirect()->back()->with('message', 'Your email is not correct');
         }
 
     }
@@ -70,10 +119,10 @@ class CheckOutController extends Controller
      */
     public function store_shiping_info(Request $request){
         $shipping = new Shipping;
-        $shipping->full_name = $request->name;
+        $shipping->full_name = $request->firstName.' '.$request->lastName;
         $shipping->email = $request->email;
-        $shipping->phone_number = $request->number;
-        $shipping->shipping_address = $request->adress;
+        $shipping->phone_number = $request->mobileNo;
+        $shipping->shipping_address = $request->address_1.' '.$request->city.' '.$request->zilla;
         $shipping->save();
         $shippingId = $shipping->id;
         Session::put('shippingId', $shippingId);
@@ -90,7 +139,9 @@ class CheckOutController extends Controller
     public function shiping_info(){
         $customerId = Session::get('customerId');
         $customer = Customer::find($customerId);
-        return view('frontend.checkout.shippingForm', ['customer'=>$customer]);
+        $allCartProduct = Cart::content();
+        return view('frontend.checkout.shippingForm',
+         ['customer'=>$customer,'CartProduct'=>$allCartProduct]);
     }
 
     /**
@@ -100,7 +151,8 @@ class CheckOutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show_payment_form(){
-        return view('frontend.checkout.paymentForm');
+        $allCartProduct = Cart::content();
+        return view('frontend.checkout.paymentForm',['CartProduct'=>$allCartProduct]);
         
     }
 
@@ -112,14 +164,14 @@ class CheckOutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store_payment_form(Request $request){
-        $paymentType = $request->payment_type;
-        if($paymentType == 'COD') {
+        $peymentType = $request->peymentType;
+        if($peymentType == 'COD') {
              return redirect('/cod-order-submit');
 
         } else if($paymentType == 'Bkash') {
-            return $paymentType;
-        } else if($paymentType == 'Paypal') {
-            return $paymentType;
+            return $peymentType;
+        } else if($peymentType == 'Paypal') {
+            return $peymentType;
         }
     }
 
@@ -152,6 +204,7 @@ class CheckOutController extends Controller
                 $orderDetails->product_quantity = $cartProduct->qty;
                 $orderDetails->save();
             }
+     return redirect('/')->with('message','your order recived successfully Thank you we will contat you verry soon');       
      return redirect('/complete-order');       
     }
 

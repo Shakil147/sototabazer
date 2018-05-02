@@ -1,167 +1,170 @@
 @extends('frontend.master')
 @section('title')
-Single Prodects
+Cart
+@endsection
+@section('body')
+
+<body class="res layout-subpage layout-1 banners-effect-5">
+    <div id="wrapper" class="wrapper-fluid">
+        
 @endsection
 
+@section('mainContainer')
 
-@section('content')
-<style>
-	body{
-		background-color: #f2ffe6;
-	}
-</style>
-		<!-- breadcrumbs -->
-	<div class="breadcrumb_dress">
-		<div class="container">
-			<ul>
-				<li><a href="{{ asset('frontend')}}/index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
-				<li>Cart</li>
-			</ul>
-		</div>
-	</div>
-	<!-- //breadcrumbs -->  
 
-	<div class="container" style="padding-bottom: 50px; padding-top: 30px;">
-		<table class="table">
-  <h1>List of Cart Product</h1><hr>
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Prise</th>
-      <th scope="col">Quantaty</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-  	<?php $a = 0; $totle=0; ?>
-  	@foreach($CartProduct as $product)
-    <tr >
-      <th scope="row">{{ $a=$a+1 }}</th>
-      <td>{{ $product->name }}</td>
-      <td scope="col">TK {{ $product->price }}</td>
-      <td class="col-md-5">
-		<div class="row">
-		{!! Form::open(['route' => 'cart.update','method'=>'post']) !!}
-			<input class="col-md-4" type="number" name="qty" value="{{ $product->qty }}" min="1" max="100" style="border-color: black; border-radius: 4px;" />
-			<input type="hidden" name="rowId" value="{!! $product->rowId !!}" />
-			
-				<button  type="submit" class="btn btn-info glyphicon glyphicon-refresh col-md-1" style="border-radius: 4px; margin-left: 20px;" title="UPDATE"></button>
-			
-		
-		{!! Form::close() !!}
-		<a href="{{ url('/cart-delet/'.$product->rowId) }}" class="btn btn-warning glyphicon glyphicon-trash col-md-1" title="Deleta" style="margin-left: 20px;"></a>
-		</div>
-
-      </td>
-      <td>TK {{ $subtotle= $product->qty*$product->price }}</td>
-    </tr>
-    <?php $totle = $totle+$subtotle; ?>
-    @endforeach
-  </tbody>
-</table>
+<div class="main-container container">
+        <ul class="breadcrumb">
+            <li><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
+            <li><a href="#">Shopping Cart</a></li>
+        </ul>
         <div class="row">
-            <div class="col-md-6 " >
-                <a href="{{ url('/') }}" class="btn btn-primary glyphicon glyphicon-circle-arrow-left pull-right">Continue Shopping</a>
+            <!--Middle Part Start-->
+        <div id="content" class="col-sm-12">
+          <h2 class="title">Shopping Cart</h2>
+            <div class="table-responsive form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <td class="text-center">Image</td>
+                    <td class="text-left">Product Name</td>
+                    <td class="text-left">Product Cod</td>
+                    <td class="text-left">Quantity</td>
+                    <td class="text-right">Unit Price</td>
+                    <td class="text-right">Total</td>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                            $total = 0;  $subtotal = 0; $gq = 0;
+                            foreach ($CartProduct as $bcart) {
+                                 $total = $bcart->qty*$bcart->price;
+                                 $subtotal = $subtotal+$total;
+                                 $gq = $gq+$bcart->qty;
+
+
+                            } 
+                            $taxrate = 5; $shippingCost = 50;
+                             $grandtotal = $subtotal + ($subtotal  * $taxrate) / 100;
+                            $tax = $grandtotal-$subtotal;
+                            /*$grandtotal = $grandtotal+$shippingCost;*/
+                                         ?>
+                  @foreach($CartProduct as $product)
+                  <tr>
+                    <td class="text-center"><a href="{{ url('/single-product/'.$product->id) }}"><img width="70px" src="{{ asset($product->options->image) }}" alt="{{ $product->name }}" title="{{ $product->name }}" class="img-thumbnail" /></a></td>
+                    <td class="text-left"><a href="{{ url('/single-product/'.$product->id) }}">{{ $product->name }}</a><br />
+                     </td>
+                    <td class="text-left">{{ $product->id }}</td>
+                    <td class="text-left" width="200px"><div class="input-group btn-block quantity">
+                        
+                        <div class="container container-fluid">
+                             <div class="row">
+                                {!! Form::open(['route' => 'cart.update','method'=>'post']) !!}
+                        <input type="number" name="qty" value="{{  $product->qty }}" min="1" max="50" 
+                        class=" col-sm-6" />
+                        <input type="hidden" name="rowId" value="{{ $product->rowId }}">
+                        <span class="input-group-btn">
+                        <button type="submit" data-toggle="tooltip" title="Update" class=" btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button> 
+                        
+                        {!! Form::close() !!} 
+                        <div class="pull-right col-sm-1">
+                            <a href="{{ url('/cart-delet/'.$product->rowId) }}" class="btn btn-danger "><i class="fa fa-times-circle"></i></a>
+                        </div>
+                        
+                           
+                        </div>
+                        
+                        
+                        </span></div></td>
+                    <td class="text-right">TK. {{ $product->price }}</td>
+                    <td class="text-right">TK. {{ $product->qty*$product->price }}</td>
+                  </tr>
+                @endforeach
+                  
+                </tbody>
+              </table>
             </div>
-            <div class="col-md-2">
-            	<h4>
-            		Totle = TK. <b> {{ $totle }}</b>
-            	</h4>
-            </div>
-            <div class="col-md-3">
-                @if(Session::get('customerId') && Session::get('shippingId'))
-                    <a href="{{ url('/payment-info') }}" class="btn btn-success">Checkout</a>
-                @elseif(Session::get('customerId'))
-                <a href="{{ url('/shipping-info') }}" class="btn btn-success">Checkout</a>
+        
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="text-right">
+                                <strong>Sub-Total:</strong>
+                            </td>
+                            <td class="text-right">TK. {{ $subtotal }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <strong>Flat Shipping Rate:</strong>
+                            </td>
+                            <td class="text-right">TK. {{ $shippingCost }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <strong>VAT (20%):</strong>
+                            </td>
+                            <td class="text-right">$34.68</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <strong>Total:</strong>
+                            </td>
+                            <td class="text-right">TK. {{ $grandtotal }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+             <div class="buttons">
+                <div class="pull-left"><a href="index-2.html" class="btn btn-primary">Continue Shopping</a></div>
+                @if($customerId= Session::get('customerName') )
+                <div class="pull-right"><a href="{{ route('shipping.info') }}" class="btn btn-primary">Checkout {{ $customerId }}</a></div>
                 @else
-                <a href="#" data-toggle="modal" data-target="#myModal8" class="btn btn-success  col-md-2-ofset-1 glyphicon glyphicon-road">
-                <!-- <a href="{{ url('/checkout') }}" > -->Checkout</a>
-                @endif
+
+                    <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModal">
+              <i class="glyphicon glyphicon-check"></i>Checkout
+            </button>
+             @endif
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please Login or Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       {!! Form::open(['class'=>'col-sm-12','route' => 'checkout-login-acount','method'=>'post']) !!}
+          <div class="form-group">
+            <label for="recipient-name" class="col-sm-4 col-form-label">E-mail:</label>
+            <input type="email" name="email" class="col-sm-6 form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-sm-4 col-form-label">Password:</label>
+            <input type="password" name="password" class="col-sm-6 form-control" id="recipient-password">
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal">Register</button>
+        <button type="submit" class="btn btn-primary pull-right">Login</button>
+      </div>
+      {{ Form::close() }}
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
             </div>
         </div>
-</div>
 
-<div class="modal video-modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModal8">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Don't Wait, Login now!</h4>
-				</div>
-				<div class="modal-body modal-body-sub">
-					<div class="row">
-						<div class="col-md-8 modal_body_left modal_body_left1" style="border-right: 1px dotted #C2C2C2;padding-right:3em;">
-							<div class="sap_tabs">	
-								<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-									<ul>
-										<li class="resp-tab-item" aria-controls="tab_item-0"><span>Sign in</span></li>
-										<li class="resp-tab-item" aria-controls="tab_item-1"><span>Sign up</span></li>
-									</ul>		
-									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-										<div class="facts">
-											<div class="register">
-												{!! Form::open(['route' => 'checkouk.login.acount','method'=>'post']) !!}			
-													<input name="email" placeholder="Email Address" type="text" required>						
-													<input name="password" placeholder="Password" type="password" required>										
-													<div class="sign-up">
-														<input type="submit" value="Sign in"/>
-													</div>
-												{!! Form::close() !!}
-											</div>
-										</div> 
-									</div>	 
-									<div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
-										<div class="facts">
-											<div class="register">
-												{!! Form::open(['route' => 'checkouk.creat.acount','method'=>'post']) !!}		
-													<input placeholder="Full Name" name="name" type="text" style="border-radius: 4px;" required >
-													<input placeholder="Email Address" name="email" type="email" style="border-radius: 4px;" required><br><br>	
-													<input placeholder="Phone Number" name="phone_number" type="text" style="border-radius: 4px;" required>	
-													<input placeholder="Password" name="password" min="6" type="password" style="border-radius: 4px;" required>
-													<div class="sign-up">
-														<input type="submit" style="border-radius: 4px;" value="Create Account"/>
-													</div>
+         
+        <!--Middle Part End -->
+            
+        </div>
+    </div>
 
-												{!! Form::close() !!}
-											</div>
-										</div>
-									</div> 			        					            	      
-								</div>	
-							</div>
-							<script src="{{ asset('frontend')}}/js/easyResponsiveTabs.js" type="text/javascript"></script>
-							<script type="text/javascript">
-								$(document).ready(function () {
-									$('#horizontalTab').easyResponsiveTabs({
-										type: 'default', //Types: default, vertical, accordion           
-										width: 'auto', //auto or any width like 600px
-										fit: true   // 100% fit in a container
-									});
-								});
-							</script>
-							<div id="OR" class="hidden-xs">OR</div>
-						</div>
-						<div class="col-md-4 modal_body_right modal_body_right1">
-							<div class="row text-center sign-with">
-								<div class="col-md-12">
-									<h3 class="other-nw">Sign in with</h3>
-								</div>
-								<div class="col-md-12">
-									<ul class="social">
-										<li class="social_facebook"><a href="#" class="entypo-facebook"></a></li>
-										<li class="social_dribbble"><a href="#" class="entypo-dribbble"></a></li>
-										<li class="social_twitter"><a href="#" class="entypo-twitter"></a></li>
-										<li class="social_behance"><a href="#" class="entypo-behance"></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-@endsection
+    @endsection
