@@ -10,10 +10,6 @@ use PDF;
 
 class OrderController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,10 +20,9 @@ class OrderController extends Controller
         $orders = DB::table('orders')
            ->join('customers', 'orders.customer_id', '=', 'customers.id')
            ->join('payments', 'orders.id', '=', 'payments.order_id')
-           ->select('orders.*', 'customers.customer_name', 'payments.payment_type','payments.payment_status')
+           ->select('orders.*', 'customers.first_name', 'customers.last_name', 'payments.payment_type','payments.payment_status')
            ->orderBy('orders.id', 'desc')
            ->get();
-//        return $orders;
         return view('admin.order.menageOrder',['orders'=>$orders]);
     }
 
@@ -53,13 +48,22 @@ class OrderController extends Controller
            ->join('customers', 'orders.customer_id', '=', 'customers.id')
            ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
            ->join('payments', 'orders.id', '=', 'payments.order_id')
-           ->select('orders.*', 'customers.customer_name', 'customers.customer_email','customers.customer_phone_number','customers.customer_address', 'payments.payment_type','payments.payment_status', 'shippings.full_name','shippings.email','shippings.phone_number','shippings.shipping_address')
-           ->where('orders.id', $id)
-           ->first();       
+           ->select('orders.*', 'customers.first_name', 'customers.last_name', 'customers.email','customers.phone_no','customers.address_1','customers.address_2','customers.up_zilla','customers.zilla','customers.postcode','customers.country', 'payments.payment_type','payments.payment_status','shippings.first_name', 'shippings.last_name', 'shippings.email','shippings.phone_no','shippings.address_1','shippings.address_2','shippings.up_zilla','shippings.zilla','shippings.postcode','shippings.country')
+           ->where('orders.id', $id)->first();  
+
+           $shippingInfoByID = DB::table('orders')
+           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
+           ->select('orders.*','shippings.first_name', 'shippings.last_name', 'shippings.email','shippings.phone_no','shippings.address_1','shippings.address_2','shippings.up_zilla','shippings.zilla','shippings.postcode','shippings.country')
+           ->where('orders.id', $id)->first();   
 
         $orderDetails = OrderDetail::where('order_id',$id)->get();
         $allBrand = Brand::all();
-        return view('admin.order.orders',['info'=>$orderByID,'details'=>$orderDetails,'allBrand=>$allBrand']); 
+        return view('admin.order.orders',[
+          'info'=>$orderByID,
+          'details'=>$orderDetails,
+          'allBrand'=>$allBrand,
+          'shippingInfo'=>$shippingInfoByID
+          ]); 
     }
 
     /**
@@ -144,6 +148,27 @@ class OrderController extends Controller
             'orderDetails'=>$orderDetails,
             'allBrand=>$allBrand']);
         return $pdf->stream('invoice.pdf');
+    }
+
+    public function districts()
+    {
+      $districts = DB::table('districts')
+           ->select('districts.*')
+           ->orderBy('districts.id', 'desc')
+           ->get();
+           $unions = DB::table('unions')
+           ->select('unions.*')
+           ->where('unions.id', '5')
+           ->get();
+           $upazilas = DB::table('upazilas')
+           ->select('upazilas.*')
+           ->where('upazilas.id', '5')
+           ->get();
+           return $upazilas;
+    }
+    public function upazilas($id)
+    {
+        return DB::table('upazilas')->select('upazilas.*')->orderBy('upazilas.name')->where('district_id',$id)->get();
     }
 
 }

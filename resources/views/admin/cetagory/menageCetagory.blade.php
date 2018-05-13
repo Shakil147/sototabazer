@@ -1,5 +1,9 @@
 @extends('admin.master')
 
+@section('title')
+All Cetagories
+@endsection
+
 @section('minContent')
 	<div class="panel panel-primary" >
 		<div class="panel-heading" style="font-size: large;">

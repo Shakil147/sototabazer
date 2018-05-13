@@ -111,52 +111,65 @@ Shipping Info
 					  <h4 class="panel-title"><i class="fa fa-user"></i> Your Shipping Info</h4>
 					</div>
 					  <div class="panel-body">
-	{!! Form::open(['class'=>'container  container-fluid','route' => 'checkout.save.shipping.info','method'=>'post']) !!}
+{!! Form::open(['class'=>'container  container-fluid','route' => 'checkout.save.shipping.info','method'=>'post','name'=>'shippingForm']) !!}
 					  	<div class="col-sm-6">
 					  		<div class="form-group required">
 								<label for="input-payment-firstname" class="control-label">First Name</label>
-								<input type="text" class="form-control" id="input-payment-firstname" placeholder="First Name" value="{{ $customer->first_name }}" name="firstName" required>
+								<input type="text" class="form-control" id="input-payment-firstname" placeholder="First Name" value="{{ $customer->first_name }}" name="first_name" required>
+								<span class="text-danger">{{ $errors->has('first_name') ? $errors->first('first_name') : '' }}</span>
 							  </div>
 							  <div class="form-group required">
 								<label for="input-payment-lastname" class="control-label">Last Name</label>
-								<input type="text" class="form-control" id="input-payment-lastname" placeholder="Last Name" value="{{ $customer->last_name }}" name="lastName" >
+								<input type="text" class="form-control" id="input-payment-lastname" placeholder="Last Name" value="{{ $customer->last_name }}" name="last_name" >
+							<span class="text-danger">{{ $errors->has('last_name') ? $errors->first('last_name') : '' }}</span>
 							  </div>
 							  <div class="form-group required">
 								<label for="input-payment-email" class="control-label">E-Mail</label>
 								<input type="text" class="form-control" id="input-payment-email" placeholder="E-Mail" value="{{ $customer->email }}" name="email">
+								<span class="text-danger">{{ $errors->has('email') ? $errors->first('email') : '' }}</span>
 							  </div>
 							  <div class="form-group required">
 								<label for="input-payment-telephone" class="control-label">Mobile</label>
-								<input type="text" class="form-control" id="input-payment-telephone" placeholder="Telephone" value="{{ $customer->phone_no }}" name="mobileNo" required>
+								<input type="text" class="form-control" id="input-payment-telephone" placeholder="Telephone" value="{{ $customer->phone_no }}" name="phone_no" required>
+								<span class="text-danger">{{ $errors->has('phone_no') ? $errors->first('phone_no') : '' }}
 							  </div>
 					  	</div>
 					  	<div class="col-sm-6">
+
 					  		<div class="form-group required">
 								<label for="input-payment-address-1" class="control-label">Address 1</label>
 								<input type="text" class="form-control" id="input-payment-address-1" placeholder="Address 1" value="{{ $customer->address_1 }}" name="address_1" required>
+								<span class="text-danger">{{ $errors->has('address_1') ? $errors->first('address_1') : '' }}
 							  </div>
+
 							  <div class="form-group required">
-								<label for="input-payment-city" class="control-label">City</label>
-								<input type="text" class="form-control" id="input-payment-city" placeholder="City" value="{{ $customer->zilla }}" name="city" required>
+								<label for="input-payment-address-1" class="control-label">Address 2</label>
+								<input type="text" class="form-control" id="input-payment-address-1" placeholder="Address 1" value="{{ $customer->address_2 }}" name="address_2">
+								<span class="text-danger">{{ $errors->has('address_2') ? $errors->first('address_2') : '' }}
 							  </div>
 							  
 							  <div class="form-group required">
 								<label for="input-payment-zone" class="control-label">Zilla</label>
-								<select class="form-control" id="input-payment-zone" name="zilla" required>
+								<select class="form-control" id="zilla_dropdown" name="zilla_id" required>
 								  <option value=""> --- Please Select --- </option>
-								  <option value="3513">Aberdeen</option>
-								  <option value="3514">Aberdeenshire</option>
-								  <option value="3515">Anglesey</option>
-								  <option value="3516">Angus</option>
-								  <option value="3517">Argyll and Bute</option>
-								  <option value="3518">Bedfordshire</option>
-								  <option value="3519">Berkshire</option>
-								  <option value="3520">Blaenau Gwent</option>
-								  <option value="3521">Bridgend</option>
-								  <option value="3522">Bristol</option>
-								  
+								  @foreach($districts as $district)
+									<option value="{{ $district->id }}" @if($customer->zilla_id == $district->id) selected="true" style="color: #6B0E0E" @endif >{{ $district->name }}</option>
+								  @endforeach								  
+								</select>
+								<span class="text-danger">{{ $errors->has('zilla_id') ? $errors->first('zilla_id') : '' }}</span>
+							  </div>
+
+							  <div class="form-group required">
+								<label for="input-payment-zone" class="control-label">Up-Zilla</label>
+								<select name="up_zilla_id" id="up_zilla" class="form-control name" required>
+									@foreach($upazilas as $upazila)
+									<option value="{{ $upazila->id }}" @if($customer->up_zilla_id == $upazila->id) selected="true" style="color: #6B0E0E" @endif >{{ $upazila->name  }}</option>
+								  @endforeach
+								</select>
+								<span class="text-danger">{{ $errors->has('up_zilla_id') ? $errors->first('up_zilla_id') : '' }}</span>								  
 								</select>
 							  </div>
+
 							  <div class="checkbox">
 								<label>
 								  <input type="checkbox"  value="1" name="shipping_address" required>
@@ -165,9 +178,10 @@ Shipping Info
 							  </div>
 							<div class="checkbox">
 								<label class="control-label" for="confirm_agree">
-								  <input type="checkbox" value="1" required="" class="validate required" id="confirm_agree" name="confirm agree" required>
+								  <input type="checkbox" value="1" class="validate required" id="confirm_agree" name="agree" required>
 								  I have read and agree to the <a class="agree" href="#"><b>Terms &amp; Conditions</b></a> 
 								</label>
+								<span class="text-danger">{{ $errors->has('agree') ? $errors->first('agree') : '' }}</span>
 							</div>
 
 							  <div class="buttons">
@@ -186,7 +200,41 @@ Shipping Info
 	</div>
 			<!--Middle Part End -->			
 	</div>
-</div>
-	
+</div>	
 
+@endsection
+
+@endsection
+
+@section('plgin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+<script type="text/javascript">
+    $(document).ready(function(){    	
+
+        $(document).on('change','#zilla_dropdown',function(){        	
+            //console.log("hmm its change with id");
+           var zilla_id=$(this).val();
+             //console.log(zilla_id);
+             var div=$(this).parent();
+             $.ajax({
+                type:'get',
+                url:'{!!URL::to('upaZilas')!!}',
+                data:{'id':zilla_id}, 
+           success:function(data){
+	          console.log(data);
+
+	          $('#up_zilla').empty();
+	          $('#up_zilla').append('<option value="0" disable="true" selected="true">=== Select  Up-Zilla ===</option>');
+
+	          $.each(data, function(index, regenciesObj){
+	            $('#up_zilla').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.name +'</option>');
+	          })
+    		}, 
+	        error:function(){
+
+	        	}
+        });
+        });
+    });
+</script>
 @endsection

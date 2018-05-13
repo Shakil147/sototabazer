@@ -19,7 +19,9 @@ Route::get('/acountlogin','AcccountController@show_login_form')->name('account.l
 Route::post('/account-login','AcccountController@index')->name('account-login');
 Route::get('/account-logout','AcccountController@destroy')->name('account-logout');
 Route::get('/acountregister','AcccountController@show_register_form')->name('account.register');
+Route::get('/upaZilas','AcccountController@get_Upa_Zilass');
 Route::post('/account-register','AcccountController@create')->name('account-register');
+Route::get('/login-alret','AcccountController@login_alret')->name('login.alret');
 
 
 Route::get('/single-product/{id}','SototabazarController@show_single_product');
@@ -31,57 +33,65 @@ Route::post('/addToCart', 'CartController@store')->name('cart.add');
 Route::get('/show-cart', 'CartController@index')->name('cart.show');
 Route::get('/cart-delet/{id}', 'CartController@destroy');
 Route::post('cart-update','CartController@update')->name('cart.update');
-
 Route::get('/checkout','CheckOutController@index')->name('checkout');
 Route::get('/checkout-login','CheckOutController@show_login_from')->name('checkout.login');
 Route::get('/checkout-register','CheckOutController@show_register_from')->name('checkout.register');
-Route::post('/checkout-creat-acount','CheckOutController@Creat_acount')->name('checkout-register');
+Route::post('/checkout-creat-acount','CheckOutController@creat_acount')->name('checkout-register');
 Route::post('/login-from-cart','CheckOutController@login_from_cart')->name('checkout-login-acount');
 
-Route::get('/shipping-info', 'CheckOutController@shiping_info')->name('shipping.info');
-Route::post('/store-shipping-info','CheckOutController@store_shiping_info')->name('checkout.save.shipping.info');
-
-Route::get('/payment-info','CheckOutController@show_payment_form');
-Route::post('/store-payment-info','CheckOutController@store_payment_form')->name('checkout.save.payment.info');
-Route::get('/cod-order-submit','CheckOutController@COD_payment_submit');
+Route::group(['middleware' => ['CheckCartMiddlewar']], function () 
+{
+	Route::get('/shipping-info', 'CheckOutController@shiping_info')->name('shipping.info');
+	Route::post('/store-shipping-info','CheckOutController@save_shiping_info')->name('checkout.save.shipping.info');
+	Route::get('/payment-info','CheckOutController@show_payment_form')->name('payment.info');
+	Route::post('/store-payment-info','CheckOutController@store_payment_form')->name('checkout.save.payment.info');
+	Route::get('/cod-order-submit','CheckOutController@COD_payment_submit');
+});
 Route::get('/complete-order','CheckOutController@complete_order');
 
 Auth::routes();
+Route::group(['middleware' => ['AuthenticateMiddleware']], function () {
+	Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/add-cetagory','CetagoryController@add_cetagory');
+	Route::post('/cetagory-add','CetagoryController@save_cetagory')->name('cetagory.add');
+	Route::get('/cetagory','CetagoryController@menage_cetagory');
+	Route::get('/category-edit/{id}','CetagoryController@edit_cetagory');
+	Route::get('/category/delete/{id}','CetagoryController@delete_cetagory');
+	Route::get('/category/status/{id}','CetagoryController@status_cetagory');
+	Route::post('/cetagory-updet','CetagoryController@updey_cetagory');
 
-Route::get('/add-cetagory','CetagoryController@add_cetagory');
-Route::post('/cetagory-add','CetagoryController@save_cetagory')->name('cetagory.add');
-Route::get('/cetagory','CetagoryController@menage_cetagory');
-Route::get('/category-edit/{id}','CetagoryController@edit_cetagory');
-Route::get('/category/delete/{id}','CetagoryController@delete_cetagory');
-Route::get('/category/status/{id}','CetagoryController@status_cetagory');
-Route::post('/cetagory-updet','CetagoryController@updey_cetagory');
+	Route::get('/add-brand','BrandController@add_brand');
+	Route::post('/brand-add','BrandController@save_brand')->name('brand.add');
+	Route::get('/brands','BrandController@menage_brand');
+	Route::get('/brand-edit/{id}','BrandController@edit_brand');
+	Route::post('/brand-updet','BrandController@update_brand')->name('brand.update');
+	Route::get('/brand/status/{id}','BrandController@status_brand');
+	Route::get('/brand/delete/{id}','BrandController@delete_brand');
 
-Route::get('/add-brand','BrandController@add_brand');
-Route::post('/brand-add','BrandController@save_brand')->name('brand.add');
-Route::get('/brands','BrandController@menage_brand');
-Route::get('/brand-edit/{id}','BrandController@edit_brand');
-Route::post('/brand-updet','BrandController@update_brand')->name('brand.update');
-Route::get('/brand/status/{id}','BrandController@status_brand');
-Route::get('/brand/delete/{id}','BrandController@delete_brand');
+	Route::get('/add-product', 'ProductController@add_product');
+	Route::post('/product-add', 'ProductController@save_product')->name('produc.add');
+	Route::get('/products', 'ProductController@menage_product');
+	Route::get('/Product/status/{id}', 'ProductController@status_product');
+	Route::get('/Product-edit/{id}', 'ProductController@edit_product');
+	Route::post('/product-update', 'ProductController@update_product')->name('produc.update');
+	Route::post('/product-images-add', 'ProductController@add_product_images')->name('add.produc.images');
+	Route::get('/delete-product-image{id}', 'ProductController@delete_product_images')->name('delete.produc.images');
+	Route::get('/Product/delete/{id}', 'ProductController@delete_product');
 
-Route::get('/add-product', 'ProductController@add_product');
-Route::post('/product-add', 'ProductController@save_product')->name('produc.add');
-Route::get('/products', 'ProductController@menage_product');
-Route::get('/Product/status/{id}', 'ProductController@status_product');
-Route::get('/Product-edit/{id}', 'ProductController@edit_product');
-Route::post('/product-update', 'ProductController@update_product')->name('produc.update');
-Route::get('/Product/delete/{id}', 'ProductController@delete_product');
-
-Route::get('/orders', 'OrderController@index');
-Route::get('/order/view/{id}', 'OrderController@show_orders');
-Route::post('order.details.update','OrderController@orders_qty_update')->name('order.details.update');
-Route::post('order.status.update','OrderController@orders_status_update')->name('order.status.update');
-Route::get('/order/invoice/{id}', 'OrderController@show_order_invoise');
-Route::get('/order/download/{id}', 'OrderController@downlod_order_invoise');
+	Route::get('/orders', 'OrderController@index');
+	Route::get('/order/view/{id}', 'OrderController@show_orders');
+	Route::post('order.details.update','OrderController@orders_qty_update')->name('order.details.update');
+	Route::post('order.status.update','OrderController@orders_status_update')->name('order.status.update');
+	Route::get('/order/invoice/{id}', 'OrderController@show_order_invoise');
+	Route::get('/order/download/{id}', 'OrderController@downlod_order_invoise');
+	Route::get('/send-E-mail', 'EmailController@index');
+	Route::post('/post-E-mail', 'EmailController@store')->name('post.email');
+});
+Route::get('/districts', 'OrderController@districts');
+Route::get('/c/{id}', 'OrderController@upazilas');
 
 Route::get('/22', function() {
 	
-    return view('email.message');
+    return view('email.message1');
 });

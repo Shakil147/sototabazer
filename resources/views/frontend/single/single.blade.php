@@ -85,7 +85,7 @@ Single Product
 			<div class="product-box-desc">
 				<div class="inner-box-desc">
 					<div class="price-tax"><span>VAT:</span>TK</div>
-					<div class="brand"><span>Brand:</span><a href="#">{{ $productInfo->brands_name }}</a>		</div>
+					<div class="brand"><span>Brand:</span><a href="#">{{ $productInfo->brand_name }}</a>		</div>
 					<div class="model"><span>Product Code:</span>{{ $productInfo->id }}</div>
 				</div>
 			</div>

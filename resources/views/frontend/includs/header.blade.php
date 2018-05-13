@@ -25,65 +25,9 @@
                                         <div class="megamenu-pattern">
                                             <div class="container-mega">
                                                 <ul class="megamenu" data-transition="slide" data-animationtime="250">
-                                                    <li class="home hover">
-                                                        <a href="{{ asset('emarket')}}/index-2.html">Home <b class="caret"></b></a>
-                                                        <div class="sub-menu" style="width:100%;" >
-                                                            <div class="content" >
-                                                                <div class="row">
-                                                                    <div class="col-md-3">
-                                                                        <a href="{{ asset('emarket')}}/index-2.html" class="image-link"> 
-                                                                            <span class="thumbnail">
-                                                                                <img class="img-responsive img-border" src="{{ asset('emarket')}}/image/catalog/menu/home-1.jpg" alt="">
-                                                                                
-                                                                            </span> 
-                                                                            <h3 class="figcaption">Home page - (Default)</h3> 
-                                                                        </a> 
-                                                                        
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <a href="{{ asset('emarket')}}/index2.html" class="image-link"> 
-                                                                            <span class="thumbnail">
-                                                                                <img class="img-responsive img-border" src="{{ asset('emarket')}}/image/catalog/menu/home-2.jpg" alt="">
-                                                                               
-                                                                            </span> 
-                                                                            <h3 class="figcaption">Home page - Layout 2</h3> 
-                                                                        </a> 
-                                                                        
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <a href="{{ asset('emarket')}}/index3.html" class="image-link"> 
-                                                                            <span class="thumbnail">
-                                                                                <img class="img-responsive img-border" src="{{ asset('emarket')}}/image/catalog/menu/home-3.jpg" alt="">
-                                                                               
-                                                                            </span> 
-                                                                            <h3 class="figcaption">Home page - Layout 3</h3> 
-                                                                        </a> 
-                                                                        
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <a href="{{ asset('emarket')}}/index4.html" class="image-link"> 
-                                                                            <span class="thumbnail">
-                                                                                <img class="img-responsive img-border" src="{{ asset('emarket')}}/image/catalog/menu/home-4.jpg" alt="">
-                                                                                
-                                                                            </span> 
-                                                                            <h3 class="figcaption">Home page - Layout 4</h3> 
-                                                                        </a> 
-                                                                        
-                                                                    </div>
-                                                                    
-                                                                    <!-- <div class="col-md-15">
-                                                                        <a href="{{ asset('emarket')}}/#" class="image-link"> 
-                                                                            <span class="thumbnail">
-                                                                                <img class="img-responsive img-border" src="{{ asset('emarket')}}/image/demo/feature/comming-soon.png" alt="">
-                                                                                
-                                                                            </span> 
-                                                                            <h3 class="figcaption">Comming soon</h3> 
-                                                                        </a> 
-                                                                        
-                                                                    </div> -->
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <li class="home">
+                                                        <a href="{{ url('/') }}">Home <b class="caret"></b></a>
+                                            
                                                     </li>
                                                     <li class="with-sub-menu hover">
                                                         <p class="close-menu"></p>

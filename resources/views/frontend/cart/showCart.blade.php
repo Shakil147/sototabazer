@@ -149,7 +149,7 @@ Cart
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal">Register</button>
+        <a href="{{ route('checkout.register') }}" class="btn btn-success glyphicon glyphicon-registration-mark pull-left">Register</a>
         <button type="submit" class="btn btn-primary pull-right">Login</button>
       </div>
       {{ Form::close() }}

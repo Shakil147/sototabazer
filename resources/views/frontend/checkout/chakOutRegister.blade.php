@@ -14,16 +14,15 @@ Register
 <div class="main-container container">
 		<ul class="breadcrumb">
 			<li><a href="{{ route('home.page') }}"><i class="fa fa-home"></i></a></li>
-			<li><a href="{{ route('checkout.login') }}">Account</a></li>
+			<li><a href="{{ route('checkout') }}">Account</a></li>
 			<li><a href="{{ route('checkout.register') }}">Register</a></li>
 		</ul>
 		
 		<div class="row">
 			<div id="content" class="col-sm-12">
 				<h2 class="title">Register Account</h2>
-				<p>If you already have an account with us, please login at the <a href="{{ route('account.login') }}">login page</a>.</p>
+				<p>If you already have an account with us, please login at the <a href="{{ route('checkout.login') }}">login page</a>.</p>
 			{!! Form::open(['class'=>'form-horizontal account-register clearfix','route' => 'account-register','method'=>'post']) !!}
-				<!-- <form action="#" method="post" enctype="multipart/form-data" class=""> -->
 			<div class="row">
 				<div class="col-md-6">
 					<fieldset id="account">
@@ -96,17 +95,22 @@ Register
 							</div>
 						</div>
 						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-city">City</label>
+							<label class="col-sm-2 control-label" for="input-city">Districts</label>
 								<div class="col-sm-10">
-								<select name="zilla" id="input-zone" class="form-control" >
-									<option value=""> --- Please Select --- </option>
-									<option value="DHAKA">DHAKA</option>
-									<option value="RAJSHAHI">RAJSHAHI</option>
-									<option value="MYMENSINGH">MYMENSINGH</option>
-									<option value="SHYLET">SHYLET</option>
-								  
+								<select name="zilla_id" id="zilla_dropdown" class="form-control" required>
+									<option value="" selected="true">=== Select Districts ===</option>
+									@foreach($districts as $district)
+									<option value="{{ $district->id }}">{{ $district->name }}</option>
+								  @endforeach
 								</select>
-								<span class="text-danger">{{ $errors->has('zilla') ? $errors->first('zilla') : '' }}</span>
+								<span class="text-danger">{{ $errors->has('zilla_id') ? $errors->first('zilla_id') : '' }}</span>
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-city">Up-Zilla</label>
+								<div class="col-sm-10">
+								<select name="up_zilla_id" id="up_zilla" class="form-control name" required></select>
+								<span class="text-danger">{{ $errors->has('up_zilla_id') ? $errors->first('up_zilla_id') : '' }}</span>
 							</div>
 						</div>
 						<div class="form-group required">
@@ -141,4 +145,38 @@ Register
 		</div>
 	</div>
 
+@endsection
+
+@section('plgin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){    	
+
+        $(document).on('change','#zilla_dropdown',function(){        	
+            //console.log("hmm its change with id");
+           var zilla_id=$(this).val();
+             //console.log(zilla_id);
+             var div=$(this).parent();
+             var op=" ";
+             $.ajax({
+                type:'get',
+                url:'{!!URL::to('upaZilas')!!}',
+                data:{'id':zilla_id}, 
+           success:function(data){
+	          console.log(data);
+
+	          $('#up_zilla').empty();
+	          $('#up_zilla').append('<option value="0" disable="true" selected="true">=== Select  Up-Zilla ===</option>');
+
+	          $.each(data, function(index, regenciesObj){
+	            $('#up_zilla').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.name +'</option>');
+	          })
+    		}, 
+	        error:function(){
+
+	        	}
+        });
+        });
+    });
+</script>
 @endsection

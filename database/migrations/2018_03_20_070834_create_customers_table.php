@@ -22,13 +22,16 @@ class CreateCustomersTable extends Migration
             $table->string('photo')->nullable();
             $table->string('password');
             $table->string('address_1');
-            $table->string('address_2');
-            $table->string('up_zilla')->nullable();
-            $table->string('zilla');
+            $table->string('address_2')->nullable();
+            $table->integer('zilla_id');
+            $table->foreign('zilla_id')->references('id')->on('upazilas');
+            $table->integer('up_zilla_id');
+            $table->foreign('up_zilla_id')->references('id')->on('districts');
             $table->string('postcode')->nullable();
             $table->string('country')->default('Bangladesh');
             $table->string('customer_status')->default('0');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

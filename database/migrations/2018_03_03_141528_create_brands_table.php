@@ -15,12 +15,13 @@ class CreateBrandsTable extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('brands_name');
-            $table->text('brands_description')->nullable();
-            $table->string('brands_icon')->nullable();
-            $table->integer('brands_creater_id')->reference('id')->on('users');
+            $table->string('brand_name');
+            $table->text('brand_description')->nullable();
+            $table->string('brand_icon')->nullable();
+            $table->integer('brand_creater_id')->reference('id')->on('users');
             $table->integer('publication_status')->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

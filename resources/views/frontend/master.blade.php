@@ -128,6 +128,8 @@
 <script type="text/javascript" src="{{ asset('emarket')}}/js/modernizr/modernizr-2.6.2.min.js"></script>
 <script type="text/javascript" src="{{ asset('emarket')}}/js/minicolors/jquery.miniColors.min.js"></script>
 
+@yield('plgin')
+
 <!-- Theme files
 ============================================ -->
 
@@ -137,10 +139,6 @@
 
 <script type="text/javascript" src="{{ asset('emarket')}}/js/themejs/toppanel.js"></script>
 <script type="text/javascript" src="{{ asset('emarket')}}/js/themejs/so_megamenu.js"></script>
-<script type="text/javascript" src="{{ asset('emarket')}}/js/themejs/addtocart.js"></script>  
-
-
-
-
+<script type="text/javascript" src="{{ asset('emarket')}}/js/themejs/addtocart.js"></script>
 </body>
 </html>

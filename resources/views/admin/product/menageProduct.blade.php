@@ -29,7 +29,7 @@
 						<td>{{ $Product->id }}</td>
 						<td>{{ $Product->product_name }}</td>
 						<td>{{ $Product->cetagory_name }}</td>
-						<td>{{ $Product->brands_name }}</td>
+						<td>{{ $Product->brand_name }}</td>
 						<td>{{ $Product->product_price }}</td>
 						
 						@if($Product->publication_status == 1)

@@ -22,6 +22,7 @@ class CreateOrderDetailsTable extends Migration
             $table->float('product_price');
             $table->integer('product_quantity');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -30,16 +30,12 @@ MENAGE Orders
                         <tr>
                             <td class="scenter">{{ $i++ }}</td>
                             <td class="scenter">{{ $order->id }}</td>
-                            <td class="scenter">{{ $order->customer_name }}</td>
+                            <td class="scenter">{{ $order->first_name.' '.$order->last_name }}</td>
                             <td class="scenter">{{ $order->order_status }}</td>
 							
                             <td>{{ $order->payment_type }}</td>
-                            @if($order->payment_status == 1)
-							<td class="success">Recived</td>
-							@else
-							<td class="warning">Due</td>
-							@endif
-                            <td><a href="#" title="{{ $order->created_at }} {!! $order->customer_name !!}">{!! date('d/m/Y', strtotime($order->created_at)) !!}</a></td>
+							<td class="success text-danger">{{ $order->payment_status }}</td>
+                            <td><a href="#" title="{{ $order->created_at }} {!! $order->first_name.' '.$order->last_name !!}">{!! date('d/m/Y', strtotime($order->created_at)) !!}</a></td>
                             <td>
                                 <a href="{{ url('/order/view/'.$order->id) }}" class="btn btn-info btn-xs" title="View Order Details">
                                     <span class="glyphicon glyphicon-zoom-in"></span>

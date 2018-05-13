@@ -21,6 +21,7 @@ class CreateCetagoriesTable extends Migration
             $table->integer('cetagorie_creater_id')->reference('id')->on('users');
             $table->integer('publication_status')->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

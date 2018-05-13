@@ -1,0 +1,15 @@
+  /*App\Flight::withTrashed()
+        ->where('airline_id', 1)
+        ->restore();*/
+
+        /*$flight->restore();*/
+/*
+        $flights = App\Flight::onlyTrashed()
+                ->where('airline_id', 1)
+                ->get();*/
+/*
+                $flight->history()->withTrashed()->get();*/
+  /*
+  if ($flight->trashed()) {
+    //
+}*/ 

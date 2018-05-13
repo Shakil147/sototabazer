@@ -1,5 +1,9 @@
 @extends('admin.master')
 
+@section('title')
+All Brand
+@endsection
+
 @section('minContent')
 	<div class="panel panel-primary" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
 		<div class="panel-heading">
@@ -25,7 +29,7 @@
 					<tr>
 						<td>{{ $sl = $sl+1 }}</td>
 						<td >{{ $Brand->id }}</td>
-						<td >{{ $Brand->brands_name }}</td>
+						<td >{{ $Brand->brand_name }}</td>
 						
 						@if($Brand->publication_status == 1)
 						<td class="success">Published</td>

@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->string('payment_status');
             $table->string('changer_id')->nullable()->reference('id')->on('orders');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

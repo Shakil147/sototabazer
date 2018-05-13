@@ -111,7 +111,7 @@ Shipping Info
 					  <h4 class="panel-title"><i class="fa fa-user"></i> Your Payment Info</h4>
 					</div>
 					  <div class="panel-body">
-	{!! Form::open(['class'=>'container  container-fluid','route' => 'checkouk.save.payment.info','method'=>'post']) !!}
+	{!! Form::open(['class'=>'container  container-fluid','route' => 'checkout.save.payment.info','method'=>'post']) !!}
 						<div class="col-sm-6  col-sm-offset-3">
 							<div class="form-check">
 						  <input class="form-check-input" type="radio" name="peymentType" id="exampleRadios1" value="COD" checked>

@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
             $table->integer('product_creater_id')->reference('id')->on('users');
             $table->tinyInteger('publication_status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

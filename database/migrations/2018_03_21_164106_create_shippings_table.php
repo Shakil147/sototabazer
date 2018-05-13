@@ -16,15 +16,17 @@ class CreateShippingsTable extends Migration
         Schema::create('shippings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('full_name');
-            $table->string('email');
-            $table->string('phone_number');
+            $table->string('lastName');
+            $table->string('email')->nullable();
+            $table->string('phone_no');
             $table->string('address_1');
             $table->string('address_2');
             $table->string('up_zilla');
             $table->string('zilla');
-            $table->string('postcode');
+            $table->string('postcode')->nullable();
             $table->string('country')->default('Bangladesh');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -38,3 +40,5 @@ class CreateShippingsTable extends Migration
         Schema::dropIfExists('shippings');
     }
 }
+
+            

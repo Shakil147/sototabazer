@@ -5,10 +5,13 @@ use App\Customer;
 use App\Shipping;
 use App\Order;
 use App\Payment;
+use App\Product;
 use App\OrderDetail;
-use Illuminate\Http\Request;
 use Cart;
 use Session;
+use Mail;
+use Illuminate\Http\Request;
+use DB;
 
 class CheckOutController extends Controller
 {
@@ -18,52 +21,52 @@ class CheckOutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {     
+        if (Session::get('customerName')) 
+        {
+            return redirect(route('shipping.info'));
+        }
+     return view('frontend.checkout.chakOutLogin'); 
     }
-    public function show_login_from(){    
-        /*$allCartProduct = Cart::count();
-            if ($allCartProduct >=1 ) {
-                if (Session::get('customerName')) {
-                    return redirect()->back()->with('message','you are allrady loged in');
-                }
-             return view('frontend.checkout.chakOutLogin');
-                
-            }*/
-            return view('frontend.checkout.chakOutLogin');
-    return redirect()->back()->with('message','you have not any product in cart');
+    public function show_login_from()
+    {  
+            return view('frontend.checkout.chakOutLogin');;
     }
-    public function show_register_from(){    
+    public function show_register_from()
+    {    
         $allCartProduct = Cart::count();
-            if ($allCartProduct >=1 ) {
-                if (Session::get('customerName')) {
+            if ($allCartProduct >=1 )
+            {
+                if (Session::get('customerName'))
+                {
                     return redirect()->back()->with('message','you are allrady loged in');
                 }
              return view('frontend.checkout.chakOutRegister');
                 
             }
-    return redirect()->back()->with('message','you have not any product in cart');
+        return redirect()->back()->with('message','you have not any product in cart');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function Creat_acount(Request $request){
-        
+    protected function acccountValidation($request)
+    {
         $this->validate($request, [
-            'first_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u',
-            'last_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u',
+            'first_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u|different:email',
+            'last_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u|different:first_name|different:email',
             'email'     => 'required|email|unique:customers,email',
-            'password'  => 'min:6',
-            'password_confirmation' => 'required_with:password|same:password|min:6',
+            'password'  => 'min:6|different:email',
+            'password_confirmation' => 'required_with:password|min:6|same:password|different:email',
             'phone_no'  => 'required|regex:/(01)[0-9]{9}/|min:11|max:15|unique:customers,phone_no',
-            'address_1' => 'required',
-            'zilla'     => 'required',
-            'country'   => 'required',
+            'address_1' => 'required|different:first_name|different:last_name|different:email|different:country',
+            'address_2' => 'different:first_name|different:last_name|different:email|different:country',
+            'postcode' => 'numeric',
+            'zilla_id'     => 'required',
+            'up_zilla_id'     => 'required',
+            'country'   => 'required|different:first_name|different:last_name|different:email',
             'agree'     => 'required'
         ]);
+    }
+
+    protected function store($request)
+    {        
         $customer = new Customer;
         $customer->first_name = $request->first_name;
         $customer->last_name = $request->last_name;
@@ -73,42 +76,114 @@ class CheckOutController extends Controller
         $customer->phone_no = $request->phone_no;
         $customer->address_1 = $request->address_1;
         $customer->address_2 = $request->address_2;
-        $customer->up_zilla = $request->up_zilla;
-        $customer->zilla = $request->zilla;
+        $customer->zilla_id = $request->zilla_id;
+        $customer->up_zilla_id = $request->up_zilla;
         $customer->postcode = $request->postcode;
         $customer->country = $request->country;
         $customer->save();
-       /* return $customer;*/
-
         $customerId = $customer->id;
         $customerName = $customer->first_name.' '.$customer->last_name;
+
         Session::put('customerId', $customerId);
         Session::put('customerName', $customerName);
-        $wellcome = 'Hellow '.$customerName.' '.'Wellcome to ShototaBazar';
-
-        return redirect('/shipping-info')->with('message',$wellcome);
-        
+        $messageBody = 'Thank you'.' '.$customerName.' '.'for register in Sotota Bazar ';
+        $data = array(
+            'email' => $customer->email,
+            'fullName' => $customerName,
+            'subject' => 'wellcome Message',
+            'message_body' => $messageBody );
+        return $data;
     }
 
-    public function login_from_cart(Request $request){
-        $customer = Customer::where('email', $request->email)->first();
-       
+    protected function register_message($data)
+    {   
+       Mail::send('email.message', $data, function ($message) use ($data){
+            $message->from('shakil@mahmud.com', 'Trendy Blog');        
+            $message->to($data['email']);        
+            $message->replyTo('john@johndoe.com', 'John Doe');        
+            $message->subject($data['subject']);        
+            $message->priority(6);
+        });
+    }
+    /**
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function creat_acount(Request $request)
+    {
+        $this->acccountValidation($request);
+        $data = $this->store($request);
+        $this->register_message($data);       
+        $wellcome = 'Hellow'.' '.$data['fullName'].' '.'Wellcome to ShototaBazar';
+        return redirect(route('shipping.info'))->with('message',$wellcome);
+    }
 
-        if(isset($customer)) {
-            if(password_verify($request->password, $customer->password)) {
+
+    public function login_from_cart(Request $request)
+    {
+        $customer = Customer::where('email', $request->email)->first();
+        if(isset($customer))
+        {
+            if(password_verify($request->password, $customer->password)) 
+            {
                 Session::put('customerId', $customer->id);
                 Session::put('customerName',  $customer->first_name.' '.$customer->last_name);
-
-                $wellcome = 'Hellow'.' '.$customer->customer_name.' '.'Wellcome to ShototaBazar';
+                $this->login_message($customer);
+                $wellcome = 'Hellow'.' '.$customer->first_name.' '.$customer->last_name.' '.'Wellcome to ShototaBazar';
                 return redirect('/shipping-info')->with('message', $wellcome);
-            } else {
+            } 
+            else {
                 return redirect()->back()->with('message', 'Your password is not correct');
             }
         } 
         else {
             return redirect()->back()->with('message', 'Your email is not correct');
         }
+    }
 
+    protected function login_message($customer)
+    {   
+        $messageBody = 'Dear'.' '.$customer->first_name.' '.$customer->last_name.' '.'Just now some loged in from your account';
+        $data = array('email' => $customer->email,
+            'subject' => 'Login Allert',
+            'message_body' => $messageBody );
+        Mail::send('email.message', $data, function ($message) use ($data){
+            $message->from('shakil@mahmud.com', 'Trendy Blog');        
+            $message->to($data['email']);        
+            $message->replyTo('john@johndoe.com', 'John Doe');        
+            $message->subject($data['subject']);        
+            $message->priority(6);
+        });
+    }
+
+    protected function shipping_info_validate($request)
+    {
+       $this->validate($request, [
+            'first_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u',
+            'last_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u',
+            'email'     => 'required|email|unique:shippings,email',
+            'phone_no'  => 'required|regex:/(01)[0-9]{9}/|min:11|max:15|unique:shippings,phone_no',
+            'agree'  => 'required',
+        ]); 
+    }
+
+    protected function store_shiping_info($request)
+    {
+        $shipping = new Shipping;
+        $shipping->first_name = $request->first_name;
+        $shipping->last_name  = $request->last_name;
+        $shipping->email      =  $request->email;
+        $shipping->phone_no   = $request->phone_no;
+        $shipping->address_1  = $request->address_1;
+        $shipping->address_2  = $request->address_2;
+        $shipping->zilla_id      = $request->zilla_id;
+        $shipping->up_zilla_id      = $request->up_zilla_id;
+        $shipping->postcode   = $request->postcode;
+        $shipping->save();
+        $shippingId = $shipping->id;
+        return $shippingId;
+        
     }
 
     /**
@@ -117,17 +192,12 @@ class CheckOutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store_shiping_info(Request $request){
-        $shipping = new Shipping;
-        $shipping->full_name = $request->firstName.' '.$request->lastName;
-        $shipping->email = $request->email;
-        $shipping->phone_number = $request->mobileNo;
-        $shipping->shipping_address = $request->address_1.' '.$request->city.' '.$request->zilla;
-        $shipping->save();
-        $shippingId = $shipping->id;
-        Session::put('shippingId', $shippingId);
-
-        return redirect('/payment-info');
+    public function save_shiping_info(Request $request)
+    {
+        $this->shipping_info_validate($request);
+        $shippingId = $this->store_shiping_info($request);
+        Session::put('shippingId',$shippingId);
+        return redirect(route('payment.info'));
     }
 
     /**
@@ -136,12 +206,15 @@ class CheckOutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function shiping_info(){
+    public function shiping_info()
+    {
         $customerId = Session::get('customerId');
         $customer = Customer::find($customerId);
         $allCartProduct = Cart::content();
+        $districts = DB::table('districts')->select('districts.*')->orderBy('districts.name')->get();
+        $upazilas = DB::table('upazilas')->select('upazilas.*')->where('district_id',$customer->zilla_id)->orderBy('upazilas.name')->get();
         return view('frontend.checkout.shippingForm',
-         ['customer'=>$customer,'CartProduct'=>$allCartProduct]);
+         ['customer'=>$customer,'CartProduct'=>$allCartProduct,'districts' => $districts,'upazilas' => $upazilas]);
     }
 
     /**
@@ -150,10 +223,10 @@ class CheckOutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show_payment_form(){
+    public function show_payment_form()
+    {
         $allCartProduct = Cart::content();
-        return view('frontend.checkout.paymentForm',['CartProduct'=>$allCartProduct]);
-        
+        return view('frontend.checkout.paymentForm',['CartProduct'=>$allCartProduct]);        
     }
 
     /**
@@ -163,7 +236,8 @@ class CheckOutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function store_payment_form(Request $request){
+    public function store_payment_form(Request $request)
+    {
         $peymentType = $request->peymentType;
         if($peymentType == 'COD') {
              return redirect('/cod-order-submit');
@@ -175,6 +249,38 @@ class CheckOutController extends Controller
         }
     }
 
+    protected function saveOrder()
+    {
+        $order = new Order;
+        $order->customer_id = Session::get('customerId');
+        $order->shipping_id = Session::get('shippingId');
+        $order->save();
+        $orderId = $order->id;
+        return $orderId;
+    }
+    protected function savePayment($orderId)
+    {
+        $payment = new Payment;
+        $payment->order_id = $orderId;
+        $payment->payment_type = 'COD';
+        $payment->save();  
+    }
+
+    protected function saveOrderDetails($orderId){
+        $cartProducts = Cart::content();
+            foreach ($cartProducts as $cartProduct) {
+                $brandId = Product::find($cartProduct->id)->brand_id;
+                $orderDetails = new OrderDetail;
+                $orderDetails->order_id = $orderId;
+                $orderDetails->product_id  = $cartProduct->id;
+                $orderDetails->product_name = $cartProduct->name;
+                $orderDetails->product_price = $cartProduct->price;
+                $orderDetails->brand_id = $brandId;
+                $orderDetails->product_quantity = $cartProduct->qty;
+                $orderDetails->save();
+            }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -182,34 +288,13 @@ class CheckOutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function COD_payment_submit(){
-
-        $order = new Order;
-            $order->customer_id = Session::get('customerId');
-            $order->shipping_id = Session::get('shippingId');
-            $order->save();
-            $orderId = $order->id;
-
-            $payment = new Payment;
-            $payment->order_id = $orderId;
-            $payment->payment_type = 'COD';
-            $payment->save();
-
-            $cartProducts = Cart::content();
-            foreach ($cartProducts as $cartProduct) {
-                $orderDetails = new OrderDetail;
-                $orderDetails->order_id = $orderId;
-                $orderDetails->product_id  = $cartProduct->id;
-                $orderDetails->product_name = $cartProduct->name;
-                $orderDetails->product_price = $cartProduct->price;
-                $orderDetails->product_quantity = $cartProduct->qty;
-                $orderDetails->save();
-            }
-     return redirect('/')->with('message','your order recived successfully Thank you we will contat you verry soon');       
-     return redirect('/complete-order');       
+        $orderId = $this->saveOrder();
+        $this->savePayment($orderId);
+        $this->saveOrderDetails($orderId);
+     return redirect('/')->with('message','your order recived successfully Thank you we will contat you verry soon');     
     }
 
     public function complete_order(){
-
         Session::forget('shippingId');
         Cart::destroy();
         return view('frontend.checkout.orderComplet');

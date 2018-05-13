@@ -24,17 +24,27 @@ Order Details
                 <div class="container" style="padding-bottom: 10px;">
                     <div class="col-sm-6">
                         <div class="to">Castomer Info:</div>
-                        <h2 class="name">{{ $info->customer_name }}</h2>
-                        <div class="address">{{ $info->customer_address }}</div>
-                        <div class="email"><a href="#">{{ $info->customer_phone_number }}</a></div>
-                        <div class="email"><a href="#">{{ $info->customer_email }}</a></div>
+                        <h2 class="name">{{ $info->first_name.' '.$info->last_name }}</h2>
+                        <div class="address">{{ $info->address_1 }}</div>
+                        <div class="address">{{ $info->address_2 }}</div>
+                        <div class="address">{{ $info->postcode }}</div>
+                        <div class="address">{{ $info->up_zilla }}</div>
+                        <div class="address">{{ $info->zilla }}</div>
+                        <div class="address">{{ $info->country }}</div>
+                        <div class="email"><a href="#">{{ $info->phone_no }}</a></div>
+                        <div class="email"><a href="#">{{ $info->email }}</a></div>
                         <div class="date">Date of Order: {!! date('d/m/Y', strtotime($info->created_at)) !!}</div>
                     </div>
                     <div class="col-sm-6" style="text-align: right;">
                         <div class="to">Shipping Adress</div>
-                        <h2 class="name">{{ $info->full_name }}</h2>
-                        <div class="address">{{ $info->shipping_address }}</div>
-                        <div class="email"><a href="#">{{ $info->phone_number }}</a></div>
+                        <h2 class="name">{{ $info->first_name.' '.$info->last_name }}</h2>
+                        <div class="address">{{ $shippingInfo->address_1 }}</div>
+                        <div class="address">{{ $shippingInfo->address_2 }}</div>
+                        <div class="address">{{ $shippingInfo->postcode }}</div>
+                        <div class="address">{{ $shippingInfo->up_zilla }}</div>
+                        <div class="address">{{ $shippingInfo->zilla }}</div>
+                        <div class="address">{{ $shippingInfo->country }}</div>
+                        <div class="email"><a href="#">{{ $info->phone_no }}</a></div>
                         <div class="email"><a href="#">{{ $info->email }}</a></div>
                         <div class="date">Order Status: {!! $info->order_status !!}</div>
                         <div class="date">Payment Status: {!! $info->payment_status !!} ({{$info->payment_type }})</div>
