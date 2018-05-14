@@ -16,7 +16,7 @@ use DB;
 class CheckOutController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of Cart product and Shipping info form.
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,26 +26,42 @@ class CheckOutController extends Controller
         {
             return redirect(route('shipping.info'));
         }
-     return view('frontend.checkout.chakOutLogin'); 
+        return view('frontend.checkout.chakOutLogin'); 
     }
+
+    /**
+     * Display a Chakout login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show_login_from()
     {  
-            return view('frontend.checkout.chakOutLogin');;
+        return view('frontend.checkout.chakOutLogin');;
     }
+
+    /**
+     * Display a Chakout Register form.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show_register_from()
     {    
         $allCartProduct = Cart::count();
-            if ($allCartProduct >=1 )
-            {
-                if (Session::get('customerName'))
-                {
+            if ($allCartProduct >=1 ){
+                if (Session::get('customerName')){
                     return redirect()->back()->with('message','you are allrady loged in');
                 }
-             return view('frontend.checkout.chakOutRegister');
+            $districts = DB::table('districts')->select('districts.*')->orderBy('districts.zilla_name')->get();
+             return view('frontend.checkout.chakOutRegister',['districts' => $districts]);
                 
             }
         return redirect()->back()->with('message','you have not any product in cart');
     }
+
+    /**
+     *  Chakout Register filde validation.
+     *
+     */
     protected function acccountValidation($request)
     {
         $this->validate($request, [
@@ -65,6 +81,10 @@ class CheckOutController extends Controller
         ]);
     }
 
+    /**
+     *  Chakout Registretion store basic info.
+     *
+     */
     protected function store($request)
     {        
         $customer = new Customer;
@@ -95,6 +115,10 @@ class CheckOutController extends Controller
         return $data;
     }
 
+    /**
+     *  Send Messege wellcome to new Member.
+     *
+     */
     protected function register_message($data)
     {   
        Mail::send('email.message', $data, function ($message) use ($data){
@@ -106,7 +130,7 @@ class CheckOutController extends Controller
         });
     }
     /**
-     *
+     *Creat new Customer
      *
      * @return \Illuminate\Http\Response
      */
@@ -119,7 +143,11 @@ class CheckOutController extends Controller
         return redirect(route('shipping.info'))->with('message',$wellcome);
     }
 
-
+    /**
+     *Login form Cart
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function login_from_cart(Request $request)
     {
         $customer = Customer::where('email', $request->email)->first();
@@ -129,9 +157,13 @@ class CheckOutController extends Controller
             {
                 Session::put('customerId', $customer->id);
                 Session::put('customerName',  $customer->first_name.' '.$customer->last_name);
-                $this->login_message($customer);
-                $wellcome = 'Hellow'.' '.$customer->first_name.' '.$customer->last_name.' '.'Wellcome to ShototaBazar';
-                return redirect('/shipping-info')->with('message', $wellcome);
+               // $this->login_message($customer);
+                if (Cart::count() >=1) {
+                    $wellcome = 'Hellow'.' '.$customer->first_name.' '.$customer->last_name.' '.'Wellcome to ShototaBazar';
+                    return redirect('/shipping-info')->with('message', $wellcome);
+                }else{
+                    return redirect('/')->with('message','you dont have any product in cart');
+                }
             } 
             else {
                 return redirect()->back()->with('message', 'Your password is not correct');
@@ -141,7 +173,12 @@ class CheckOutController extends Controller
             return redirect()->back()->with('message', 'Your email is not correct');
         }
     }
-
+    
+    /**
+     *Login Allert
+     *
+     * @return \Illuminate\Http\Response
+     */
     protected function login_message($customer)
     {   
         $messageBody = 'Dear'.' '.$customer->first_name.' '.$customer->last_name.' '.'Just now some loged in from your account';
@@ -156,7 +193,12 @@ class CheckOutController extends Controller
             $message->priority(6);
         });
     }
-
+    
+    /**
+     * Shipping Info Validation
+     *
+     * @return \Illuminate\Http\Response
+     */
     protected function shipping_info_validate($request)
     {
        $this->validate($request, [
@@ -167,7 +209,12 @@ class CheckOutController extends Controller
             'agree'  => 'required',
         ]); 
     }
-
+    
+    /**
+     * Store Shipping Info
+     *
+     * @return \Illuminate\Http\Response
+     */
     protected function store_shiping_info($request)
     {
         $shipping = new Shipping;
@@ -187,7 +234,7 @@ class CheckOutController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     *Stor Shipping info basic
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -201,7 +248,8 @@ class CheckOutController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Store Shipping Info.
+     * Store ShippingID in session.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -211,8 +259,8 @@ class CheckOutController extends Controller
         $customerId = Session::get('customerId');
         $customer = Customer::find($customerId);
         $allCartProduct = Cart::content();
-        $districts = DB::table('districts')->select('districts.*')->orderBy('districts.name')->get();
-        $upazilas = DB::table('upazilas')->select('upazilas.*')->where('district_id',$customer->zilla_id)->orderBy('upazilas.name')->get();
+        $districts = DB::table('districts')->select('districts.*')->orderBy('districts.zilla_name')->get();
+        $upazilas = DB::table('upazilas')->select('upazilas.*')->where('district_id',$customer->zilla_id)->orderBy('upazilas.up_zilla_name')->get();
         return view('frontend.checkout.shippingForm',
          ['customer'=>$customer,'CartProduct'=>$allCartProduct,'districts' => $districts,'upazilas' => $upazilas]);
     }
@@ -266,7 +314,8 @@ class CheckOutController extends Controller
         $payment->save();  
     }
 
-    protected function saveOrderDetails($orderId){
+    protected function saveOrderDetails($orderId)
+    {
         $cartProducts = Cart::content();
             foreach ($cartProducts as $cartProduct) {
                 $brandId = Product::find($cartProduct->id)->brand_id;
@@ -287,16 +336,19 @@ class CheckOutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function COD_payment_submit(){
+    public function COD_payment_submit()
+    {
         $orderId = $this->saveOrder();
         $this->savePayment($orderId);
         $this->saveOrderDetails($orderId);
-     return redirect('/')->with('message','your order recived successfully Thank you we will contat you verry soon');     
+        return redirect('/')->with('message','your order recived successfully Thank you we will contat you verry soon');     
     }
 
-    public function complete_order(){
+    public function complete_order()
+    {
         Session::forget('shippingId');
         Cart::destroy();
         return view('frontend.checkout.orderComplet');
     }
 }
+

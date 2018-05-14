@@ -100,7 +100,7 @@ Register
 								<select name="zilla_id" id="zilla_dropdown" class="form-control" required>
 									<option value="" selected="true">=== Select Districts ===</option>
 									@foreach($districts as $district)
-									<option value="{{ $district->id }}">{{ $district->name }}</option>
+									<option value="{{ $district->id }}">{{ $district->zilla_name }}</option>
 								  @endforeach
 								</select>
 								<span class="text-danger">{{ $errors->has('zilla_id') ? $errors->first('zilla_id') : '' }}</span>
@@ -168,7 +168,7 @@ Register
 	          $('#up_zilla').append('<option value="0" disable="true" selected="true">=== Select  Up-Zilla ===</option>');
 
 	          $.each(data, function(index, regenciesObj){
-	            $('#up_zilla').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.name +'</option>');
+	            $('#up_zilla').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.up_zilla_name +'</option>');
 	          })
     		}, 
 	        error:function(){

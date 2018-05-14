@@ -15,13 +15,12 @@ Route::get('/', function () {
     return view('frontend.home.home');
 })->name('home.page');
 
-Route::get('/acountlogin','AcccountController@show_login_form')->name('account.login');
-Route::post('/account-login','AcccountController@index')->name('account-login');
-Route::get('/account-logout','AcccountController@destroy')->name('account-logout');
-Route::get('/acountregister','AcccountController@show_register_form')->name('account.register');
 Route::get('/upaZilas','AcccountController@get_Upa_Zilass');
-Route::post('/account-register','AcccountController@create')->name('account-register');
-Route::get('/login-alret','AcccountController@login_alret')->name('login.alret');
+
+Route::get('/account-logout','AcccountController@destroy')->name('account-logout');
+
+Route::get('/my-account','AcccountController@my_account')->name('my.account');
+Route::get('/order-information/{id}','AcccountController@order_information')->name('my.order.details');
 
 
 Route::get('/single-product/{id}','SototabazarController@show_single_product');
@@ -29,18 +28,26 @@ Route::get('/contact','SototabazarController@show_contact_form');
 Route::get('/product-by-Cetagory/{id}','SototabazarController@productsbyCetegory');
 Route::get('/about','SototabazarController@about');
 
+Route::group(['middleware' => ['CheakLoginMiddleware']], function () { 
+
+	Route::get('/acountregister','AcccountController@index')->name('account.register');
+	Route::post('/account-register','AcccountController@create')->name('account-register');
+	Route::get('/accountlogin','AcccountController@show')->name('account.login');
+	Route::post('/account-login','AcccountController@cheak_login')->name('account-login');
+	Route::get('/checkout-login','CheckOutController@show_login_from')->name('checkout.login');
+	Route::get('/checkout-register','CheckOutController@show_register_from')->name('checkout.register');
+	Route::post('/checkout-creat-acount','CheckOutController@creat_acount')->name('checkout-register');
+	Route::post('/login-from-cart','CheckOutController@login_from_cart')->name('checkout-login-acount');
+});
 Route::post('/addToCart', 'CartController@store')->name('cart.add');
-Route::get('/show-cart', 'CartController@index')->name('cart.show');
-Route::get('/cart-delet/{id}', 'CartController@destroy');
-Route::post('cart-update','CartController@update')->name('cart.update');
+
 Route::get('/checkout','CheckOutController@index')->name('checkout');
-Route::get('/checkout-login','CheckOutController@show_login_from')->name('checkout.login');
-Route::get('/checkout-register','CheckOutController@show_register_from')->name('checkout.register');
-Route::post('/checkout-creat-acount','CheckOutController@creat_acount')->name('checkout-register');
-Route::post('/login-from-cart','CheckOutController@login_from_cart')->name('checkout-login-acount');
 
 Route::group(['middleware' => ['CheckCartMiddlewar']], function () 
-{
+{	
+	Route::get('/show-cart', 'CartController@index')->name('cart.show');
+	Route::get('/cart-delet/{id}', 'CartController@destroy');
+	Route::post('cart-update','CartController@update')->name('cart.update');
 	Route::get('/shipping-info', 'CheckOutController@shiping_info')->name('shipping.info');
 	Route::post('/store-shipping-info','CheckOutController@save_shiping_info')->name('checkout.save.shipping.info');
 	Route::get('/payment-info','CheckOutController@show_payment_form')->name('payment.info');
@@ -50,6 +57,7 @@ Route::group(['middleware' => ['CheckCartMiddlewar']], function ()
 Route::get('/complete-order','CheckOutController@complete_order');
 
 Auth::routes();
+
 Route::group(['middleware' => ['AuthenticateMiddleware']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 

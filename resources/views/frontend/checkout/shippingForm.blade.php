@@ -153,7 +153,7 @@ Shipping Info
 								<select class="form-control" id="zilla_dropdown" name="zilla_id" required>
 								  <option value=""> --- Please Select --- </option>
 								  @foreach($districts as $district)
-									<option value="{{ $district->id }}" @if($customer->zilla_id == $district->id) selected="true" style="color: #6B0E0E" @endif >{{ $district->name }}</option>
+									<option value="{{ $district->id }}" @if($customer->zilla_id == $district->id) selected="true" style="color: #6B0E0E" @endif >{{ $district->zilla_name }}</option>
 								  @endforeach								  
 								</select>
 								<span class="text-danger">{{ $errors->has('zilla_id') ? $errors->first('zilla_id') : '' }}</span>
@@ -163,7 +163,7 @@ Shipping Info
 								<label for="input-payment-zone" class="control-label">Up-Zilla</label>
 								<select name="up_zilla_id" id="up_zilla" class="form-control name" required>
 									@foreach($upazilas as $upazila)
-									<option value="{{ $upazila->id }}" @if($customer->up_zilla_id == $upazila->id) selected="true" style="color: #6B0E0E" @endif >{{ $upazila->name  }}</option>
+									<option value="{{ $upazila->id }}" @if($customer->up_zilla_id == $upazila->id) selected="true" style="color: #6B0E0E" @endif >{{ $upazila->up_zilla_name  }}</option>
 								  @endforeach
 								</select>
 								<span class="text-danger">{{ $errors->has('up_zilla_id') ? $errors->first('up_zilla_id') : '' }}</span>								  
@@ -204,8 +204,6 @@ Shipping Info
 
 @endsection
 
-@endsection
-
 @section('plgin')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
 <script type="text/javascript">
@@ -227,7 +225,7 @@ Shipping Info
 	          $('#up_zilla').append('<option value="0" disable="true" selected="true">=== Select  Up-Zilla ===</option>');
 
 	          $.each(data, function(index, regenciesObj){
-	            $('#up_zilla').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.name +'</option>');
+	            $('#up_zilla').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.up_zilla_name +'</option>');
 	          })
     		}, 
 	        error:function(){

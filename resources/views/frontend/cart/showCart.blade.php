@@ -35,18 +35,16 @@ Cart
                 </thead>
                 <tbody>
                     <?php 
-                            $total = 0;  $subtotal = 0; $gq = 0;
+                            $total = 0;  $subtotal = 0; $gq = 0; $taxrate = 5;   $shippingCost = 50;
                             foreach ($CartProduct as $bcart) {
                                  $total = $bcart->qty*$bcart->price;
                                  $subtotal = $subtotal+$total;
                                  $gq = $gq+$bcart->qty;
 
 
-                            } 
-                            $taxrate = 5; $shippingCost = 50;
-                             $grandtotal = $subtotal + ($subtotal  * $taxrate) / 100;
-                            $tax = $grandtotal-$subtotal;
-                            /*$grandtotal = $grandtotal+$shippingCost;*/
+                            }
+                             $grandtotal = $subtotal + ($subtotal  * $taxrate) / 100 + $shippingCost;
+                            $tax = ($subtotal  * $taxrate) / 100;
                                          ?>
                   @foreach($CartProduct as $product)
                   <tr>
@@ -102,9 +100,9 @@ Cart
                         </tr>
                         <tr>
                             <td class="text-right">
-                                <strong>VAT (20%):</strong>
+                                <strong>VAT (5%):</strong>
                             </td>
-                            <td class="text-right">$34.68</td>
+                            <td class="text-right">TK {{ $tax }}</td>
                         </tr>
                         <tr>
                             <td class="text-right">

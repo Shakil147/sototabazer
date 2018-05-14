@@ -14,10 +14,10 @@
                                 <a href="{{ asset('emarket')}}/#" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">My Account </span>  <span class="fa fa-caret-down"></span>
                                 </a>
                                 <ul class="dropdown-menu ">
-                            @if(Session::get('customerId')) 
-                                @if($name = Session::get('customerName')) 
+                            @if($customerId = Session::get('customerId')) 
+                                @if($customerName = Session::get('customerName')) 
                                 <i class="glyphicon glyphicon-log-out"><a href="{{ route('account-logout') }}" class="link-lg">Logout</a></i>
-                                <a class="link-lg" href="#">{{ $name }}  </a> 
+                                <a class="link-lg" href="{{ url('/my-account') }}">{{ $customerName }}  </a> 
                                 @endif
                                 
                             @else

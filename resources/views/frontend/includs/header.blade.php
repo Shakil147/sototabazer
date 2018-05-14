@@ -254,10 +254,10 @@
                         <div class="signin-w  hidden-sm hidden-xs">
                             <ul class="signin-link blank">                            
                                 <li class="log login">
-                            @if(Session::get('customerId')) 
-                                @if($name = Session::get('customerName')) 
+                           @if($customerId = Session::get('customerId')) 
+                                @if($customerName = Session::get('customerName'))
                                 <i class="glyphicon glyphicon-log-out"><a href="{{ route('account-logout') }}" class="link-lg">Logout</a></i>
-                                <a class="link-lg" href="#">{{ $name }}  </a>
+                                <a class="link-lg" href="{{ url('/my-account') }}">{{ $customerName }}  </a>
                                 @endif
                                 
                             @else

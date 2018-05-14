@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\Order;
+use App\OrderDetail;
 use Session;
 use Cart;
 use Mail;
@@ -16,50 +18,11 @@ class AcccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $customer = Customer::where('email', $request->email)->first();
-        /*return $customer;*/
 
-        if(isset($customer)) {
-            if(password_verify($request->password, $customer->password)) {
-                Session::put('customerId', $customer->id);
-                Session::put('customerName',  $customer->first_name.' '.$customer->last_name);
-                $wellcome = 'Hellow'.' '.$customer->first_name.' '.$customer->last_name.' '.'Wellcome to ShototaBazar';
-                $this->login_message($customer);
-                return redirect('/')->with('message', $wellcome);
-            } else {
-                return redirect()->back()->with('message', 'Your password is not correct');
-            }
-        } 
-        else {
-            return redirect()->back()->with('message', 'Your email is not correct');
-        }
+    public function index(){
+        $districts = DB::table('districts')->select('districts.*')->orderBy('districts.zilla_name')->get();
+        return view('frontend.login.register',['districts' => $districts]); 
     }
-    protected function login_message($customer)
-    {   
-        $messageBody = 'Dear'.' '.$customer->first_name.' '.$customer->last_name.' '.'Just now some loged in from your account';
-        $data = array(
-            'email' => $customer->email,
-            'subject' => 'Login Allert',
-            'message_body' => $messageBody );
-        Mail::send('email.message', $data, function ($message) use ($data){
-            $message->from('shakil@mahmud.com', 'Trendy Blog');        
-            $message->to($data['email']);        
-            $message->replyTo('john@johndoe.com', 'John Doe');        
-            $message->subject($data['subject']);        
-            $message->priority(6);
-        });
-    }
-
-    public function show_login_form(){
-        $customerName = Session::get('customerName');
-        $customerId = Session::get('customerId');
-        if (isset($customerName)) {
-            return redirect()->back()->with('message', 'Your are alrady loged in ');
-        }
-       return view('frontend.login.login'); 
-    } 
 
     protected function acccountValidation($request){
         $this->validate($request, [
@@ -100,21 +63,18 @@ class AcccountController extends Controller
         $customer->postcode = $request->postcode;
         $customer->country = $request->country;
         $customer->save();
-        $customerId = $customer->id;
-        $customerName = $customer->first_name.' '.$customer->last_name;
+        return $customer;
+    }
+
+    protected function register_message($customer, $customerName)
+    {   
         $messageBody = 'Thank you'.' '.$customerName.' '.'for register in Sotota Bazar ';
         $data = array(
             'email' => $customer->email,
             'fullName' => $customerName,
             'subject' => 'wellcome Message',
-            'message_body' => $messageBody );        
-        Session::put('customerId', $customerId);
-        Session::put('customerName', $customerName);
-        return $data;
-    }
+            'message_body' => $messageBody ); 
 
-    protected function register_message($data)
-    {   
        Mail::send('email.message', $data, function ($message) use ($data){
             $message->from('shakil@mahmud.com', 'Trendy Blog');        
             $message->to($data['email']);        
@@ -131,38 +91,69 @@ class AcccountController extends Controller
      */
     public function create(Request $request)
     {   
-        /*return $request;*/
         $this->acccountValidation($request);
-        $data = $this->store($request);
-        $this->register_message($data);       
-        $wellcome = 'Hellow'.' '.$data['fullName'].' '.'Wellcome to ShototaBazar';
+        $customer = $this->store($request);
+
+        $customerId = $customer->id;
+        $customerName = $customer->first_name.' '.$customer->last_name;       
+        Session::put('customerId', $customerId);
+        Session::put('customerName', $customerName);
+
+        $this->register_message($customer, $customerName);       
+        $wellcome = 'Hellow'.' '.$customerName.' '.'Wellcome to ShototaBazar';
         return redirect(url('/'))->with('message',$wellcome);
     }
 
-    public function show_register_form(){
-        $customerName = Session::get('customerName');
-        $customerId   = Session::get('customerId');
-        if (isset($customerName)) {
-            return redirect()->back()->with('message', 'Your are alrady loged in ');
-        }
-        $districts = DB::table('districts')->select('districts.*')->orderBy('districts.name')->get();
-        $upazilas  = DB::table('upazilas')->select('upazilas.*')->orderBy('upazilas.name')->get();
-        return view('frontend.login.register',['districts' => $districts, 'upazilas' => $upazilas]); 
-    }
-
     public function get_Upa_Zilass(Request $request){
-        $data= DB::table('upazilas')->select('upazilas.*')->orderBy('upazilas.name')->where('district_id',$request->id)->get();
+        $data= DB::table('upazilas')->select('upazilas.*')->orderBy('upazilas.up_zilla_name')->where('district_id',$request->id)->get();
         return response()->json($data);
     }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
+    {    
+       return view('frontend.login.login');
+    }
+    
+    public function cheak_login(Request $request)
     {
-        //
+        $customer = Customer::where('email', $request->email)->first();
+        if(isset($customer)) {
+            if(password_verify($request->password, $customer->password)) {
+                $customerName = $customer->first_name.' '.$customer->last_name; 
+                Session::put('customerId', $customer->id);
+                Session::put('customerName',  $customerName);
+                $wellcome = 'Hellow'.' '.$customerName.' '.'Wellcome to ShototaBazar';
+                /*$this->login_message($customer, $customerName);*/
+                return redirect('/')->with('message', $wellcome);
+            } else {
+                return redirect()->back()->with('message', 'Your password is not correct');
+            }
+        } 
+        else {
+            return redirect()->back()->with('message', 'Your email is not correct');
+        }
+    }
+
+    protected function login_message($customer, $customerName)
+    {   
+        $messageBody = 'Dear'.' '.$customer->first_name.' '.$customer->last_name.' '.'Just now some loged in from your account';
+        $data = array(
+            'email' => $customer->email,
+            'subject' => 'Login Allert',
+            'message_body' => $messageBody );
+        Mail::send('email.message', $data, function ($message) use ($data){
+            $message->from('shakil@mahmud.com', 'Trendy Blog');        
+            $message->to($data['email']);        
+            $message->replyTo('john@johndoe.com', 'John Doe');        
+            $message->subject($data['subject']);        
+            $message->priority(6);
+        });
     }
 
     /**
@@ -200,5 +191,62 @@ class AcccountController extends Controller
         $customerId = Session::forget('customerId');
         $cart = Cart::destroy();
         return redirect()->back();
+    }
+
+    public function my_account()
+    {   
+        $ssionCustomerId = Session::get('customerId'); 
+        if (isset($ssionCustomerId)) { 
+            $accountInfo= $this->myInfo($ssionCustomerId);
+            $orderDetails = DB::table('order_details')
+            ->join('orders','orders.id','=','order_details.order_id')
+            ->join('products','products.id','=','order_details.product_id')
+            ->join('brands','brands.id','=','order_details.brand_id')
+            ->select('order_details.*','products.product_name','products.product_main_image','brands.brand_name','orders.order_status')
+            ->where('order_details.customer_id',$accountInfo->id)
+            ->get();
+            return view('frontend.myAccount.index', ['accountInfo' => $accountInfo,'orderDetails' => $orderDetails]);
+        }else{
+            return $ssionCustomerId;
+        }
+        
+    }
+
+    protected function myInfo($id)
+    {
+       $accountInfo= DB::table('customers')
+       ->join('districts','districts.id','=','customers.zilla_id')
+       ->join('upazilas','upazilas.id','=','customers.up_zilla_id')
+        ->select('customers.id','customers.first_name', 'customers.last_name','customers.email','customers.phone_no',
+        'customers.address_1','customers.address_2','districts.zilla_name','upazilas.up_zilla_name',
+        'customers.postcode','customers.country')
+        ->where('customers.id',$id)->first();
+       return $accountInfo;
+    }
+
+    public function order_information($id)
+    {   
+        $ssionCustomerId = Session::get('customerId'); 
+        $orders = DB::table('orders')
+                    ->join('shippings','shippings.id','=','orders.shipping_id')
+                    ->join('payments','payments.order_id','=','orders.id')
+                    ->join('districts','districts.id','=','shippings.zilla_id')
+                    ->join('upazilas','upazilas.id','=','shippings.up_zilla_id')
+                    ->select('orders.*','shippings.*','payments.*','districts.zilla_name','upazilas.up_zilla_name')
+                    ->where('orders.id',$id)
+                    ->first();
+        if ($ssionCustomerId ==$orders->customer_id) { 
+            $accountInfo= $this->myInfo($ssionCustomerId);
+            $orderDetails = DB::table('order_details')
+            ->join('orders','orders.id','=','order_details.order_id')
+            ->join('products','products.id','=','order_details.product_id')
+            ->join('brands','brands.id','=','order_details.brand_id')
+            ->select('order_details.*','products.product_name','products.product_main_image','brands.brand_name','orders.order_status')
+            ->where('order_details.order_id',$id)
+            ->get();
+            return view('frontend.myAccount.orderInfo', ['accountInfo' => $accountInfo,'orders' => $orders,'orderDetails' => $orderDetails]);
+        }else{
+            return $ssionCustomerId;
+        }
     }
 }
