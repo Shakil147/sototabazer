@@ -2,7 +2,14 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes  
+			@if($message = Session::get('message'))    
+            <div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
+                <div class="alert alert-success" role="alert" style="text-align: center;">
+                    <strong><h4> {{ $message }} </h4> </strong>
+                </div>
+            </div>
+            @endif
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -15,7 +22,16 @@ Route::get('/', function () {
     return view('frontend.home.home');
 })->name('home.page');
 
+Route::get('/2r', function () {
+    return view('frontend.home.homerr');
+});
+	Route::post('/account-login','AcccountController@cheak_login')->name('account-login');
+
 Route::get('/upaZilas','AcccountController@get_Upa_Zilass');
+Route::get('/prouductImagesDelete','ProductController@prouduct_Images_Delete');
+
+	Route::get('/accountlogin','AcccountController@show')->name('account.login');
+	Route::post('/account-login','AcccountController@cheak_login')->name('account-login');
 
 Route::get('/account-logout','AcccountController@destroy')->name('account-logout');
 
@@ -32,8 +48,7 @@ Route::group(['middleware' => ['CheakLoginMiddleware']], function () {
 
 	Route::get('/acountregister','AcccountController@index')->name('account.register');
 	Route::post('/account-register','AcccountController@create')->name('account-register');
-	Route::get('/accountlogin','AcccountController@show')->name('account.login');
-	Route::post('/account-login','AcccountController@cheak_login')->name('account-login');
+	
 	Route::get('/checkout-login','CheckOutController@show_login_from')->name('checkout.login');
 	Route::get('/checkout-register','CheckOutController@show_register_from')->name('checkout.register');
 	Route::post('/checkout-creat-acount','CheckOutController@creat_acount')->name('checkout-register');
@@ -59,7 +74,13 @@ Route::get('/complete-order','CheckOutController@complete_order');
 Auth::routes();
 
 Route::group(['middleware' => ['AuthenticateMiddleware']], function () {
+	
 	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/profile', 'UserController@index')->name('profile');
+	Route::post('/changeInfo', 'UserController@store')->name('changeInfo');
+	Route::get('/users', 'UserController@show')->name('users');
+	Route::get('/updetUser/{id}', 'UserController@updet_user')->name('updetUser');
+	Route::post('updetUserInfo', 'UserController@updet_user_info')->name('updetUserInfo');
 
 	Route::get('/add-cetagory','CetagoryController@add_cetagory');
 	Route::post('/cetagory-add','CetagoryController@save_cetagory')->name('cetagory.add');
@@ -84,17 +105,19 @@ Route::group(['middleware' => ['AuthenticateMiddleware']], function () {
 	Route::get('/Product-edit/{id}', 'ProductController@edit_product');
 	Route::post('/product-update', 'ProductController@update_product')->name('produc.update');
 	Route::post('/product-images-add', 'ProductController@add_product_images')->name('add.produc.images');
-	Route::get('/delete-product-image{id}', 'ProductController@delete_product_images')->name('delete.produc.images');
 	Route::get('/Product/delete/{id}', 'ProductController@delete_product');
 
 	Route::get('/orders', 'OrderController@index');
+	Route::get('/ordersMenage', 'OrderController@menage');
 	Route::get('/order/view/{id}', 'OrderController@show_orders');
 	Route::post('order.details.update','OrderController@orders_qty_update')->name('order.details.update');
 	Route::post('order.status.update','OrderController@orders_status_update')->name('order.status.update');
 	Route::get('/order/invoice/{id}', 'OrderController@show_order_invoise');
 	Route::get('/order/download/{id}', 'OrderController@downlod_order_invoise');
-	Route::get('/send-E-mail', 'EmailController@index');
+	Route::get('/E-mail-send', 'EmailController@create');
 	Route::post('/post-E-mail', 'EmailController@store')->name('post.email');
+	Route::get('/E-mail-inbox', 'EmailController@index');
+	Route::get('/E-mail-details', 'EmailController@show');
 });
 Route::get('/districts', 'OrderController@districts');
 Route::get('/c/{id}', 'OrderController@upazilas');

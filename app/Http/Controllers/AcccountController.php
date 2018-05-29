@@ -105,7 +105,11 @@ class AcccountController extends Controller
     }
 
     public function get_Upa_Zilass(Request $request){
-        $data= DB::table('upazilas')->select('upazilas.*')->orderBy('upazilas.up_zilla_name')->where('district_id',$request->id)->get();
+        $data= DB::table('upazilas')
+        ->select('upazilas.*')
+        ->orderBy('upazilas.up_zilla_name')
+        ->where('district_id',$request->id)
+        ->get();
         return response()->json($data);
     }
 
@@ -116,27 +120,38 @@ class AcccountController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show()
-    {    
-       return view('frontend.login.login');
+    {  
+        $customerName = Session::get('customerName');
+        $customerId = Session::get('customerId'); 
+        if ($customerId) {
+            return redirect('/');
+         } else{
+             return view('frontend.login.login');
+
+         }
+       
     }
     
     public function cheak_login(Request $request)
-    {
+    {       
         $customer = Customer::where('email', $request->email)->first();
         if(isset($customer)) {
-            if(password_verify($request->password, $customer->password)) {
+            $cheak = password_verify($request->password, $customer->password);
+            if($cheak) {
                 $customerName = $customer->first_name.' '.$customer->last_name; 
                 Session::put('customerId', $customer->id);
                 Session::put('customerName',  $customerName);
                 $wellcome = 'Hellow'.' '.$customerName.' '.'Wellcome to ShototaBazar';
-                /*$this->login_message($customer, $customerName);*/
-                return redirect('/')->with('message', $wellcome);
+                echo "success";
+                /*return redirect('/')->with('message', $wellcome);*/
             } else {
-                return redirect()->back()->with('message', 'Your password is not correct');
+                echo "wrongPassword";
+                /*return redirect()->back()->with('message', 'Your password is not correct');*/
             }
         } 
-        else {
-            return redirect()->back()->with('message', 'Your email is not correct');
+        else {  
+            echo "wrongEmail";          
+            /*return redirect()->back()->with('message', 'Your email is not correct');*/
         }
     }
 

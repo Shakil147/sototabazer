@@ -10,6 +10,7 @@
     <meta name="description" content="eMarket is a powerful Multi-purpose HTML5 Template with clean and user friendly design. It is definite a great starter for any eCommerce web project." />
     <meta name="author" content="Magentech">
     <meta name="robots" content="index, follow" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
    
     <!-- Mobile specific metas
     ============================================ -->
@@ -105,6 +106,8 @@
     <!-- //end Footer Container -->
 
     </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>    
+ @yield('plgin')
    
 
 <!-- End Color Scheme
@@ -128,7 +131,6 @@
 <script type="text/javascript" src="{{ asset('emarket')}}/js/modernizr/modernizr-2.6.2.min.js"></script>
 <script type="text/javascript" src="{{ asset('emarket')}}/js/minicolors/jquery.miniColors.min.js"></script>
 
-@yield('plgin')
 
 <!-- Theme files
 ============================================ -->

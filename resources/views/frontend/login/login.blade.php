@@ -34,18 +34,18 @@ Login
 								</div>
 							</div>
 							
-							{!! Form::open(['class'=>'form-horizontal','route' => 'account-login','method'=>'post']) !!}
+							{!! Form::open(['class'=>'form-horizontal login','route' => 'account-login','method'=>'post']) !!}
 								<div class="col-sm-6 customer-login">
 									<div class="well">
 										<h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Returning Customer</h2>
-										<p><strong>I am a returning customer</strong></p>
+										<p><strong id="loginMessage" class="text-warning"></strong></p>
 										<div class="form-group">
-											<label class="control-label " for="input-email">E-Mail Address</label>
-											<input type="text" name="email" value="" id="input-email" class="form-control" />
+											<label class="control-label " for="input-email" >E-Mail Address</label>
+											<input type="text" name="email" value="" id="email" class="form-control" />
 										</div>
 										<div class="form-group">
 											<label class="control-label " for="input-password">Password</label>
-											<input type="password" name="password" value="" id="input-password" class="form-control" />
+											<input type="password" name="password" value="" id="password" class="form-control" />
 										</div>
 									</div>
 									<div class="bottom-form">
@@ -63,3 +63,47 @@ Login
 	</div>
 
 	@endsection
+
+@section('plgin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){    	
+
+        $("form.login").submit(function(e) {
+		    e.preventDefault(); 
+		    var formData = {
+			    email: $('#email').val(),
+			    password: $('#password').val(),
+			    _token: "{{ csrf_token() }}"
+			}
+
+            console.log("submit prevented");
+            console.log(formData);
+             $.ajax({
+                type:'POST',
+                url:'{!!URL::to('/account-login')!!}',
+                data: formData, 
+           success:function(response){
+           	if (response == "success") {
+           		/*$('#up_zilla').append('<option value="0" disable="true" selected="true">=== Select  Up-Zilla ===</option>');*/
+               location.reload();
+            }
+            if (response == "wrongPassword") {
+              $("#loginMessage").html("Incorrect Password");
+            }
+            if (response == "wrongEmail") {
+              $("#loginMessage").html("Incorrect Email");
+            }
+
+	          $.each(data, function(index, regenciesObj){
+	          })
+    		}, 
+	        error:function(){
+
+	        	}
+        });
+        });
+    });
+</script>
+
+@endsection

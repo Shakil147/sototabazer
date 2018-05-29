@@ -7,9 +7,8 @@ use App\Product;
 use App\ProductImage;
 use App\ProductCetagory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Image;
-
+use DB;
 class ProductController extends Controller
 {
     public function add_product(){
@@ -32,6 +31,7 @@ class ProductController extends Controller
             'reguler_price'=>'required',
             'product_price'=>'required',
             'product_size'=>'required',
+            'product_quantity'=>'required',
             'product_short_description'=>'required',
             'product_long_description'=>'required',
             'product_main_image'=>'required',
@@ -100,7 +100,7 @@ class ProductController extends Controller
         if (isset($images)) {
             $this->storeProductFile($images, $saveProduct);
         }
-        return redirect()->back()->with('message','Product Saved');
+        return back()->with('message','Product Saved');
     }
 
     /*end Add Product*/
@@ -119,15 +119,15 @@ class ProductController extends Controller
     /*Update Pubilcation Status*/
 
     public function status_product($id){
-        $procductById = Product::find($id);
-        if($procductById->publication_status == 1){
-            $procductById->publication_status = 0 ;
-            $procductById->save();
+        $productById = Product::find($id);
+        if($productById->publication_status == 1){
+            $productById->publication_status = 0 ;
+            $productById->save();
             return redirect()->back()->with('message','Product Unpudlished');
         }
         else{
-            $procductById->publication_status = 1 ;
-            $procductById->save();
+            $productById->publication_status = 1 ;
+            $productById->save();
             return redirect()->back()->with('message','Product Pudlished');
         }
     }
@@ -137,12 +137,12 @@ class ProductController extends Controller
     public function edit_product($id){
         $allCetagory = Cetagory::where('publication_status',1)->get();
         $allBrand = Brand::where('publication_status',1)->get();
-        $procductById = Product::find($id);
+        $productById = Product::find($id);
         $imagesById = ProductImage::where('product_id', $id)->get();
         return view('admin.product.updateProduct',[
             'allCetagory'=>$allCetagory,
             'allBrand'=>$allBrand,
-            'procduct'=>$procductById,
+            'product'=>$productById,
             'images'=>$imagesById
         ]);
     }
@@ -213,7 +213,7 @@ class ProductController extends Controller
     }
 
     protected function add_product_images(Request $request)
-    {  /* return $request->product_id;*/
+    {  
 
         $Image = $request->file('product_image');
         $imageName = 'other_'.'_'.time().'_'.$Image->getClientOriginalName();
@@ -225,25 +225,14 @@ class ProductController extends Controller
         $saveImage->product_id = $request->product_id;
         $saveImage->product_image = $imageUrl;
         $saveImage->save();
-        return redirect()->back()->with('message','Image saved');
+        return back()->with('message','Image saved');
     }
-
-    protected function delete_product_images($id)
-    {
-        $imagesById = ProductImage::find($id);
-        if(isset($imagesById->product_image)){
-        unlink($imagesById->product_image);            
+    public function prouduct_Images_Delete(Request $request){
+        $imageById = ProductImage::find($request->id);
+        if(isset($imageById->product_image)){
+            unlink($imageById->product_image);            
         }
-        $imagesById->delete();
-        return redirect()->back()->with('message','Image Deleted');
-    }
-    /*Delete Product*/
-    public function delete_product($id){
-        $procductById = Product::find($id);
-        if(isset($procductById->product_main_image)){
-        unlink($procductById->product_main_image);            
-        }
-        $procductById->delete();
-        return redirect()->back()->with('message','Product Deleted');
+        $imageById->delete();
+        echo "prouductImageDeleted";
     }
 }

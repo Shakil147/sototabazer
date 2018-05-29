@@ -36,69 +36,73 @@ Shipping Info
 						  <div class="panel-body">
 							<div class="table-responsive">
 							  <table class="table table-bordered">
-								<thead>
-								  <tr>
-									<td class="text-center">Image</td>
-									<td class="text-left">Product Name</td>
-									<td class="text-left">Quantity</td>
-									<td class="text-right">Unit Price</td>
-									<td class="text-right">Total</td>
-								  </tr>
-								</thead>
-								<tbody>
-									<?php 
-                            $total = 0;  $subtotal = 0; $gq = 0;
-                            foreach ($CartProduct as $bcart) {
-                                 $total = $bcart->qty*$bcart->price;
-                                 $subtotal = $subtotal+$total;
-                                 $gq = $gq+$bcart->qty;
+				                <thead>
+				                  <tr>
+				                  <td class="text-center">Action</td>
+				                  <td class="text-center">Image</td>
+				                  <td class="text-left">Product Name</td>
+				                  <td class="text-left">Quantity</td>
+				                  <td class="text-right">Unit Price</td>
+				                  <td class="text-right">Total</td>
+				                  </tr>
+				                </thead>
+				                <tbody>
+				<?php 
+				  $total = 0;  $subtotal = 0; $gq = 0;
+				  foreach ($CartProduct as $bcart) {
+				       $total = $bcart->qty*$bcart->price;
+				       $subtotal = $subtotal+$total;
+				       $gq = $gq+$bcart->qty;
+				  } 
+				  $taxrate = 5; $shippingCost = 50;
+				   $grandtotal = $subtotal + ($subtotal  * $taxrate) / 100;
+				  $tax = $grandtotal-$subtotal;
+				 ?>
 
-
-                            } 
-                            $taxrate = 5; $shippingCost = 50;
-                             $grandtotal = $subtotal + ($subtotal  * $taxrate) / 100;
-                            $tax = $grandtotal-$subtotal;
-                            /*$grandtotal = $grandtotal+$shippingCost;*/
-                                         ?>
-
-									@foreach($CartProduct as $product)
-								  <tr>
-									<td class="text-center"><a href="{{ url('/single-product/'.$product->id) }}">
-							<img width="60px" src="{{ asset($product->options->image) }}" alt="{{ $product->name }}" title="{{ $product->name }}" class="img-thumbnail"></a></td>
-									<td class="text-left"><a href="{{ url('/single-product/'.$product->id) }}">{{ $product->name }}</a></td>
-									<td class="text-left"><div class="input-group btn-block" style="min-width: 100px;">
-								{!! Form::open(['class'=>'container','route' => 'cart.update','method'=>'post']) !!}
-										<input type="number" name="qty" value="{{ $product->qty }}" size="1" min="1" max="50" class="col-sm-6">
-										<input type="hidden" name="rowId" value="{{ $product->rowId }}" size="1" min="1" max="50" class="col-sm-6">
-										<span class="input-group-btn">
-										<button type="submit" data-toggle="tooltip" title="Update" class="btn btn-primary col-sm-4 pull-right"><i class="fa fa-refresh"></i></button>
-										{{ Form::close() }}
-										<!-- <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger col-sm-3" onClick=""><i class="fa fa-times-circle"></i></button> -->
-										</span></div></td>
-									<td class="text-right">{{ $product->price }}</td>
-									<td class="text-right">{{ $product->price }}</td>
-								  </tr>
-								  @endforeach
-								</tbody>
-								<tfoot>
-								  <tr>
-									<td class="text-right" colspan="4"><strong>Sub-Total:</strong></td>
-									<td class="text-right">TK. {{ $subtotal }}</td>
-								  </tr>
-								  <tr>
-									<td class="text-right" colspan="4"><strong>Flat Shipping Rate:</strong></td>
-									<td class="text-right">TK. {{ $shippingCost }}</td>
-								  </tr>
-								  <tr>
-									<td class="text-right" colspan="4"><strong>VAT ({{ $taxrate }}%):</strong></td>
-									<td class="text-right">TK. {{ $tax }}</td>
-								  </tr>
-								  <tr>
-									<td class="text-right" colspan="4"><strong>Total:</strong></td>
-									<td class="text-right">TK. {{ $grandtotal }}</td>
-								  </tr>
-								</tfoot>
-							  </table>
+				                  @foreach($CartProduct as $product)
+				                  <tr>
+				                  <td class="text-center">
+				                    <a href="{{ url('/cart-delet/'.$product->rowId) }}" class="btn btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
+				                  </td>
+				                  <td class="text-center"><a href="{{ url('/single-product/'.$product->id) }}">
+				              <img width="60px" src="{{ asset($product->options->image) }}" alt="{{ $product->name }}" title="{{ $product->name }}" class="img-thumbnail"></a></td>
+				                  <td class="text-left"><a href="{{ url('/single-product/'.$product->id) }}">{{ $product->name }}</a></td>
+				                  <td class="text-left"><div class="input-group btn-block" style="min-width: 100px;">
+				                {!! Form::open(['class'=>'container','route' => 'cart.update','method'=>'post']) !!}
+				                    <input type="number" name="qty" value="{{ $product->qty }}" size="1" min="1" max="50" class="col-sm-6">
+				                    <input type="hidden" name="rowId" value="{{ $product->rowId }}" size="1" min="1" max="50" class="col-sm-6">
+				                    <button type="submit" data-toggle="tooltip" title="Update" class="btn btn-primary col-sm-4 pull-right"><i class="fa fa-refresh"></i></button>
+				                {{ Form::close() }}
+				                    </span></div></td>
+				                  <td class="text-right">{{ $product->price }}</td>
+				                  <td class="text-right">{{ $product->price }}</td>
+				                  </tr>
+				                  @endforeach
+				                </tbody>
+				                <tfoot>
+				                  <tr><td class="bg-success" colspan="6"></td></tr>
+				                  <tr>
+				                    <td class="text-right" colspan="4"><strong>Sub-Total:</strong></td>
+				                    <td class="text-right">TK. {{ $subtotal }}</td>
+				                    <td></td>
+				                  </tr>
+				                  <tr>
+				                    <td class="text-right" colspan="4"><strong>Flat Shipping Rate:</strong></td>
+				                    <td class="text-right">TK. {{ $shippingCost }}</td>
+				                    <td></td>
+				                  </tr>
+				                  <tr>
+				                    <td class="text-right" colspan="4"><strong>VAT ({{ $taxrate }}%):</strong></td>
+				                    <td class="text-right">TK. {{ $tax }}</td>
+				                    <td></td>
+				                  </tr>
+				                  <tr>
+				                    <td class="text-right" colspan="4"><strong>Total:</strong></td>
+				                    <td class="text-right">TK. {{ $grandtotal }}</td>
+				                    <td></td>
+				                  </tr>
+				                </tfoot>
+				              </table>
 							</div>
 						  </div>
 					  </div>
@@ -116,6 +120,7 @@ Shipping Info
 					  		<div class="form-group required">
 								<label for="input-payment-firstname" class="control-label">First Name</label>
 								<input type="text" class="form-control" id="input-payment-firstname" placeholder="First Name" value="{{ $customer->first_name }}" name="first_name" required>
+								<input type="hidden" value="{{ $customer->id }}" name="id" required>
 								<span class="text-danger">{{ $errors->has('first_name') ? $errors->first('first_name') : '' }}</span>
 							  </div>
 							  <div class="form-group required">

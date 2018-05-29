@@ -24,7 +24,7 @@ class EmailController extends Controller
      */
     public function create()
     {
-        //
+        return view('email.sendEmail');
     }
 
     /**
@@ -41,6 +41,7 @@ class EmailController extends Controller
             'message_body' => 'min:5',
             'message_image' => 'mimes:png,jpg,jpeg,gif,pdf,svg,text,ppt,docx,doc,xls'
         ]);
+        /*return $request;*/
 
         $data = $request->toArray();
 
@@ -60,7 +61,7 @@ class EmailController extends Controller
             );
             }      
 		});
-		return    redirect()->back()->with('message', 'E-mail sent successfully');
+		return    redirect('/E-mail-send')->with('message','E-mail sent successfully');
     }
 
     /**

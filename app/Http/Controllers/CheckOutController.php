@@ -204,8 +204,8 @@ class CheckOutController extends Controller
        $this->validate($request, [
             'first_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u',
             'last_name' => 'required|min:3|max:30|regex:/^[\pL\s\-]+$/u',
-            'email'     => 'required|email|unique:shippings,email',
-            'phone_no'  => 'required|regex:/(01)[0-9]{9}/|min:11|max:15|unique:shippings,phone_no',
+            'email'     => 'required|email',
+            'phone_no'  => 'required|regex:/(01)[0-9]{9}/|min:11|max:15',
             'agree'  => 'required',
         ]); 
     }
@@ -218,6 +218,7 @@ class CheckOutController extends Controller
     protected function store_shiping_info($request)
     {
         $shipping = new Shipping;
+        $shipping->customer_id = $request->id;
         $shipping->first_name = $request->first_name;
         $shipping->last_name  = $request->last_name;
         $shipping->email      =  $request->email;
@@ -309,6 +310,7 @@ class CheckOutController extends Controller
     protected function savePayment($orderId)
     {
         $payment = new Payment;
+        //$payment->customer_id = Session::get('customerId');
         $payment->order_id = $orderId;
         $payment->payment_type = 'COD';
         $payment->save();  
@@ -320,6 +322,7 @@ class CheckOutController extends Controller
             foreach ($cartProducts as $cartProduct) {
                 $brandId = Product::find($cartProduct->id)->brand_id;
                 $orderDetails = new OrderDetail;
+                $orderDetails->customer_id = Session::get('customerId');
                 $orderDetails->order_id = $orderId;
                 $orderDetails->product_id  = $cartProduct->id;
                 $orderDetails->product_name = $cartProduct->name;

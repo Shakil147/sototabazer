@@ -16,6 +16,10 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        return view('admin.order.dashbordOrder');
+    }
+
+    public function menage(){
  //      $orders = Order::all();
         $orders = DB::table('orders')
            ->join('customers', 'orders.customer_id', '=', 'customers.id')

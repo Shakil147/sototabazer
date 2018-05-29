@@ -29,6 +29,7 @@ class CetagoryController extends Controller
         $imageUrl = $directory.$imageName;
          return $imageUrl;
     }
+    
     protected function storeCetagoryBasic($request, $imageUrl){
         $saveCetagory = new Cetagory;
         $saveCetagory->cetagory_name = $request->cetagory_name;

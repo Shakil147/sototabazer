@@ -1,100 +1,132 @@
-
 <!DOCTYPE html>
+<html lang="en">
 <head>
-<title>@yield('title'):: SOTOTABAZAR</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Shotota Bazar Admin Panal, Bootstrap Web Templates, Flat Web Templates, Android Compatible,Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson" />
- <!-- icon link -->
-<link rel="shortcut icon" type="image/png" href="{{ asset('emarket')}}/ico/favicon-16x16.png"/>
-<!-- bootstrap-css -->
-<link rel="stylesheet" href="{{ asset('backend') }}/css/bootstrap.css">
-<!-- //bootstrap-css -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@yield('title')</title>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="description" content="" />
+<meta name="keywords" content="admin, admin dashboard, admin template" />
+<meta name="author" content="SRGIT"/>
+<!-- Favicon -->
+<link rel="shortcut icon" href="{{ asset('backend') }}/plugins/assets/img/favicon/favicon.png">
+<link rel="icon" href="{{ asset('backend') }}/plugins/assets/img/favicon/favicon.png" type="image/x-icon">
 <!-- Custom CSS -->
-<link href="{{ asset('backend') }}/css/style.css" rel='stylesheet' type='text/css' />
-<!-- font CSS -->
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<!-- font-awesome icons -->
-<link rel="stylesheet" href="{{ asset('backend') }}/css/font.css" type="text/css"/>
-<link href="{{ asset('backend') }}/css/font-awesome.css" rel="stylesheet"> 
-<!-- //font-awesome icons -->
+<!-- Data table CSS -->
+<link href="{{ asset('backend') }}/plugins/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('backend') }}/plugins/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+<!--alerts CSS -->
+<link href="{{ asset('backend') }}/plugins/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
 
-<style>
-    td{
-        text-align: center;
-    }
-</style>
+@yield('plgCss')
+<!-- Custom CSS -->
+<link href="{{ asset('backend') }}/plugins/assets/css/default.css" rel="stylesheet" type="text/css">
 </head>
-<body class="dashboard-page">
-    <script>
-            var theme = $.cookie('protonTheme') || 'default';
-            $('body').removeClass (function (index, css) {
-                return (css.match (/\btheme-\S+/g) || []).join(' ');
-            });
-            if (theme !== 'default') $('body').addClass(theme);
-        </script>
-    @include('admin.includs.sidebar')
-    <section class="wrapper scrollable">
-        <nav class="user-menu">
-            <a href="{{ asset('backend') }}/javascript:;" class="main-menu-access">
-            <i class="icon-proton-logo"></i>
-            <i class="icon-reorder"></i>
-            </a>
-        </nav>
-        <section class="title-bar">
-            @include('admin.includs.heder')
-        </section>
-        <div class="main-grid">
-        @if($message = Session::get('message'))    
-            <div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
-                <div class="alert alert-success" role="alert" style="text-align: center;">
-                    <strong><h4> {{ $message }} </h4> </strong>
-                </div>
-            </div>
-            @endif
-            
-            @yield('minContent')
+<body>
+<!-- Preloader -->
+<div class="preloader-it">
+  <div class="preloader">
+    <div class="circles-1">
+      <div class="circles-1-center"></div>
+      <div class="circles-1"></div>
+      <div class="circles-1"></div>
+      <div class="circles-1"></div>
+      <div class="circles-1"></div>
+      <div class="circles-1"></div>
+      <div class="circles-1"></div>
+    </div>
+  </div>
+</div>
+<!-- //Preloader --> 
+
+<!-- Begin page -->
+<div class="wrapper light-theme"> 
+  <!-- Top Header -->
+  @include('admin.includs.topHeader')
+  <!-- /Top Menu Items --> 
+  <!-- Left Sidebar Menu -->
+  @include('admin.includs.leftSidebar')
+  <!-- /Left Sidebar Menu --> 
+  <!-- Right Sidebar Menu -->
+  @include('admin.includs.rightSidebar')
+  <!-- /Right Sidebar Menu --> 
+ 
+  <!-- Main Content -->
+ <div class="page-wrapper">
+    @yield('minContent')
+    <div class="clearfix"></div>
+    <!-- Row--> 
+    <!-- Footer -->
+    <footer class="footer container-fluid pt-10 pb-10  pl-30 pr-30">
+      <div class="row">
+        <div class="col-sm-12 ">
+          <div class="pull-left text-dark pt-5 small">Copyright @ 2018  Hyrax UX  Panel. All Rights Reserved</div>
+          <div class="pull-right">Created with by <img src="{{ asset('backend') }}/plugins/assets/img/heartbeat.svg" alt="srgit" class="heart"> <a href="http://www.srgit.com/" target="_blank">SRGIT</a></div>
+          <div class="clearfix"></div>
         </div>
-        <!-- footer -->
-        <div class="footer">
-            <p>© 2016 Colored . All Rights Reserved . Design by <a href="{{ asset('backend') }}/http://w3layouts.com/">W3layouts</a></p>
-        </div>
-        <!-- //footer -->
-    </section>
-
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
-<script src="{{ asset('backend') }}/js/jquery2.0.3.min.js"></script>
-<script src="{{ asset('backend') }}/js/modernizr.js"></script>
-<script src="{{ asset('backend') }}/js/jquery.cookie.js"></script>
-<script src="{{ asset('backend') }}/js/screenfull.js"></script>
-<script>
-    $(function () {
-        $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
-
-        if (!screenfull.enabled) {
-            return false;
-        }
-
-        
-
-        $('#toggle').click(function () {
-            screenfull.toggle($('#container')[0]);
-        }); 
+      </div>
+    </footer>
+    <!-- /Footer --> 
+  </div>
+  <!-- /Main Content --> 
+</div>
+<!-- /Main Content --> 
+<!-- /#wrapper --> 
+<!-- AJAX -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- jQuery --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/jquery/dist/jquery.min.js"></script> 
+<!-- Bootstrap Core JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> 
+<!-- Data table JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script> 
+<!-- Slimscroll JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/assets/js/jquery.slimscroll.js"></script> 
+<!-- Owl JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script> 
+<!-- Progressbar Animation JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/waypoints/lib/jquery.waypoints.min.js"></script> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/jquery.counterup/jquery.counterup.min.js"></script> 
+<!-- Fancy Dropdown JS --> 
+<script src="{{ asset('backend') }}/plugins/assets/js/dropdown-bootstrap-extended.js"></script> 
+<!-- FlotChart JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/flot/jquery.flot.js"></script> 
+<script src="{{ asset('backend') }}/plugins/assets/js/flot-data-dashboard.js"></script> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/skycons/skycons.js"></script> 
+<!-- Sparkline JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/jquery.sparkline/dist/jquery.sparkline.min.js"></script> 
+<!-- Switchery JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/switchery/dist/switchery.min.js"></script> 
+<!-- EChartJS JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/echarts/dist/echarts-en.min.js"></script> 
+<!-- Toast JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js"></script> 
+<!-- Init JavaScript --> 
+<script src="{{ asset('backend') }}/plugins/assets/js/init.js"></script> 
+<!-- Sweet-Alert  --> 
+<script src="{{ asset('backend') }}/plugins/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script> 
+<script src="{{ asset('backend') }}/plugins/assets/js/sweetalert-data.js"></script> 
+<!-- JavaScript -->
+@yield('plugjs')
+@if($message = Session::get('message'))   
+<script type="text/JavaScript">
+  $(window).load(function(){
+  window.setTimeout(function(){
+    $.toast({
+      heading: 'MESSAGE',
+      text: '{{ $message }}.',
+      position: 'bottom-right',
+      loaderBg:'#2bb9c3',
+      icon: 'success',
+      hideAfter: 3500, 
+      stack: 6
     });
+  }, 3000);
+});
 </script>
-<!-- charts -->
-<script src="{{ asset('backend') }}/js/raphael-min.js"></script>
-<script src="{{ asset('backend') }}/js/morris.js"></script>
-<link rel="stylesheet" href="{{ asset('backend') }}/css/morris.css">
-<!-- //charts -->
-<!--skycons-icons-->
-<script src="{{ asset('backend') }}/js/skycons.js"></script>
-<!--//skycons-icons-->
-<script src="{{ asset('backend') }}/js/bootstrap.js"></script>
-<script src="{{ asset('backend') }}/js/proton.js"></script>
-
-    @yield('plugjs')
+<!-- !JavaScript -->
+@endif
 
 </body>
 </html>
