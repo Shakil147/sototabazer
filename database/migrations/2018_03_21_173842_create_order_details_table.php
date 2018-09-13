@@ -15,14 +15,10 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id');
-            $table->foreign('order_id')->reference('id')->on('orders');
-            $table->integer('customer_id');
-            $table->foreign('customer_id')->reference('id')->on('customers');
-            $table->integer('product_id');
-            $table->foreign('product_id')->reference('id')->on('products');
-            $table->integer('brand_id');
-            $table->foreign('brand_id')->reference('id')->on('brands');
+            $table->integer('order_id')->reference('id')->on('orders');
+            $table->integer('customer_id')->reference('id')->on('customers');
+            $table->integer('product_id')->reference('id')->on('products');
+            $table->integer('brand_id')->reference('id')->on('brands');
             $table->string('product_name');
             $table->float('product_price');
             $table->integer('product_quantity');

@@ -1,61 +1,76 @@
-@extends('frontend.master')
-@section('title')
-Contact
-@endsection
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laravel 5 - Ajax Image Uploading Tutorial</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+</head>
+<body>
 
-@section('banner')
-	<div class="banner banner10">
-		<div class="container">
-			<h2>Contact Us</h2>
-		</div>
-	</div>
-@endsection
 
-@section('content')   
-	<!-- breadcrumbs -->
-	<div class="breadcrumb_dress">
-		<div class="container">
-			<ul>
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
-				<li>Contact Us</li>
-			</ul>
-		</div>
-	</div>
-	<!-- //breadcrumbs --> 
-	<!-- mail -->
-	<div class="mail">
-		<div class="container">
-			<h3>Contact Us</h3>
-			<div class="agile_mail_grids">
-				<div class="col-md-5 contact-left">
-					<h4>Address</h4>
-					<p>est eligendi optio cumque nihil impedit quo minus id quod maxime
-						<span>26 56D Rescue,US</span></p>
-					<ul>
-						<li>Free Phone :+1 078 4589 2456</li>
-						<li>Telephone :+1 078 4589 2456</li>
-						<li>Fax :+1 078 4589 2456</li>
-						<li><a href="mailto:info@example.com">info@example.com</a></li>
-					</ul>
-				</div>
-				<div class="col-md-7 contact-left">
-					<h4>Contact Form</h4>
-					<form action="#" method="post">
-						<input type="text" name="Name" placeholder="Your Name" required="">
-						<input type="email" name="Email" placeholder="Your Email" required="">
-						<input type="text" name="Telephone" placeholder="Telephone No" required="">
-						<textarea name="message" placeholder="Message..." required=""></textarea>
-						<input type="submit" value="Submit" >
-					</form>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+<div class="container">
+  <h1>Laravel 5 - Ajax Image Uploading Tutorial</h1>
 
-			<div class="contact-bottom">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d96908.54934770924!2d-73.74913540000001!3d40.62123259999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sanimal+rescue+service+near+Inwood%2C+New+York%2C+NY%2C+United+States!5e0!3m2!1sen!2sin!4v1436335928062" frameborder="0" style="border:0" allowfullscreen></iframe>
-			</div>
-		</div>
-	</div>
-	<!-- //mail -->
 
-@endsection
+  <form action="{{ url('/account-ajax') }}" enctype="multipart/form-data" method="POST">
+
+
+  	<div class="alert alert-danger print-error-msg" style="display:none">
+        <ul></ul>
+    </div>
+
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+
+    <div class="form-group">
+      <label>Alt Title:</label>
+      <input type="text" name="title" class="form-control" placeholder="Add Title">
+    </div>
+
+
+	<div class="form-group">
+      <label>Image:</label>
+      <input type="file" name="image" class="form-control">
+    </div>
+
+
+    <div class="form-group">
+      <button class="btn btn-success upload-image" type="submit">Upload Image</button>
+    </div>
+
+
+  </form>
+
+
+</div>
+
+
+<script type="text/javascript">
+  $("body").on("click",".upload-image",function(e){
+    $(this).parents("form").ajaxForm(options);
+  });
+
+
+  var options = { 
+  success:function(response){
+           	if (response == "success") {
+           		console.log("image uplod success");
+            }
+	            if (response == "wrongPassword") {
+	              $("#loginMessage").html("Incorrect Password");
+	            }
+	            if (response == "wrongEmail") {
+	              $("#loginMessage").html("Incorrect Email");
+	            }
+    		}, 
+	error:function(){
+
+		}
+  };
+</script>
+
+
+</body>
+</html>

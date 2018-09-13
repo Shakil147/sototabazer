@@ -16,8 +16,8 @@ class CetagoryController extends Controller
     {
         $this->validate($request, [
             'cetagory_name' => 'required|min:3',
-            'cetagory_description' => 'required|max:3',
-            'cetagory_icon'     => 'required | mimes:jpeg,jpg,png',
+            'cetagory_description' => 'required',
+            'cetagory_icon'     => 'required|mimes:jpeg,jpg,png',
             'publication_status'     => 'required'
         ]);
     }

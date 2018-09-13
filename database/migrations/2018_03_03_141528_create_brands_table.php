@@ -18,8 +18,8 @@ class CreateBrandsTable extends Migration
             $table->string('brand_name');
             $table->text('brand_description')->nullable();
             $table->string('brand_icon')->nullable();
-            $table->integer('brand_creater_id')->reference('id')->on('users');
             $table->integer('publication_status')->default('1');
+            $table->integer('brand_creater_id')->reference('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });

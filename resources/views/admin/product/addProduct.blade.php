@@ -160,11 +160,17 @@ Add Product
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="pull-left">
-                        <input type="checkbox" name="publication_status" checked class="js-switch switch-bt"  data-color="#65bae2" data-size="small"/>
-                         <span class="bg-danger text-info">{{ $errors->has('publication_status') ? $errors->first('publication_status') : '' }}</span>
+                      <div class="form-group">
+                        <div class="pt-15">Publication Status</div>
+                        <div class="pull-left">
+                          <select class="form-control" name="publication_status">
+                              <option value="">---Select Publication Status</option>
+                                <option value="1">Published</option>
+                                <option value="0">Unpublished</option>
+                            </select>
+                           <span class="bg-danger text-info">{{ $errors->has('publication_status') ? $errors->first('publication_status') : '' }}</span>
+                        </div>
                       </div>
-                      <div class="pull-left  pt-15">Available</div>
                     </div>
                     <div class="col-md-6  col-xs-12 text-right">
                       <button class="btn  btn-success btn-rounded"><i class="mdi mdi-content-save  mr-5"></i> Save </button>
@@ -179,31 +185,6 @@ Add Product
         </div>
       </div>
       <!-- /Row --> 
-      <!-- Row -->
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="panel panel-default card-view">
-            <div class="panel-heading">
-              <div class="pull-left">
-                <h6 class="panel-title txt-dark">Upload Pictures</h6>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <div class="panel-wrapper collapse in">
-              <div class="panel-body">
-                <div class="row">
-                  
-                  <div class="col-md-3 col-sm-6 col-xs-12">
-                    <input type="file" id="input-file-now" class="dropify" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /Row --> 
-    </div>
 
 
 @endsection

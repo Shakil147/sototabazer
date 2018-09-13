@@ -34,14 +34,17 @@
                                             <div class="megamenu-pattern">
                                                 <div class="container-mega">
                                                     <ul class="megamenu">
+                                                         @foreach($catagoris as $catagory)
                                                         <li class="item-vertical  with-sub-menu hover">
                                                             <p class="close-menu"></p>
-                                                            <a href="#" class="clearfix">
-                                                                <img src="{{ asset('emarket') }}/image/catalog/menu/icons/ico10.png" alt="icon">
-                                                                <span>Gifts & Toys</span>
+                                                            <a href="{{ url('/cetagory/'.$catagory->id) }}" class="clearfix">
+                                                                <img src="{{ asset($catagory->cetagory_icon) }}" alt="{{ $catagory->cetagory_name }}"  height="20" width="20">
+                                                                <span>{{ $catagory->cetagory_name }}</span>
                                                                 <b class="caret"></b>
                                                             </a>
-                                                            <div class="sub-menu" data-subwidth="60"  >
+                                                        </li>
+                                                        @endforeach
+                                                            <!-- <div class="sub-menu" data-subwidth="60"  >
                                                                 <div class="content" >
                                                                     <div class="row">
                                                                         <div class="col-sm-12">
@@ -113,8 +116,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </li>
-                                                        <li class="item-vertical">
+                                                                                                                    </li> -->
+                                                        <!-- <li class="item-vertical">
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <img src="{{ asset('emarket') }}/image/catalog/menu/icons/ico1.png" alt="icon">
@@ -415,7 +418,7 @@
                                                                      <img src="{{ asset('emarket') }}/image/catalog/menu/icons/ico6.png" alt="icon">
                                                                     <span>Metallurgy</span>
                                                                 </a>
-                                                            </li>
+                                                            </li> -->
                                                            
                                                             <li class="loadmore">
                                                                 <i class="fa fa-plus-square-o"></i>
@@ -444,6 +447,10 @@
                                         <div class="select_category filter_type  icon-select hidden-sm hidden-xs">
                                             <select class="no-border" name="category_id">
                                                 <option value="0">All Categories</option>
+                                                    @foreach($catagoris as $catagory)
+                                                <option value="{{ $catagory->id }}">{{ $catagory->cetagory_name }}</option>
+                                                    @endforeach
+                                                <!-- 
                                                 <option value="78">Apparel</option>
                                                 <option value="77">Cables &amp; Connectors</option>
                                                 <option value="82">Cameras &amp; Photo</option>
@@ -453,7 +460,7 @@
                                                 <option value="20">Jewelry &amp; Watches</option>
                                                 <option value="76">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Earings</option>
                                                 <option value="26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wedding Rings</option>
-                                                <option value="27">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men Watches</option>
+                                                <option value="27">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men Watches</option> -->
                                             </select>
                                         </div>
 

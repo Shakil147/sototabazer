@@ -109,7 +109,7 @@ Order Information
 							<?php 
 							$sl = 0; $subtotle= 0; $vatRate = 5; $grandtotal = 0; $Shipping = 50;
 							foreach ($orderDetails as $details) {
-								$subtotle = $details->product_quantity*$details->product_price;
+								$subtotle = $details->product_quantity*$details->product_price+$subtotle;
 							}
 							$grandtotal = $subtotle + ($subtotle * $vatRate) / 100 + $Shipping;
 							$vat = ($subtotle * $vatRate) / 100;

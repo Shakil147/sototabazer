@@ -18,6 +18,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer('frontend.includs.haderBottom', function ($view) {
             $view->with('cart', Cart::content());
         });
+        View::composer('frontend.includs.haderBottom', function ($view) {
+            $view->with('catagoris', Cetagory::where('publication_status',1)->get());
+        });
     }
 
     /**

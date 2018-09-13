@@ -10,6 +10,7 @@ use Session;
 use Cart;
 use Mail;
 use DB;
+use Image;
 
 class AcccountController extends Controller
 {
@@ -59,7 +60,7 @@ class AcccountController extends Controller
         $customer->address_1 = $request->address_1;
         $customer->address_2 = $request->address_2;
         $customer->zilla_id = $request->zilla_id;
-        $customer->up_zilla_id = $request->up_zilla;
+        $customer->up_zilla_id = $request->up_zilla_id;
         $customer->postcode = $request->postcode;
         $customer->country = $request->country;
         $customer->save();
@@ -91,6 +92,7 @@ class AcccountController extends Controller
      */
     public function create(Request $request)
     {   
+        //return $request;
         $this->acccountValidation($request);
         $customer = $this->store($request);
 
@@ -153,6 +155,21 @@ class AcccountController extends Controller
             echo "wrongEmail";          
             /*return redirect()->back()->with('message', 'Your email is not correct');*/
         }
+    }
+    public function cheak_ajax(Request $request)
+    {   
+        if ($request->hasFile('image')) {
+
+        $Cetagory_icon = $request->file('image');
+        $imageName = time() . '.' . $Cetagory_icon->getClientOriginalExtension();    
+        $directory = 'cetagory_icon/';
+        $Cetagory_icon = Image::make($request->file('image'))->resize(250, 250)->save($directory.$imageName);
+        $imageUrl = $directory.$imageName;
+        }
+        if ($imageUrl) {            
+        return response()->json(['success']);
+        }
+        echo "string";
     }
 
     protected function login_message($customer, $customerName)

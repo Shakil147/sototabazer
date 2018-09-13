@@ -3,13 +3,6 @@
 /*
 |--------------------------------------------------------------------------
 | Web Routes  
-			@if($message = Session::get('message'))    
-            <div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
-                <div class="alert alert-success" role="alert" style="text-align: center;">
-                    <strong><h4> {{ $message }} </h4> </strong>
-                </div>
-            </div>
-            @endif
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -23,7 +16,7 @@ Route::get('/', function () {
 })->name('home.page');
 
 Route::get('/2r', function () {
-    return view('frontend.home.homerr');
+    return view('frontend.contact.contact');
 });
 	Route::post('/account-login','AcccountController@cheak_login')->name('account-login');
 
@@ -32,6 +25,7 @@ Route::get('/prouductImagesDelete','ProductController@prouduct_Images_Delete');
 
 	Route::get('/accountlogin','AcccountController@show')->name('account.login');
 	Route::post('/account-login','AcccountController@cheak_login')->name('account-login');
+	Route::post('/account-ajax','AcccountController@cheak_ajax')->name('account-login');
 
 Route::get('/account-logout','AcccountController@destroy')->name('account-logout');
 
@@ -40,8 +34,8 @@ Route::get('/order-information/{id}','AcccountController@order_information')->na
 
 
 Route::get('/single-product/{id}','SototabazarController@show_single_product');
+Route::get('/cetagory/{id}','SototabazarController@product_by_cetagory');
 Route::get('/contact','SototabazarController@show_contact_form');
-Route::get('/product-by-Cetagory/{id}','SototabazarController@productsbyCetegory');
 Route::get('/about','SototabazarController@about');
 
 Route::group(['middleware' => ['CheakLoginMiddleware']], function () { 
@@ -110,6 +104,7 @@ Route::group(['middleware' => ['AuthenticateMiddleware']], function () {
 	Route::get('/orders', 'OrderController@index');
 	Route::get('/ordersMenage', 'OrderController@menage');
 	Route::get('/order/view/{id}', 'OrderController@show_orders');
+	Route::get('/order/edit/{id}', 'OrderController@edit_orders');
 	Route::post('order.details.update','OrderController@orders_qty_update')->name('order.details.update');
 	Route::post('order.status.update','OrderController@orders_status_update')->name('order.status.update');
 	Route::get('/order/invoice/{id}', 'OrderController@show_order_invoise');

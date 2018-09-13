@@ -344,6 +344,8 @@ class CheckOutController extends Controller
         $orderId = $this->saveOrder();
         $this->savePayment($orderId);
         $this->saveOrderDetails($orderId);
+        Session::forget('shippingId');
+        Cart::destroy();
         return redirect('/')->with('message','your order recived successfully Thank you we will contat you verry soon');     
     }
 

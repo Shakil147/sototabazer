@@ -15,8 +15,7 @@ class CreateShippingsTable extends Migration
     {
         Schema::create('shippings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_id');
-            $table->foreign('customer_id')->reference('id')->on('customers');
+            $table->integer('customer_id')->reference('id')->on('customers');
             $table->string('full_name');
             $table->string('lastName');
             $table->string('email')->nullable();

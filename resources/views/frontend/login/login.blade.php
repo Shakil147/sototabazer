@@ -34,7 +34,7 @@ Login
 								</div>
 							</div>
 							
-							{!! Form::open(['class'=>'form-horizontal login','route' => 'account-login','method'=>'post']) !!}
+							{!! Form::open(['class'=>'form-horizontal login','route' => 'account-login','method'=>'post','enctype'=>'multipart/form-data']) !!}
 								<div class="col-sm-6 customer-login">
 									<div class="well">
 										<h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Returning Customer</h2>
@@ -88,15 +88,12 @@ Login
            		/*$('#up_zilla').append('<option value="0" disable="true" selected="true">=== Select  Up-Zilla ===</option>');*/
                location.reload();
             }
-            if (response == "wrongPassword") {
-              $("#loginMessage").html("Incorrect Password");
-            }
-            if (response == "wrongEmail") {
-              $("#loginMessage").html("Incorrect Email");
-            }
-
-	          $.each(data, function(index, regenciesObj){
-	          })
+	            if (response == "wrongPassword") {
+	              $("#loginMessage").html("Incorrect Password");
+	            }
+	            if (response == "wrongEmail") {
+	              $("#loginMessage").html("Incorrect Email");
+	            }
     		}, 
 	        error:function(){
 

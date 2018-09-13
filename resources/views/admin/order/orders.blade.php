@@ -5,168 +5,291 @@ Order Details
 @endsection
 
 @section('minContent')
-	<div class="panel panel-primary" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
-		<div class="panel-heading">
-            <div class="container container-fluid">
-                
-            <div class="col-md-6"><h2><a href="{{ url('/orders') }}" style="color: #FFFFFF">MENAGE Orders</a> <div class="glyphicon glyphicon-arrow-right"></div> Order Details</h2></div>
-            <div class="col-md-6">                
-                <a href="{{ url('/order/download/'.$info->id) }}" class="col-sm-1 btn btn-link glyphicon glyphicon-download-alt pull-right" ></a>
-            </div>
-
-                
-            </div>
-			
-			<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
-		</div>
-		<div class="panel-body no-padding" style="display: block;">
-            <div id="details" class="clearfix">
-                <div class="container" style="padding-bottom: 10px;">
-                    <div class="col-sm-6">
-                        <div class="to">Castomer Info:</div>
-                        <h2 class="name">{{ $info->first_name.' '.$info->last_name }}</h2>
-                        <div class="address">{{ $info->address_1 }}</div>
-                        <div class="address">{{ $info->address_2 }}</div>
-                        <div class="address">{{ $info->postcode }}</div>
-                        <div class="address">{{ $info->up_zilla }}</div>
-                        <div class="address">{{ $info->zilla }}</div>
-                        <div class="address">{{ $info->country }}</div>
-                        <div class="email"><a href="#">{{ $info->phone_no }}</a></div>
-                        <div class="email"><a href="#">{{ $info->email }}</a></div>
-                        <div class="date">Date of Order: {!! date('d/m/Y', strtotime($info->created_at)) !!}</div>
-                    </div>
-                    <div class="col-sm-6" style="text-align: right;">
-                        <div class="to">Shipping Adress</div>
-                        <h2 class="name">{{ $info->first_name.' '.$info->last_name }}</h2>
-                        <div class="address">{{ $shippingInfo->address_1 }}</div>
-                        <div class="address">{{ $shippingInfo->address_2 }}</div>
-                        <div class="address">{{ $shippingInfo->postcode }}</div>
-                        <div class="address">{{ $shippingInfo->up_zilla }}</div>
-                        <div class="address">{{ $shippingInfo->zilla }}</div>
-                        <div class="address">{{ $shippingInfo->country }}</div>
-                        <div class="email"><a href="#">{{ $info->phone_no }}</a></div>
-                        <div class="email"><a href="#">{{ $info->email }}</a></div>
-                        <div class="date">Order Status: {!! $info->order_status !!}</div>
-                        <div class="date">Payment Status: {!! $info->payment_status !!} ({{$info->payment_type }})</div>
-                    </div>
-                </div> 
-            </div>
+ <div class="container-fluid"> 
+      <!-- Title -->
+      <div class="row heading-bg">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h5 class="txt-dark">shippingInfo Details</h5>
         </div>
-		<table class="table table-bordered">
-			<thead>
-				<tr class="success">
-					<th>#</th>
-                    <th>Product ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Sub Total</th>
-                    <th>Order Date</th>
-				</tr>
-			</thead>
-            <?php $sl = 0; $subtotle= 0; $taxrate = '5'; $grandtotal = 0; ?>
-            @foreach($details as $order)
-    <tr>
-        <td class="scenter">{{ $sl+=1 }}</td>
-        <td class="scenter">{{ $order->id }}</tb>
-        <td class="desc"><b>{{ $order->product_name }}</b></td>
-        <td class="unit">Tk.  {{ $prise = $order->product_price }}</td>
-        <!-- <td class="qty">{{ $qty = $order->product_quantity }}</td> -->
-        <td class="col-sm-5" style="text-align: center; padding-left: 21px;">
-        <div class="row" >
-        {!! Form::open(['route' => 'order.details.update','method'=>'post']) !!}
-            <input class="col-sm-5" type="number" name="product_quantity" value="{{ $qty = $order->product_quantity }}" min="1" max="100" style="border-color: black; border-radius: 4px;" />
-            <input type="hidden" name="orders_ID" value="{{ $order->id }}" />
-            
-                <button  type="submit" class="btn btn-info glyphicon glyphicon-refresh col-sm-2" style="border-radius: 4px; margin-left: 20px;" title="UPDATE"></button>
-            
-        
-        {!! Form::close() !!}
-        <a href="{{ url('/cart-delet/'.$order->id) }}" class="btn btn-danger glyphicon glyphicon-trash col-sm-2" title="Deleta" style="margin-left: 20px;"></a>
+      </div>
+      <!-- /Title --> 
+      <!-- Row -->
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="panel panel-default card-view">
+            <div class="panel-heading">
+              <div class="pull-left">
+                <h6 class="panel-title txt-dark">Order Status</h6>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+              <div class="panel-body">
+                <div class="col-lg-10">
+                  <div class="order-status">
+                    <ul>
+                      <li>
+                        <div class="circle-1"><i class="mdi mdi-check-all text-primary"></i></div>
+                        <span>Order Placed</span></li>
+                      <li class="boder-css"></li>
+                      <li>
+                        <div class="circle-1"><i class="mdi mdi-check-all text-primary"></i></div>
+                        <span>Order Shipped</span></li>
+                      <li class="boder-css"></li>
+                      <li>
+                        <div class="circle-1"><i class="mdi mdi-check-all text-primary"></i></div>
+                        <span>In Transit</span></li>
+                      <li class="boder-css"></li>
+                      <li>
+                        <div class="circle-1"><i class="mdi mdi-check-all text-primary"></i></div>
+                        <span>Out for Delivery</span></li>
+                      <li class="boder-css"></li>
+                      <li>
+                        <div class="circle-1"><i class="mdi mdi-dots-horizontal text-danger"></i></div>
+                        <span>Delivered</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-2">
+                  <div class="btn-group pull-right">
+                    <div class="dropdown">
+                      <button aria-expanded="false" data-toggle="dropdown" class="btn btn-primary dropdown-toggle mt-10" type="button">Change Order Status <span class="caret"></span></button>
+                      <ul role="menu" class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <!-- /Row --> 
+      <!-- Row -->
+      <div class="row">
+        <div class="col-md-8 col-xs-12">
+          <div class="panel panel-default card-view">
+            <div class="panel-heading">
+              <div class="pull-left">
+                <h6 class="panel-title txt-dark">Order Summery</h6>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+              <div class="panel-body">
+                <div class="datatable-responsive table-responsive">
+                  <table id="simpletable" class="table  table-bordered nowrap dark ma-0">
+                    <thead>
+                      <tr>
+                        <th>Product ID</th>
+                        <th>Product name</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>QTY</th>
+                        <th>Total</th>
+                        <th> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($orderDetails as $details)
+                      <tr >
+                        <td>#{{ $details->product_id }}</td>
+                        <td class="vertical-align-middle"><div class="pull-left"><img class="image-responsive" width="50" src="{{ asset($details->product_main_image) }}" alt="{{ $details->product_name }}" title="{{ $details->product_name }}"></div>
+                          <div class="pull-left pa-10">{{ $details->product_name }}</div></td>
+                        <td>{{ $details->brand_name }}</td>
+                        <td>TK {{ $details->product_price }}</td>
+                        <td>{{ $details->product_quantity }}</td>
+                        <td>TK {{ $details->product_price*$details->product_quantity }}</td>
+                        <td class="text-center"><a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Edit"><i class="mdi mdi-lead-pencil font-18 txt-primary"></i></a> &nbsp; <a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close txt-danger font-18"></i></a></td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      </td>
-        
-        <?php $totle = $prise*$qty; $subtotle= $subtotle+$totle;  ?>
-        <td class="total">Tk.  {{ $totle = number_format($totle, 2) }}</td>
-        
-        <td><a href="#" title="{{ $order->created_at }}"><!-- {!! date('d/m/Y', strtotime($order->created_at)) !!} --> {{ $order->created_at->toFormattedDateString() }}</a></td>
-    </tr>
-            @endforeach
-                
-        </table>
-                <?php 
-    $grandtotal = $subtotle + ($subtotle * $taxrate) / 100;
-    $tax = $grandtotal-$subtotle;
-    ?>
-        <div class="container" style="padding-bottom: 10px; padding-top: 20px;">
-                    <div class="col-sm-6" style="margin-top: 13px;4margin-left: -35px;">
-                    {!! Form::open(['route' => 'order.status.update','method'=>'post','name'=>'updateOrder']) !!}
-                    <div class="form-group">
-                      <label for="selector1" class="col-sm-4 control-label" style="position: relative; text-align: right;">ORDER STATUS</label>
-                      <div class="col-sm-7">
-                        <select name="order_status" id="selector1" class="js-example-basic-single form-control1 control-label" style="style="padding-top: 5px;" required>
-
-                        
-                    @if($info->order_status == "PANDING" )
-                        <option value="PANDING" disabled>PANDING</option>
-
-                        <option value="APPROVED">APPROVE</option>
-                        <option value="CANCELLED">CANCELL</option>
-                    @endif
-
-                    @if($info->order_status == "CANCELLED")
-                        <option value="APPROVED">APPROVED</option>
-                        <option value="PANDING">PANDING</option>
-                        <option value="CANCELLED" disabled>CANCELL</option>                        
-                    @endif
-
-                    @if($info->order_status == "APPROVED" )
-                        <option value="APPROVED" disabled>APPROVE</option>
-                        <option value="ONWAY">ONWAY</option>
-                        <option value="CANCELLED">CANCELL</option>
-                    @endif
-
-                    @if($info->order_status == "ONWAY" )                      
-                        <option value="ONWAY" disabled>ONWAY</option>
-                        <option value="DELIVERED" >DELIVERED</option> 
-                        <option value="UNSUCCESSFULL" >UNSUCCESSFULL</option>
-                    @endif
-
-                    @if($info->order_status == "DELIVERED" )
-                        <option value="DELIVERED" disabled>DELIVERED</option>
-                        <option value="SUCCESSFULL" >SUCCESSFULL</option>
-                        <option value="UNSUCCESSFULL" >UNSUCCESSFULL</option>
-                    @endif 
-
-                    @if($info->order_status == "SUCCESSFULL" )
-                        <option value="SUCCESSFULL" disabled>SUCCESSFULL</option>
-                    @endif
-
-                    @if($info->order_status == "UNSUCCESSFULL" )
-                        <option value="SUCCESSFULL" >SUCCESSFULL</option>                    
-                        <option value="UNSUCCESSFULL" disabled>UNSUCCESSFULL</option>
-                    @endif
-                            </select>
-                            <input type="hidden" name="id" value="{{ $info->id }}" />
-                        </div>
-                        <button  type="submit" class="btn btn-info glyphicon glyphicon-refresh col-sm-1 control-label" style="border-radius: 4px; margin-top: -5px; title="UPDATE"></button>
-                    </div>                    
-                    
-                    {!! Form::close() !!}
+            <?php 
+            $subtotle= 0; $vatRate = 5; $grandtotal = 0; $shippingRate = 50;
+            foreach ($orderDetails as $details) {
+                $subtotle = $details->product_quantity*$details->product_price+$subtotle;
+            }
+            $grandtotal = $subtotle + ($subtotle * $vatRate) / 100 + $shippingRate;
+            $vat = ($subtotle * $vatRate) / 100;
+            ?>
+          <div class="row"></div>
+          <div class="row">
+            <div class="col-sm-6 col-xs-12">
+              <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                  <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Payment Details</h6>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                  <div class="panel-body">
+                    <div class="table-responsive">
+                      <table class="table ma-0">
+                        <tr>
+                          <td class="boder-0">Transaction ID: <span class="text-color">{{ $pamentInfo->id }}</span></td>
+                        </tr>
+                        <tr>
+                          <td class="boder-0">Amount: <span class="text-color">TK {{ $grandtotal }}</span></td>
+                        </tr>
+                        <tr>
+                          <td class="boder-0">Payment Method: <span class="text-color">{{ $pamentInfo->payment_type }}</span></td>
+                        </tr>
+                        <tr>
+                          <td class="boder-0">Date: <span class="text-color">{{ $pamentInfo->created_at }}</span></td>
+                        </tr>
+                      </table>
                     </div>
-                    <div class="col-sm-6" style="text-align: right;">                        
-                        <h4 class="name">TOTAL = TK. {{ $subtotle  }}</h4>
-                        <h4 class="name">5% TAX = TK. {{ $tax }}</h4>
-                        @if($info->payment_status == "DUE")
-                        <h3 class="name" style="color:  #F91818;">GRAND TOTAL = TK. {{ $grandtotal }}</h3>
-                        @else
-                        <h3 class="name" style="color:  #3ED46C;">GRAND TOTAL = TK. {{ $grandtotal }}</h3>
-                        @endif
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                  <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Total </h6>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                  <div class="panel-body">
+                    <div class="table-responsive">
+                      <table class="table ma-0">
+                        <tr>
+                          <td class="boder-0">Subtotal Price</td>
+                          <td class="boder-0">TK {{ $subtotle }}</td>
+                        </tr>
+                        <tr>
+                          <td class="boder-0">Discount</td>
+                          <td class="boder-0">TK 0</td>
+                        </tr><tr>
+                          <td class="boder-0">VAT</td>
+                          <td class="boder-0">TK {{ $vat }}</td>
+                        </tr>
+                        <tr>
+                          <td class="boder-0">Delivery (Sundarbon LTD.)</td>
+                          <td class="boder-0">TK {{ $shippingRate }}</td>
+                        </tr>
+                        <tr>
+                          <td class="boder-0"><strong class="text-color">Total price</strong></td>
+                          <td class="boder-0"><strong class="text-color">TK {{ $grandtotal }}</strong></td>
+                        </tr>
+                      </table>
                     </div>
-                </div> 
-		</div>
-	</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+          <div class="panel panel-default card-view">
+            <div class="panel-heading">
+              <div class="pull-left">
+                <h6 class="panel-title txt-dark">Coustumer Details</h6>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table mb-0">
+                    <tbody>
+                      <tr>
+                        <td>Name</td>
+                        <td class="text-color">{{ $info->first_name.' '.$info->last_name }}</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td class="text-color">{{ $info->email }}</td>
+                      </tr>
+                      <tr>
+                        <td>Phone</td>
+                        <td class="text-color">{{ $info->phone_no }}</td>
+                      </tr>
+                      <tr>
+                        <td>Address</td>
+                        <td class="text-color">{{ $info->address_1 }}, {{ $info->address_2 }} <br>
+                            POST : {{ $info->postcode }} <br>
+                        {{ $info->zilla_name }} , {{ $info->up_zilla_name }} , {{ $info->country }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="panel panel-default card-view">
+            <div class="panel-heading">
+              <div class="pull-left">
+                <h6 class="panel-title txt-dark">Shipping Address</h6>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table mb-5">
+                    <tbody>
+                      <tr>
+                        <td>Name</td>
+                        <td class="text-color">{{ $shippingInfo->first_name.' '.$shippingInfo->last_name }}</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td class="text-color">{{ $shippingInfo->email }}</td>
+                      </tr>
+                      <tr>
+                        <td>Phone</td>
+                        <td class="text-color">{{ $shippingInfo->phone_no }}</td>
+                      </tr>
+                      <tr>
+                        <td>zilla</td>
+                        <td class="text-color">{{ $shippingInfo->zilla_name }}</td>
+                      </tr>
+                      <tr>
+                        <td>Upzilla</td>
+                        <td class="text-color">{{ $shippingInfo->up_zilla_name }}</td>
+                      </tr>
+                      <tr>
+                        <td>Post Code</td>
+                        <td class="text-color">{{ $shippingInfo->postcode }}</td>
+                      </tr>
+                      <tr>
+                        <td>Address</td>
+                        <td class="text-color">{{ $shippingInfo->address_1 }}, {{ $shippingInfo->address_2 }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Country</td>
+                        <td class="text-color">{{ $shippingInfo->country }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Row --> 
+    </div>
 @endsection 
 
 @section('plugjs')

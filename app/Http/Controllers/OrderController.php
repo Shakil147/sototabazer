@@ -5,7 +5,7 @@ use App\Order;
 use App\Brand;
 use App\OrderDetail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
 use PDF;
 
 class OrderController extends Controller
@@ -50,22 +50,34 @@ class OrderController extends Controller
     public function show_orders($id){  
            $orderByID = DB::table('orders')
            ->join('customers', 'orders.customer_id', '=', 'customers.id')
-           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
+           ->join('districts','districts.id','=','customers.zilla_id')
+           ->join('upazilas','upazilas.id','=','customers.up_zilla_id')
+           ->select('orders.*', 'customers.first_name', 'customers.last_name', 'customers.email','customers.phone_no','customers.address_1','customers.address_2','customers.postcode','customers.country','districts.zilla_name','upazilas.up_zilla_name')
+           ->where('orders.id', $id)->first(); 
+
+           $pamentInfo = DB::table('orders')           
            ->join('payments', 'orders.id', '=', 'payments.order_id')
-           ->select('orders.*', 'customers.first_name', 'customers.last_name', 'customers.email','customers.phone_no','customers.address_1','customers.address_2','customers.up_zilla','customers.zilla','customers.postcode','customers.country', 'payments.payment_type','payments.payment_status','shippings.first_name', 'shippings.last_name', 'shippings.email','shippings.phone_no','shippings.address_1','shippings.address_2','shippings.up_zilla','shippings.zilla','shippings.postcode','shippings.country')
-           ->where('orders.id', $id)->first();  
+           ->select('payments.id','payments.payment_type','payments.payment_status','payments.created_at')
+           ->where('orders.id', $id)->first(); 
 
            $shippingInfoByID = DB::table('orders')
-           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
-           ->select('orders.*','shippings.first_name', 'shippings.last_name', 'shippings.email','shippings.phone_no','shippings.address_1','shippings.address_2','shippings.up_zilla','shippings.zilla','shippings.postcode','shippings.country')
+           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')           
+           ->join('districts','districts.id','=','shippings.zilla_id')
+           ->join('upazilas','upazilas.id','=','shippings.up_zilla_id')
+           ->select('orders.*','shippings.first_name', 'shippings.last_name', 'shippings.email','shippings.phone_no','shippings.address_1','shippings.address_2','districts.zilla_name','upazilas.up_zilla_name','shippings.postcode','shippings.country')
            ->where('orders.id', $id)->first();   
 
-        $orderDetails = OrderDetail::where('order_id',$id)->get();
-        $allBrand = Brand::all();
+        $orderDetails = DB::table('order_details')
+            ->join('orders','orders.id','=','order_details.order_id')
+            ->join('products','products.id','=','order_details.product_id')
+            ->join('brands','brands.id','=','order_details.brand_id')
+            ->select('order_details.*','products.product_name','products.product_main_image','brands.brand_name','orders.order_status')
+            ->where('order_details.order_id',$id)
+            ->get();
         return view('admin.order.orders',[
           'info'=>$orderByID,
-          'details'=>$orderDetails,
-          'allBrand'=>$allBrand,
+          'orderDetails'=>$orderDetails,
+          'pamentInfo'=>$pamentInfo,
           'shippingInfo'=>$shippingInfoByID
           ]); 
     }
@@ -117,18 +129,36 @@ class OrderController extends Controller
     public function show_order_invoise($id){
          $orderByID = DB::table('orders')
            ->join('customers', 'orders.customer_id', '=', 'customers.id')
-           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')
-           ->join('payments', 'orders.id', '=', 'payments.order_id')
-           ->select('orders.*', 'customers.customer_name', 'customers.customer_email','customers.customer_phone_number','customers.customer_address', 'payments.payment_type','payments.payment_status', 'shippings.full_name','shippings.email','shippings.phone_number','shippings.shipping_address')
-           ->where('orders.id', $id)
-           ->first();      
+           ->join('districts','districts.id','=','customers.zilla_id')
+           ->join('upazilas','upazilas.id','=','customers.up_zilla_id')
+           ->select('orders.*', 'customers.first_name', 'customers.last_name', 'customers.email','customers.phone_no','customers.address_1','customers.address_2','customers.postcode','customers.country','districts.zilla_name','upazilas.up_zilla_name')
+           ->where('orders.id', $id)->first(); 
 
-        $orderDetails = OrderDetail::where('order_id',$id)->get();
-        $allBrand = Brand::all();
+           $pamentInfo = DB::table('orders')           
+           ->join('payments', 'orders.id', '=', 'payments.order_id')
+           ->select('payments.*')
+           ->where('orders.id', $id)->first(); 
+
+           $shippingInfoByID = DB::table('orders')
+           ->join('shippings', 'orders.shipping_id', '=', 'shippings.id')           
+           ->join('districts','districts.id','=','shippings.zilla_id')
+           ->join('upazilas','upazilas.id','=','shippings.up_zilla_id')
+           ->select('orders.*','shippings.first_name', 'shippings.last_name', 'shippings.email','shippings.phone_no','shippings.address_1','shippings.address_2','districts.zilla_name','upazilas.up_zilla_name','shippings.postcode','shippings.country')
+           ->where('orders.id', $id)->first();   
+
+        $orderDetails = DB::table('order_details')
+            ->join('orders','orders.id','=','order_details.order_id')
+            ->join('products','products.id','=','order_details.product_id')
+            ->join('brands','brands.id','=','order_details.brand_id')
+            ->select('order_details.*','products.product_name','products.product_main_image','brands.brand_name','orders.order_status')
+            ->where('order_details.order_id',$id)
+            ->get();
         return view('admin.order.invoiseOrder',[
-            'info'=>$orderByID, 
-            'orderDetails'=>$orderDetails,
-            'allBrand=>$allBrand' ]);
+                    'info'=>$orderByID,
+                    'orderDetails'=>$orderDetails,
+                    'pamentInfo'=>$pamentInfo,
+                    'shippingInfo'=>$shippingInfoByID
+                    ]);
     }
 
     /**
